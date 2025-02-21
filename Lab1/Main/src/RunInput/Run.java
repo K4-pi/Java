@@ -33,7 +33,7 @@ public class Run {
                 System.out.println(Task5.PowerOfThree());
                 break;
             case 6:
-                System.out.println("NIC");
+                System.out.println(Task6.Sqrt());
                 break;
             case 7:
                 System.out.println("NIC");
