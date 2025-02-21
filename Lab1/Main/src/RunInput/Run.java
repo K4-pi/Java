@@ -8,7 +8,7 @@ public class Run {
 
         System.out.println("Lab 1\n");
 
-        for(int i = 0; i <= 8; i++) {
+        for(int i = 0; i <= 7; i++) {
             System.out.println("Zadanie " + i);
         }
 
@@ -36,10 +36,7 @@ public class Run {
                 System.out.println(Task6.Sqrt());
                 break;
             case 7:
-                System.out.println("NIC");
-                break;
-            case 8:
-                System.out.println("NIC");
+                System.out.println(Task7.RightTriangle());
                 break;
             default:
                 System.out.println("BRAK ZADANIA!");
