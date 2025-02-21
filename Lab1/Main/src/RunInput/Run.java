@@ -2,6 +2,7 @@ package RunInput;
 import task.Task1;
 import task.Task2;
 import task.Task3;
+import task.Task4;
 
 public class Run {
 
@@ -29,7 +30,7 @@ public class Run {
                 System.out.println(Task3.EvenOrOdd());
                 break;
             case 4:
-                System.out.println("NIC");
+                System.out.println(Task4.Divide());
                 break;
             case 5:
                 System.out.println("NIC");

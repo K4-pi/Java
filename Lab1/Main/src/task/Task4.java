@@ -2,11 +2,11 @@ package task;
 
 import RunInput.Input;
 
-public class Task3 {
-    public static boolean EvenOrOdd() {
+public class Task4 {
+    public static boolean Divide() {
         System.out.print("Podaj liczbe: ");
         int num = Input.IntInput();
 
-        return num % 2 == 0;
+        return num % 3 == 0 && num % 5 == 0;
     }
 }
