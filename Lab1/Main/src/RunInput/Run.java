@@ -1,8 +1,5 @@
 package RunInput;
-import task.Task1;
-import task.Task2;
-import task.Task3;
-import task.Task4;
+import task.*;
 
 public class Run {
 
@@ -33,7 +30,7 @@ public class Run {
                 System.out.println(Task4.Divide());
                 break;
             case 5:
-                System.out.println("NIC");
+                System.out.println(Task5.PowerOfThree());
                 break;
             case 6:
                 System.out.println("NIC");
