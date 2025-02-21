@@ -1,6 +1,7 @@
 package RunInput;
 import task.Task1;
 import task.Task2;
+import task.Task3;
 
 public class Run {
 
@@ -25,7 +26,7 @@ public class Run {
                 Task2.MathematicalOperation();
                 break;
             case 3:
-                System.out.println("NIC");
+                System.out.println(Task3.EvenOrOdd());
                 break;
             case 4:
                 System.out.println("NIC");
@@ -43,7 +44,7 @@ public class Run {
                 System.out.println("NIC");
                 break;
             default:
-                System.out.println("Zły wybór");
+                System.out.println("BRAK ZADANIA!");
                 break;
         }
     }
