@@ -1,11 +1,11 @@
 package RunInput;
-import task.Tasks;
+import task.Task1;
+import task.Task2;
 
 public class Run {
 
     public void RunTask() {
-        Tasks task = new Tasks();
-        Input input = new Input();
+        Task1 task = new Task1();
 
         System.out.println("Lab 1\n");
 
@@ -15,14 +15,14 @@ public class Run {
 
         System.out.print("\nWybierz zadanie: ");
 
-        int choice = input.IntInput();
+        int choice = Input.IntInput();
 
         switch(choice) {
             case 1:
                 System.out.println(task.UserData());
                 break;
             case 2:
-                System.out.println("NIC");
+                Task2.MathematicalOperation();
                 break;
             case 3:
                 System.out.println("NIC");

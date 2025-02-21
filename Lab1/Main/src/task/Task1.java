@@ -1,11 +1,7 @@
 package task;
 
-public class Tasks {
+public class Task1 {
     public String UserData() {
         return "Kacper Zoła 21";
     }
-
-    /*public String MathEquations(int x1, int x2) {
-
-    }*/
 }
