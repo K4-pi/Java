@@ -13,7 +13,7 @@ public class Input {
     public float InputFloat(){
         return scanner.nextFloat();
     }
-
-
-
+    public String InputString() {
+        return scanner.nextLine();
+    }
 }
