@@ -7,7 +7,7 @@ import java.util.Random;
 public class Tasks {
     Input input = new Input();
 
-    public int zd1() {
+    public int Students() {
         System.out.println("Podaj liczbe studentów");
         int n = input.InputInt();
         int[] students_points = new int[n];
@@ -36,7 +36,7 @@ public class Tasks {
         }
     }
 
-    public void zd2() {
+    public void Ten_numbers() {
         int[] arr = new int[10];
         int ujemnych = 0;
         int dodatnich = 0;
@@ -65,23 +65,40 @@ public class Tasks {
         System.out.println("Suma liczb dodatnich: " + suma_dodatnich);
     }
 
-    public int suma_parzystych() {
-        int[] n = {5, 1, 2, 1, 10, 22, 122};
+    public int Even_num_sum(int[] arr) {
         int sum = 0;
 
-        for (int x : n) {
+        for (int x : arr) {
             if (x % 2 == 0) sum += x;
         }
 
         return sum;
     }
 
-    public int zd4() {
-        Input input = new Input();
+    public int Roll_numbers() {
         Random rand = new Random();
-        int losowa_liczba = rand.nextInt(45)-10;
+        Input input = new Input();
 
+        System.out.print("Ile liczb wylosować: ");
+        int how_many_nums = input.InputInt();
+        int[] rand_nums = new int[how_many_nums];
 
-        return 0;
+        for (int i = 0; i < rand_nums.length; i++) rand_nums[i] = rand.nextInt(45)-10;
+
+        return Even_num_sum(rand_nums);
+    }
+
+    public boolean Palindrom() {
+        Input input = new Input();
+        System.out.print("Podaj słowo do sprawdzenia: ");
+        String text = input.InputString();
+        char[] arr = text.toCharArray();
+
+        for (int i = 0; i < text.length(); i++) {
+            if (arr[i] != arr[text.length() - 1 - i]) {
+                return false;
+            }
+        }
+        return true;
     }
 }

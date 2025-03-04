@@ -1,7 +1,6 @@
 package RunInput;
 
 import Task.Tasks;
-import java.util.Scanner;
 
 public class Run {
 
@@ -14,18 +13,31 @@ public class Run {
         System.out.println("Zadanie 1");
         System.out.println("Zadanie 2");
         System.out.println("Zadanie 3");
-        System.out.println("Wybierz zadananie:");
+        System.out.println("Zadanie 4");
+        System.out.println("Zadanie 5");
+        System.out.print("Wybierz zadananie:");
 
-        int wybor = input.InputInt();
-        switch (wybor){
+        int choice = input.InputInt();
+        switch (choice){
             case 1:
-                System.out.println("Srednia: " + tasks.zd1()); break;
+                System.out.println("Srednia: " + tasks.Students());
+                break;
             case 2:
-                tasks.zd2(); break;
+                tasks.Ten_numbers();
+                break;
             case 3:
-                System.out.println("suma parzystych: " + tasks.suma_parzystych()); break;
-            default: System.out.println("Nie ma takiego zadania");
-
+                int[] n = {1, 4, 2, 10, 2, 12}; //tabela do testów
+                System.out.println("suma parzystych: " + tasks.Even_num_sum(n));
+                break;
+            case 4:
+                System.out.println("Suma losowych liczb parzystych wynosi: " + tasks.Roll_numbers());
+                break;
+            case 5:
+                if (tasks.Palindrom()) System.out.println("Jest palindromem");
+                else System.out.println("Nie jest palindromem");
+                break;
+            default:
+                System.out.println("Nie ma takiego zadania");
         }
     }
 
