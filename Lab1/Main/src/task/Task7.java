@@ -16,9 +16,9 @@ public class Task7 {
         //Losowanie z przedziału podanego prze użytkownika
         Random rand = new Random();
         int[] x = { 0, 0, 0 };
-        x[0] = first + rand.nextInt(last);
-        x[1] = first + rand.nextInt(last);
-        x[2] = first + rand.nextInt(last);
+        x[0] = rand.nextInt(first, last);
+        x[1] = rand.nextInt(first, last);
+        x[2] = rand.nextInt(first, last);
 
         System.out.println("A = " + x[0]);
         System.out.println("B = " + x[1]);

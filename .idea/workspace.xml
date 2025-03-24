@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="76c44d8f-b233-4a63-9098-051fc0903ece" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Lab1/Main/src/task/Task7.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab1/Main/src/task/Task7.java" afterDir="false" />
+    <list default="true" id="2d6980a8-1ee0-46c6-93ae-46082f3eb338" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Lab1/Lab1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab2/Lab2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab3/Lab3.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,44 +12,34 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 8
-}</component>
-  <component name="ProjectId" id="2toIBv2tIUo0JgXVPbL6yQIcjLL" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2ucdEnASBI522RSirsQh7VJRmdi" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Kapi/Desktop/GitHub/Java/Lab2"
+    "last_opened_file_path": "C:/Users/Kapi/Desktop/GitHub/Java",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Lab2" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="76c44d8f-b233-4a63-9098-051fc0903ece" name="Changes" comment="" />
-      <created>1741011869592</created>
+      <changelist id="2d6980a8-1ee0-46c6-93ae-46082f3eb338" name="Changes" comment="" />
+      <created>1742507519069</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1741011869592</updated>
+      <updated>1742507519069</updated>
     </task>
     <servers />
   </component>
