@@ -1,5 +1,6 @@
 package RunInput;
 
+import Tasks.Couples;
 import Tasks.InsertNames;
 
 public class Run {
@@ -15,10 +16,10 @@ public class Run {
         int choice = input.InputInt();
         switch (choice) {
             case 1:
-                new InsertNames().Insert();
+                new InsertNames();
                 break;
             case 2:
-                System.out.println("wybrales 2");
+                new Couples();
                 break;
             default:
                 System.out.println("Wrong!");
