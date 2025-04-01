@@ -2,6 +2,7 @@ package RunInput;
 
 import Tasks.Couples;
 import Tasks.InsertNames;
+import Tasks.TwoLists;
 
 public class Run {
 
@@ -11,6 +12,7 @@ public class Run {
         System.out.println("Wybierz zadanie: ");
         System.out.println("zadanie 1");
         System.out.println("zadanie 2");
+        System.out.println("zadanie 5");
 
         System.out.print(">>> ");
         int choice = input.InputInt();
@@ -20,6 +22,9 @@ public class Run {
                 break;
             case 2:
                 new Couples();
+                break;
+            case 5:
+                new TwoLists();
                 break;
             default:
                 System.out.println("Wrong!");
