@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class InsertNames {
-    private void Insert() {
+    public void Insert() {
         System.out.println("----- Insert names -----");
         System.out.println("Insert /exit to quit program: ");
         List<String> nameList = new ArrayList<>();
@@ -27,7 +27,4 @@ public class InsertNames {
         }
     }
 
-    public InsertNames() {
-        Insert();
-    }
 }

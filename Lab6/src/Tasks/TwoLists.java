@@ -9,7 +9,7 @@ public class TwoLists {
     Utwórz i zapełnij listę List<Integer>. Utwórz drugą listę List<Integer>. Użyj ListIterator do przejrzenia
     elementów pierwszej listy i wstawienia ich do listy drugiej, ale w odwrotnej kolejności*/
 
-    void Lists() {
+    public void Lists() {
         List<Integer> l1 = new ArrayList<>();
         List<Integer> l2 = new ArrayList<>();
 
@@ -34,9 +34,5 @@ public class TwoLists {
         for (Integer i : l2) {
             System.out.println(i);
         }
-    }
-
-    public TwoLists(){
-        Lists();
     }
 }

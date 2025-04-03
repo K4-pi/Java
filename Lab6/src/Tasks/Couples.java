@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Couples {
-    private void InsertCouples() {
+    public void InsertCouples() {
         Input input = new Input();
 
         List<String> list1 = new ArrayList<>();
@@ -35,9 +35,5 @@ public class Couples {
                     System.out.println(list1.get(i) + " | " + list2.get(i));
             }
         }
-    }
-
-    public Couples() {
-        InsertCouples();
     }
 }
