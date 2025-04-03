@@ -25,6 +25,9 @@ public class Run {
             case 3:
                 new Event().Run();
                 break;
+            case 4:
+                new ArrList().Arr();
+                break;
             case 5:
                 new TwoLists().Lists();
                 break;
