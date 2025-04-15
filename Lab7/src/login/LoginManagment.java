@@ -36,7 +36,7 @@ public class LoginManagment {
         if (!username.isEmpty() && !password.isEmpty()) {
             if (credentials.containsKey(username)) {
                 if (credentials.get(username).contains(password))
-                    System.out.println("account credentials: " + username + " : " + credentials.get(username));
+                    System.out.println("Logged in as: " + username + " : " + credentials.get(username));
                 else
                     System.out.println("Wrong password");
             }
@@ -48,7 +48,7 @@ public class LoginManagment {
     }
 
     public void RunLogin() {
-        System.out.println("1 - insert\n2 - login\n4 - exit");
+        System.out.println("1 - insert\n2 - login\n3 - exit");
 
         while (true) {
             Input input = new Input();
@@ -63,9 +63,6 @@ public class LoginManagment {
                     LoginCredentials();
                     break;
                 case 3:
-                    System.out.println("Show");
-                    break;
-                case 4:
                     return;
             }
         }
