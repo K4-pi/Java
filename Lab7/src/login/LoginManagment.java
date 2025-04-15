@@ -1,6 +1,7 @@
 package login;
 
 import run.Input;
+import run.Run;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -63,7 +64,10 @@ public class LoginManagment {
                     LoginCredentials();
                     break;
                 case 3:
-                    return;
+                    Run.run();
+                    break;
+                default:
+                    System.out.println("Out of scope");
             }
         }
     }

@@ -9,8 +9,8 @@ public class Input {
         return sc.nextInt();
     }
 
-    public float FloatInput() {
-        return sc.nextFloat();
+    public double DoubleInput() {
+        return sc.nextDouble();
     }
 
     public String StringInput() {
