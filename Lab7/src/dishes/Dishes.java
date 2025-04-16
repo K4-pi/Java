@@ -5,6 +5,7 @@ import run.Run;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Dishes {
     Map<String, Double> dishesList = new HashMap<>();
@@ -22,8 +23,12 @@ public class Dishes {
     }
 
     private void ListDishes() {
+        Set<String> keys = dishesList.keySet();
+
         System.out.println("-----MENU-----");
-        System.out.println(dishesList);
+        for (String s : keys) {
+            System.out.println(s + " - " + dishesList.get(s) + " $");
+        }
         System.out.println("--------------");
     }
 
@@ -36,15 +41,14 @@ public class Dishes {
         dishesList.remove(dishName);
     }
 
-    private int CalculateFullPrice() {
-        String keys = "" + dishesList.keySet();
-        String[] arr = keys.split("[, \\n]"); // Trzeba to jakoś zesplitować
+    private double CalculateFullPrice() {
+        Set<String> keys = dishesList.keySet();
+        double sum = 0;
 
-        for (String s : arr) {
-            System.out.println(s);
+        for (String s : keys) {
+            sum += dishesList.get(s);
         }
-
-        return 1;
+        return sum;
     }
 
     public void RunDishes() {
@@ -66,7 +70,7 @@ public class Dishes {
                     RemoveDish();
                     break;
                 case 4:
-                    CalculateFullPrice();
+                    System.out.println("Full price of meal: " + CalculateFullPrice());
                     break;
                 case 5:
                     Run.run();
