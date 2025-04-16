@@ -18,4 +18,15 @@ class Prostokat extends Figura {
 		wys	*= skala;
 		szer *= skala;
 	}
+
+
+	@Override
+	public float getPowierzchnia() {
+		return wys * szer;
+	}
+
+	@Override
+	public boolean wPolu(Punkt p) {
+		return false;
+	}
 }

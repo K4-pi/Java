@@ -1,6 +1,6 @@
 //deklaracja klasy abstrakcyjnej
 
-public abstract class Figura{
+public abstract class Figura implements IFigura{
 	
 	//pola metody i kontruktory
 	Punkt punkt;

@@ -33,6 +33,17 @@ class Main
 			f.skaluj(3);
 			System.out.println(f.opis());
 		}
+		System.out.println("---------------------");
+		IFigura[] tablicaIFigur = new IFigura[3];
+		tablicaIFigur[0] = new Kwadrat(2, "czerwony");
+		tablicaIFigur[1] = maly_punkt;
+		tablicaIFigur[2] = kwadrat;
 
+		System.out.println("---------------------");
+		Okrag o = new Okrag(4, "niebieksi");
+		o.getPunkty();
+		o.przesun(4, 2);
+		System.out.println("---");
+		o.getPunkty();
 	}
 }
