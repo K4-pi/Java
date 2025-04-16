@@ -1,6 +1,6 @@
 //deklaracja klasy abstrakcyjnej
 
-public class Figura{
+public abstract class Figura{
 	
 	//pola metody i kontruktory
 	Punkt punkt;
@@ -20,6 +20,8 @@ public class Figura{
 		return kolor;
 	}
 	//metody abstrakcyjne
-	
-	
-	}
+
+	abstract String opis();
+
+	abstract void skaluj(int skala);
+}

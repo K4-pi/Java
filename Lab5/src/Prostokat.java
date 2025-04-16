@@ -7,7 +7,15 @@ class Prostokat extends Figura {
 		this.szer = szer;
 		super.kolor = kolor;
 	}
+
+	@Override
 	public String opis(){
 		return "Prostokat o wymairach: "+szer+" x "+wys;
+	}
+
+	@Override
+	public void skaluj(int skala) {
+		wys	*= skala;
+		szer *= skala;
 	}
 }
