@@ -15,23 +15,23 @@ public class Server {
     }
 
     private static class EchoClientHandler extends Thread {
-        private Socket clientSocket;
-        private PrintWriter out;
-        private BufferedReader in;
+        private final Socket clientSocket;
 
         public EchoClientHandler(Socket socket) {
             this.clientSocket = socket;
         }
 
         public void run() {
+            PrintWriter out;
             try {
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+
+            BufferedReader in;
             try {
-                in = new BufferedReader(
-                        new InputStreamReader(clientSocket.getInputStream()));
+                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

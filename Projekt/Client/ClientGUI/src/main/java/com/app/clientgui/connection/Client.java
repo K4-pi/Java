@@ -1,5 +1,10 @@
-import java.io.*;
-import java.net.*;
+package com.app.clientgui.connection;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 public class Client {
     private Socket clientSocket;
@@ -14,8 +19,7 @@ public class Client {
 
     public String sendMessage(String msg) throws IOException {
         out.println(msg);
-        String resp = in.readLine();
-        return resp;
+        return in.readLine();
     }
 
     public void stopConnection() throws IOException {

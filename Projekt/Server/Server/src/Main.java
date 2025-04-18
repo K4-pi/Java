@@ -1,3 +1,6 @@
+// OpenJDK 24
+// JavaFx version 24.0.1 x64 Windows SDK
+
 import java.io.IOException;
 
 public class Main {
