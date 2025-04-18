@@ -9,24 +9,22 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ClientApp extends Application {
+public class Main extends Application {
     private final Client client = new Client();
 
     @Override
     public void start(Stage primaryStage) {
-
         TextField ipTextField = new TextField("127.0.0.1");
         TextField portTextField = new TextField("9090");
+        TextField inputField = new TextField();
+
         Button connectButton = new Button("Connect");
+        Button sendButton = new Button("Send");
+        Button disconnectButton = new Button("Disconnect");
 
         TextArea messageArea = new TextArea();
         messageArea.setEditable(false);
         messageArea.setWrapText(true);
-
-        TextField inputField = new TextField();
-        inputField.setPromptText("Enter message");
-        Button sendButton = new Button("Send");
-        Button disconnectButton = new Button("Disconnect");
 
         connectButton.setOnAction(e -> {
             try {
@@ -44,7 +42,7 @@ public class ClientApp extends Application {
             try {
                 String response = client.sendMessage(inputField.getText());
                 messageArea.appendText("Sent: " + response);
-                inputField.clear();
+                inputField.setText("");
             } catch (IOException exception) {
                 throw new RuntimeException(exception);
             }
