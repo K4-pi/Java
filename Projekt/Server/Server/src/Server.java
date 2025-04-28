@@ -1,16 +1,20 @@
+import Database.DataTransfer;
+
 import java.io.*;
 import java.net.*;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Server {
     private ServerSocket serverSocket;
-    private int port;
+    private final int port;
+
+    private static String inputLine = "";
+
+    static DataTransfer db = new DataTransfer();
 
     public Server(int port) {
         this.port = port;
-    }
-
-    public int getPort() {
-        return port;
     }
 
     public void start() throws IOException {
@@ -45,7 +49,7 @@ public class Server {
                 throw new RuntimeException(e);
             }
 
-            String inputLine;
+//            String inputLine;
             while (true) {
                 try {
                     inputLine = in.readLine();
@@ -57,8 +61,15 @@ public class Server {
                     out.println("bye");
                     break;
                 }
+//                bufferToSave = inputLine;
                 System.out.println("Received from client: " + inputLine);
+//                System.out.println("this is buffer: " + bufferToSave);
                 out.println(inputLine);
+
+                if (!inputLine.isEmpty()) {
+//                    Timestamp now = Timestamp.valueOf(LocalDateTime.now());
+                    db.addMessage("testUser", inputLine);
+                }
             }
 
             try {

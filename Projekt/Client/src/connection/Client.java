@@ -19,7 +19,7 @@ public class Client {
 
     public static void sendMessage(String msg) throws IOException {
         out.println(msg);
-        in.readLine(); //delete later
+        in.readLine(); //dont delete, this will recive database message
     }
 
     public static void stopConnection() throws IOException {

@@ -63,6 +63,8 @@ public class ChatGUI {
         sendButton.addActionListener(e -> {
             try {
                 Client.sendMessage(textInput.getText());
+                textInput.setText("");
+
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
