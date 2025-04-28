@@ -3,8 +3,17 @@ import java.net.*;
 
 public class Server {
     private ServerSocket serverSocket;
+    private int port;
 
-    public void start(int port) throws IOException {
+    public Server(int port) {
+        this.port = port;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void start() throws IOException {
         serverSocket = new ServerSocket(port);
         while (true)
             new EchoClientHandler(serverSocket.accept()).start();

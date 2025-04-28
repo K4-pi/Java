@@ -1,11 +1,9 @@
 // OpenJDK 24
 
-import GUI.RunGUI;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
-
-        RunGUI.runGUI();
-
+    public static void main(String[] args) throws IOException {
+        RunAll.start();
     }
 }
