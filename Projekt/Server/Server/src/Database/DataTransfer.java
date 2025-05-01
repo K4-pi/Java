@@ -1,5 +1,6 @@
 package Database;
 
+import java.io.PrintWriter;
 import java.sql.*;
 
 public class DataTransfer {
@@ -48,18 +49,23 @@ public class DataTransfer {
         }
     }*/
 
-    //view
- /*   public void view(String username) throws SQLException{
-        String sql = "SELECT balance FROM users WHERE username = ?";
+    //Send back
+    public void Send(PrintWriter out) throws SQLException{
+        String sql = "SELECT message FROM chatlog";
+        StringBuilder buffer = new StringBuilder();
 
         try(Connection con = DatabaseConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
-            if(rs.next()) {
-                System.out.println("Saldo: " + rs.getDouble("balance") + " PLN");
+            while (rs.next()) {
+                String row = rs.getString("message");
+                if (!row.isEmpty()) {
+                    buffer.append(row).append("\n");
+                }
             }
+            buffer.append("<END>\n");
         }
-    }*/
-
+        out.print(buffer);
+        out.flush();
+    }
 }
