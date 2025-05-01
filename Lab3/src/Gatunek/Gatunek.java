@@ -23,24 +23,19 @@ public class Gatunek {
         this.opis = opis;
     }
 
-    public String pelnaNazwa() {
+    private String pelnaNazwa() {
         return rodzaj + " " + gatunek;
     }
 
-    public int haploidalnaLiczbaChromosomow() {
+    private int liczbaChromosomow() {
         return chromosomy2n / 2;
     }
 
     public void wypiszDane() {
         System.out.println("Pełna nazwa: " + pelnaNazwa());
-        System.out.println("Liczba chromosomów (2n): " + chromosomy2n);
-        System.out.println("Podstawowa liczba chromosomów (x): " + chromosomyX);
-        System.out.println("Haploidalna liczba chromosomów (n): " + haploidalnaLiczbaChromosomow());
+        System.out.println("Liczba chromosomów: " + chromosomy2n);
+        System.out.println("Podstawowa liczba chromosomów: " + chromosomyX);
+        System.out.println("Haploidalna liczba chromosomów: " + liczbaChromosomow());
         System.out.println("Opis: " + opis + "\n");
     }
-
-    /*@Override
-    public Gatunek clone() {
-        return (Gatunek) super.clone();
-    }*/
 }
