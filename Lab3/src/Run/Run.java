@@ -1,6 +1,7 @@
 package Run;
 
 import Building.Building;
+import Gatunek.Gatunek;
 import Input.Input;
 import Calculator.Calculator;
 
@@ -11,6 +12,7 @@ public class Run {
 
         System.out.println("1: Calculator");
         System.out.println("2: Building");
+        System.out.println("3: Gatunek");
 
         System.out.print("Choose: ");
         int choice = input.getInt();
@@ -33,6 +35,10 @@ public class Run {
                 System.out.println(b3);
                 System.out.println("Has " + b3.HowManyYears() + " years\n");
                 break;
+
+            case 3:
+                Gatunek g = new Gatunek("Sowa","Ptak", 12, 6, "Fajny ptak sowa");
+                g.wypiszDane();
 
             default: System.out.println("wrong");
         }
