@@ -1,10 +1,12 @@
 package Building;
 
+import java.time.LocalDate;
+
 public class Building {
-    final int current_year = 2025;
-    String name;
-    int year;
-    int floors;
+    private final int current_year = LocalDate.now().getYear();
+    private String name;
+    private int year;
+    private int floors;
 
     @Override
     public String toString() {

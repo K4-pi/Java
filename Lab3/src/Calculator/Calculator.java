@@ -36,7 +36,9 @@ public class Calculator {
 
             case 3:
                 System.out.print("A: ");
-                new Square(input.getDouble());
+                Square s = new Square(input.getDouble());
+                System.out.println(s.field());
+                System.out.println(s.round());
                 break;
 
             case 4:
