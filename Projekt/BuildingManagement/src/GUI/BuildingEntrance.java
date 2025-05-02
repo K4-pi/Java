@@ -1,0 +1,53 @@
+package GUI;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class BuildingEntrance extends ButtonListener{
+
+    public void run() {
+        Window window = new Window();
+        JFrame mainFrame = window.setWindow("Building entrance", 400, 500, false);
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+
+        JPanel textPanel = new JPanel();
+        textPanel.setLayout(new FlowLayout());
+
+        Label pinText = new Label();
+        pinText.setText("<PIN>");
+        pinText.setPreferredSize(new Dimension(300, 200));
+        pinText.setAlignment(Label.CENTER);
+        textPanel.add(pinText);
+
+        // Buttons
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(4, 3));
+
+        JButton[] btns = new JButton[12];
+        btns[0] = new JButton("9");
+        btns[1] = new JButton("8");
+        btns[2] = new JButton("7");
+        btns[3] = new JButton("6");
+        btns[4] = new JButton("5");
+        btns[5] = new JButton("4");
+        btns[6] = new JButton("3");
+        btns[7] = new JButton("2");
+        btns[8] = new JButton("1");
+        btns[9] = new JButton("Clear");
+        btns[10] = new JButton("0");
+        btns[11] = new JButton("Enter");
+
+        // TODO: Add action listeners to buttons
+
+        for (JButton b : btns) {
+            b.setPreferredSize(new Dimension(50, 50));
+            buttonPanel.add(b);
+        }
+
+        mainPanel.add(textPanel);
+        mainPanel.add(buttonPanel);
+        mainFrame.add(mainPanel);
+    }
+
+}

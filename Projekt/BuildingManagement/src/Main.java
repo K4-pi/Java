@@ -1,10 +1,20 @@
+import GUI.BuildingEntrance;
 import GUI.MainMenu;
+
+import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        MainMenu m = new MainMenu();
+        /*System zarządzania budynkiem. Kontrola wejścia do budynku, zgłaszanie usterek, prób włamania,
+        monitorowanie temperatury wody i powietrza, wyłączanie/włączanie światła, sieci elektrycznej,
+        zamykanie/otwieranie budynku, itp.*/
 
-        System.out.println("Main");
-        m.RunMainMenu();
+//        MainMenu m = new MainMenu();
+//        BuildingEntrance b = new BuildingEntrance();
+
+//        b.run();
+//        m.run();
+
+        SwingUtilities.invokeLater(() -> new BuildingEntrance().run());
     }
 }
