@@ -26,23 +26,38 @@ public class BuildingEntrance extends UserDAO {
         pinText.setAlignment(Label.CENTER);
         textPanel.add(pinText);
 
-        // Buttons
+        // Buttons with panel
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(4, 3));
 
-        JButton[] btns = new JButton[12];
-        btns[0] = new JButton("7");
-        btns[1] = new JButton("8");
-        btns[2] = new JButton("9");
-        btns[3] = new JButton("4");
-        btns[4] = new JButton("5");
-        btns[5] = new JButton("6");
-        btns[6] = new JButton("1");
-        btns[7] = new JButton("2");
-        btns[8] = new JButton("3");
-        btns[9] = new JButton("Clear");
-        btns[10] = new JButton("0");
-        btns[11] = new JButton("Enter");
+        JButton[] btns = {
+            new JButton("7"),
+            new JButton("8"),
+            new JButton("9"),
+            new JButton("4"),
+            new JButton("5"),
+            new JButton("6"),
+            new JButton("1"),
+            new JButton("2"),
+            new JButton("3"),
+            new JButton("Clear"),
+            new JButton("0"),
+            new JButton("Enter")
+        };
+
+//        JButton[] btns = new JButton[12];
+//        btns[0] = new JButton("7");
+//        btns[1] = new JButton("8");
+//        btns[2] = new JButton("9");
+//        btns[3] = new JButton("4");
+//        btns[4] = new JButton("5");
+//        btns[5] = new JButton("6");
+//        btns[6] = new JButton("1");
+//        btns[7] = new JButton("2");
+//        btns[8] = new JButton("3");
+//        btns[9] = new JButton("Clear");
+//        btns[10] = new JButton("0");
+//        btns[11] = new JButton("Enter");
 
         for (JButton b : btns) {
             b.setPreferredSize(new Dimension(50, 50));
@@ -57,7 +72,7 @@ public class BuildingEntrance extends UserDAO {
         mainFrame.add(mainPanel);
     }
 
-    //On enter button
+    //On enter button function
     private void onEnter(String pin) throws SQLException {
         if (authenticateUser("user", pinText.getText())) {
             System.out.println("PIN accepted");
@@ -72,6 +87,7 @@ public class BuildingEntrance extends UserDAO {
     private void addActionListener(JButton b) {
         b.addActionListener(e -> {
             String buttonText = b.getText();
+            if (pinText.getText().equals("PIN rejected")) pinText.setText(""); //clear text on button press
 
             switch (buttonText) {
                 case "Enter":
