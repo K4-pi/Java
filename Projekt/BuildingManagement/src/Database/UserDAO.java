@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class UserDAO {
 
     //Uwierzytelnianie
-    public boolean autheticateUser(String role, String pin) throws SQLException {
+    public boolean authenticateUser(String role, String pin) throws SQLException {
         String sql = "SELECT * FROM users WHERE role = ? AND pin = ?";
 
         try (Connection con = DatabaseConnection.getConnection();
@@ -20,7 +20,7 @@ public class UserDAO {
         }
     }
 
-    //add
+    /*//add
     public void addUser(String firstName, String lastName, int age) {
         String sql = "INSERT INTO user (username, pin, balance, role) VALUES (?, ?, 0, 'user')";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -69,7 +69,7 @@ public class UserDAO {
             else System.out.println("Brak kaski");
         }
 
-    }
+    }*/
 
     //view
     public void view(String username) throws SQLException{
@@ -82,18 +82,6 @@ public class UserDAO {
             if(rs.next()) {
                 System.out.println("Saldo: " + rs.getDouble("balance") + " PLN");
             }
-        }
-    }
-
-    public void changePin(String username, String newPin) throws SQLException {
-        String sql = "UPDATE users SET pin = ? WHERE username = ?";
-
-        try(Connection con = DatabaseConnection.getConnection();
-            PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, newPin);
-            stmt.setString(2, username);
-            stmt.executeUpdate();
-            System.out.println("PIN zmieniony");
         }
     }
 

@@ -4,6 +4,7 @@ import Database.UserDAO;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 
 public class BuildingEntrance extends UserDAO {
     private Window window = new Window();
@@ -56,9 +57,9 @@ public class BuildingEntrance extends UserDAO {
         mainFrame.add(mainPanel);
     }
 
-    private void onEnter(String pin) {
-        //TODO: Change to real pin in database
-        if (pin.equals("1234")) {
+    //On enter button
+    private void onEnter(String pin) throws SQLException {
+        if (authenticateUser("user", pinText.getText())) {
             System.out.println("PIN accepted");
             mainFrame.dispose();
             MainMenu.run();
@@ -73,8 +74,16 @@ public class BuildingEntrance extends UserDAO {
             String buttonText = b.getText();
 
             switch (buttonText) {
-                case "Enter": onEnter(pinText.getText()); break;
-                case "Clear": pinText.setText(""); break;
+                case "Enter":
+                    try {
+                        onEnter(pinText.getText());
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    break;
+                case "Clear":
+                    pinText.setText("");
+                    break;
                 default:
                     if (pinText.getText().length() < 4) pinText.setText(pinText.getText() + buttonText);
                     break;
