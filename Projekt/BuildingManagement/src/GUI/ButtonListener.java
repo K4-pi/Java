@@ -1,11 +1,13 @@
 package GUI;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
 
-public class ButtonListener {
+public abstract class ButtonListener {
 
-    public void addButtonListener(JButton button, ActionListener listener) {
-        button.addActionListener(listener);
+    public void addActionListener(JButton b) {
+        b.addActionListener(e -> {
+            System.out.println("Button clicked, but not assigned to any action");
+        });
     }
+
 }

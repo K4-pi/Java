@@ -35,8 +35,8 @@ public class Point {
         y = 0.0;
     }
 
-    public void opis() {
-        System.out.println("Punkt o współzędnych x = " + x + " , y = " + y);
+    public String opis() {
+        return "Punkt o współzędnych x = " + x + " , y = " + y;
     }
 
     public void przesun(int x_, int y_) {

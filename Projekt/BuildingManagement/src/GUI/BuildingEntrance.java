@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BuildingEntrance extends ButtonListener{
+    Label pinText;
 
     public void run() {
         Window window = new Window();
@@ -14,7 +15,7 @@ public class BuildingEntrance extends ButtonListener{
         JPanel textPanel = new JPanel();
         textPanel.setLayout(new FlowLayout());
 
-        Label pinText = new Label();
+        pinText = new Label();
         pinText.setText("<PIN>");
         pinText.setPreferredSize(new Dimension(300, 200));
         pinText.setAlignment(Label.CENTER);
@@ -42,6 +43,9 @@ public class BuildingEntrance extends ButtonListener{
 
         for (JButton b : btns) {
             b.setPreferredSize(new Dimension(50, 50));
+
+            //Adds action listeners to buttons
+            addActionListener(b);
             buttonPanel.add(b);
         }
 
@@ -50,4 +54,25 @@ public class BuildingEntrance extends ButtonListener{
         mainFrame.add(mainPanel);
     }
 
+    //On click function
+    @Override
+    public void addActionListener(JButton b) {
+        b.addActionListener(e -> {
+            String buttonText = b.getText();
+
+            if (pinText.getText().length() < 4 || pinText.getText().equals("<PIN>")) {
+                switch (buttonText) {
+                    case "Enter": System.out.println("Enter pressed"); break;
+                    case "Clear": System.out.println("Clear pressed"); break;
+                    default:
+                        if (pinText.getText().equals("<PIN>")) pinText.setText("");
+                        pinText.setText(pinText.getText() + buttonText);
+                        break;
+                }
+            }
+            else {
+                System.out.println("PIN already entered");
+            }
+        });
+    }
 }

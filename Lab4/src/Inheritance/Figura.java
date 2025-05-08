@@ -1,6 +1,6 @@
 package Inheritance;
 
-public class Figura {
+public class Figura extends Point{
 	
 	//pola metody i kontruktory
 	Point punkt;
@@ -16,7 +16,9 @@ public class Figura {
 	String getKolor(){
 		return kolor;
 	}
-	String opis(){
+
+	@Override
+	public String opis(){
 		return "Klasa Figura. Kolor obiektu: "+kolor;
 	}
 
