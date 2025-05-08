@@ -1,9 +1,11 @@
 package GUI;
 
+import Database.UserDAO;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class BuildingEntrance {
+public class BuildingEntrance extends UserDAO {
     private Window window = new Window();
     private JFrame mainFrame;
 
@@ -55,7 +57,8 @@ public class BuildingEntrance {
     }
 
     private void onEnter(String pin) {
-        if (pin.equals("1234")) {  //TODO: Change to real pin in database
+        //TODO: Change to real pin in database
+        if (pin.equals("1234")) {
             System.out.println("PIN accepted");
             mainFrame.dispose();
             MainMenu.run();
