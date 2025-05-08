@@ -3,12 +3,14 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
-public class BuildingEntrance extends ButtonListener{
-    Label pinText;
+public class BuildingEntrance {
+    private Window window = new Window();
+    private JFrame mainFrame;
+
+    private Label pinText;
 
     public void run() {
-        Window window = new Window();
-        JFrame mainFrame = window.setWindow("Building entrance", 400, 500, false);
+        mainFrame = window.setWindow("Building entrance", 400, 500, false);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
@@ -16,7 +18,7 @@ public class BuildingEntrance extends ButtonListener{
         textPanel.setLayout(new FlowLayout());
 
         pinText = new Label();
-        pinText.setText("<PIN>");
+        pinText.setText("");
         pinText.setPreferredSize(new Dimension(300, 200));
         pinText.setAlignment(Label.CENTER);
         textPanel.add(pinText);
@@ -26,20 +28,18 @@ public class BuildingEntrance extends ButtonListener{
         buttonPanel.setLayout(new GridLayout(4, 3));
 
         JButton[] btns = new JButton[12];
-        btns[0] = new JButton("9");
+        btns[0] = new JButton("7");
         btns[1] = new JButton("8");
-        btns[2] = new JButton("7");
-        btns[3] = new JButton("6");
+        btns[2] = new JButton("9");
+        btns[3] = new JButton("4");
         btns[4] = new JButton("5");
-        btns[5] = new JButton("4");
-        btns[6] = new JButton("3");
+        btns[5] = new JButton("6");
+        btns[6] = new JButton("1");
         btns[7] = new JButton("2");
-        btns[8] = new JButton("1");
+        btns[8] = new JButton("3");
         btns[9] = new JButton("Clear");
         btns[10] = new JButton("0");
         btns[11] = new JButton("Enter");
-
-        // TODO: Add action listeners to buttons
 
         for (JButton b : btns) {
             b.setPreferredSize(new Dimension(50, 50));
@@ -54,25 +54,29 @@ public class BuildingEntrance extends ButtonListener{
         mainFrame.add(mainPanel);
     }
 
+    private void onEnter(String pin) {
+        if (pin.equals("1234")) {  //TODO: Change to real pin in database
+            System.out.println("PIN accepted");
+            mainFrame.dispose();
+            MainMenu.run();
+        } else {
+            pinText.setText("PIN rejected");
+        }
+    }
+
     //On click function
-    @Override
-    public void addActionListener(JButton b) {
+    private void addActionListener(JButton b) {
         b.addActionListener(e -> {
             String buttonText = b.getText();
 
-            if (pinText.getText().length() < 4 || pinText.getText().equals("<PIN>")) {
-                switch (buttonText) {
-                    case "Enter": System.out.println("Enter pressed"); break;
-                    case "Clear": System.out.println("Clear pressed"); break;
-                    default:
-                        if (pinText.getText().equals("<PIN>")) pinText.setText("");
-                        pinText.setText(pinText.getText() + buttonText);
-                        break;
-                }
+            switch (buttonText) {
+                case "Enter": onEnter(pinText.getText()); break;
+                case "Clear": pinText.setText(""); break;
+                default:
+                    if (pinText.getText().length() < 4) pinText.setText(pinText.getText() + buttonText);
+                    break;
             }
-            else {
-                System.out.println("PIN already entered");
-            }
+
         });
     }
 }
