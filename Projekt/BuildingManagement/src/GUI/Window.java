@@ -16,7 +16,7 @@ public class Window {
     }
 
     public JPanel userInfoPanel(String user) {
-        JLabel userInfoLabel = new JLabel("Logged in as " + user);
+        JLabel userInfoLabel = new JLabel("You are a " + user);
         userInfoLabel.setVisible(true);
         JPanel userInfoPanel = new JPanel();
         userInfoPanel.setLayout(new FlowLayout());

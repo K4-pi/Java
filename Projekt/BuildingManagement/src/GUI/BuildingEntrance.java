@@ -75,7 +75,7 @@ public class BuildingEntrance extends UserDAO {
     private void onEnter(String pin) throws SQLException {
         if (authenticateUser(chosenUserValue, pin)) {
             if (chosenUserValue.equals("user")) {
-                UserPanel.run();
+                UserPanel.run(chosenUserValue);
             }
             else if (chosenUserValue.equals("admin")) {
                 adminPanel.run(chosenUserValue);

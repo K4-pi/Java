@@ -8,7 +8,7 @@ public class AdminPanel extends UserDAO {
     private final Window window = new Window();
 
     public void run(String loggedUser) {
-        JFrame mainFrame = window.setWindow("Admin panel", 800, 600, true);
+        JFrame mainFrame = window.setWindow(loggedUser + " panel", 800, 600, true);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
