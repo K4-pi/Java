@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Window {
 
@@ -13,4 +14,15 @@ public class Window {
 
         return frame;
     }
+
+    public JPanel userInfoPanel(String user) {
+        JLabel userInfoLabel = new JLabel("Logged in as " + user);
+        userInfoLabel.setVisible(true);
+        JPanel userInfoPanel = new JPanel();
+        userInfoPanel.setLayout(new FlowLayout());
+        userInfoPanel.add(userInfoLabel);
+
+        return userInfoPanel;
+    }
+
 }
