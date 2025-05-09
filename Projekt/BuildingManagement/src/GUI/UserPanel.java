@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class UserPanel {
     private final static Window window = new Window();
@@ -13,7 +14,13 @@ public class UserPanel {
         // User info panel
         JPanel userInfoPanel = window.userInfoPanel(loggedUser);
 
+        // Buttons
+        JPanel btnsPanel = new JPanel();
+        btnsPanel.setLayout(new GridLayout(1, 1));
+        btnsPanel.add(window.logOutButton());
+
         mainPanel.add(userInfoPanel);
+        mainFrame.add(btnsPanel);
 
         mainFrame.add(mainPanel);
     }

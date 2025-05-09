@@ -3,6 +3,7 @@ package GUI;
 import Database.UserDAO;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.SQLException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -17,14 +18,16 @@ public class AdminPanel extends UserDAO {
         // User info panel
         JPanel userInfoPanel = window.userInfoPanel(loggedUser);
 
-        // Close button
+        // Buttons
         JButton closeBtn = closeBuildingButton();
-        JPanel closeBtnPanel = new JPanel();
-        closeBtnPanel.setLayout(new BoxLayout(closeBtnPanel, BoxLayout.Y_AXIS));
-        closeBtnPanel.add(closeBtn);
+        JPanel btnsPanel = new JPanel();
+        btnsPanel.setLayout(new GridLayout(1, 2));
+        btnsPanel.add(closeBtn);
+
+        btnsPanel.add(window.logOutButton());
 
         mainPanel.add(userInfoPanel);
-        mainPanel.add(closeBtnPanel);
+        mainPanel.add(btnsPanel);
 
         mainFrame.add(mainPanel);
     }
@@ -36,6 +39,8 @@ public class AdminPanel extends UserDAO {
         closeBtn.addActionListener(e -> {
             try {
                 updateDoorStatus(!isClosed());
+                if (isClosed()) closeBtn.setText("OPEN");
+                else closeBtn.setText("CLOSE");
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }

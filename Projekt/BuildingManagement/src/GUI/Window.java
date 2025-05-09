@@ -26,7 +26,16 @@ public class Window {
     }
 
     public JButton logOutButton() {
-        return new JButton("Log out");
+        JButton logoutBtn = new JButton("Log out");
+        logoutBtn.setVisible(true);
+
+        logoutBtn.addActionListener(e -> {
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(logoutBtn);
+            new BuildingEntrance().run();
+            frame.dispose();
+        });
+
+        return logoutBtn;
     }
 
 }
