@@ -9,7 +9,10 @@ import java.sql.SQLException;
 public class BuildingEntrance extends UserDAO {
     private Window window = new Window();
     private JFrame mainFrame;
+    private JComboBox<String> chooseUser;
+    private String chooseUserValue;
 
+    private String loggedInUser;
     private Label pinText;
 
     public void run() {
@@ -19,6 +22,14 @@ public class BuildingEntrance extends UserDAO {
 
         JPanel textPanel = new JPanel();
         textPanel.setLayout(new FlowLayout());
+
+        // Who are you logging in as?
+        String[] choices = {"user", "admin"};
+        chooseUser = new JComboBox<>(choices);
+        JPanel comboBoxPanel = new JPanel();
+        comboBoxPanel.setVisible(true);
+        comboBoxPanel.setLayout(new FlowLayout());
+        comboBoxPanel.add(chooseUser);
 
         pinText = new Label();
         pinText.setText("");
@@ -67,6 +78,7 @@ public class BuildingEntrance extends UserDAO {
             buttonPanel.add(b);
         }
 
+        mainPanel.add(comboBoxPanel);
         mainPanel.add(textPanel);
         mainPanel.add(buttonPanel);
         mainFrame.add(mainPanel);
@@ -74,10 +86,15 @@ public class BuildingEntrance extends UserDAO {
 
     //On enter button function
     private void onEnter(String pin) throws SQLException {
-        if (authenticateUser("user", pinText.getText())) {
+        if (authenticateUser(chooseUserValue, pin)) {
+            if (chooseUserValue.equals("user")) {
+                UserMainMenu.run();
+            }
+            else if (chooseUserValue.equals("admin")) {
+                AdminMainMenu.run();
+            }
             System.out.println("PIN accepted");
             mainFrame.dispose();
-            MainMenu.run();
         } else {
             pinText.setText("PIN rejected");
         }
@@ -91,6 +108,7 @@ public class BuildingEntrance extends UserDAO {
 
             switch (buttonText) {
                 case "Enter":
+                    chooseUserValue = (String) chooseUser.getSelectedItem();
                     try {
                         onEnter(pinText.getText());
                     } catch (SQLException ex) {
