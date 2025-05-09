@@ -5,7 +5,6 @@ import Database.UserDAO;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AdminPanel extends UserDAO {
     private final Window window = new Window();
@@ -33,8 +32,10 @@ public class AdminPanel extends UserDAO {
     }
 
     // Closing building functionality
-    private JButton closeBuildingButton() {
-        JButton closeBtn = new JButton("Close building");
+    private JButton closeBuildingButton() throws SQLException {
+        JButton closeBtn = new JButton();
+        if (isClosed()) closeBtn.setText("OPEN");
+        else closeBtn.setText("CLOSE");
 
         closeBtn.addActionListener(e -> {
             try {

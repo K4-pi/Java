@@ -20,7 +20,7 @@ public class UserPanel {
         btnsPanel.add(window.logOutButton());
 
         mainPanel.add(userInfoPanel);
-        mainFrame.add(btnsPanel);
+        mainPanel.add(btnsPanel);
 
         mainFrame.add(mainPanel);
     }

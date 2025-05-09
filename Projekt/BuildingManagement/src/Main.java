@@ -20,12 +20,6 @@ public class Main {
                     - Hasherowanie haseł
         */
 
-//        MainMenu m = new MainMenu();
-//        BuildingEntrance b = new BuildingEntrance();
-
-//        b.run();
-//        m.run();
-
         SwingUtilities.invokeLater(() -> new BuildingEntrance().run());
     }
 }
