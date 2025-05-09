@@ -75,13 +75,18 @@ public class BuildingEntrance extends UserDAO {
     private void onEnter(String pin) throws SQLException {
         if (authenticateUser(chosenUserValue, pin)) {
             if (chosenUserValue.equals("user")) {
-                UserPanel.run(chosenUserValue);
+                if (!isClosed()) {
+                    UserPanel.run(chosenUserValue);
+                    mainFrame.dispose();
+                    System.out.println("PIN accepted");
+                }
+                else pinText.setText("Building is closed");
             }
             else if (chosenUserValue.equals("admin")) {
                 adminPanel.run(chosenUserValue);
+                mainFrame.dispose();
+                System.out.println("PIN accepted");
             }
-            System.out.println("PIN accepted");
-            mainFrame.dispose();
         } else {
             pinText.setText("PIN rejected");
         }
@@ -91,13 +96,15 @@ public class BuildingEntrance extends UserDAO {
     private void addActionListener(JButton b) {
         b.addActionListener(e -> {
             String buttonText = b.getText();
-            if (pinText.getText().equals("PIN rejected")) pinText.setText(""); //clear text on button press
+            String getPinText = pinText.getText();
+            if (getPinText.equals("PIN rejected") ||
+                    getPinText.equals("Building is closed")) pinText.setText("" + buttonText); //clear text on button press
 
             switch (buttonText) {
                 case "Enter":
                     chosenUserValue = (String) chooseUser.getSelectedItem();
                     try {
-                        onEnter(pinText.getText());
+                        onEnter(getPinText);
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -106,7 +113,7 @@ public class BuildingEntrance extends UserDAO {
                     pinText.setText("");
                     break;
                 default:
-                    if (pinText.getText().length() < 4) pinText.setText(pinText.getText() + buttonText);
+                    if (getPinText.length() < 4) pinText.setText(getPinText + buttonText);
                     break;
             }
 

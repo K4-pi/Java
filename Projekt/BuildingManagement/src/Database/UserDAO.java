@@ -20,6 +20,49 @@ public class UserDAO {
         }
     }
 
+    //update door status
+    public void updateDoorStatus(boolean status) throws SQLException {
+        String sql = "UPDATE doorstatus SET isclosed = ? WHERE id = 1";
+
+        try(Connection con = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql)){
+            pstmt.setBoolean(1, status);
+            pstmt.executeUpdate();
+            if (status) System.out.println("Building closed");
+            else System.out.println("Building opened");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //view
+    public void view(String username) throws SQLException{
+        String sql = "SELECT balance FROM users WHERE username = ?";
+
+        try(Connection con = DatabaseConnection.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()) {
+                System.out.println("Saldo: " + rs.getDouble("balance") + " PLN");
+            }
+        }
+    }
+
+    //close building
+    public boolean isClosed() throws SQLException{
+        String sql = "SELECT * FROM doorstatus WHERE id = 1";
+
+        try(Connection con = DatabaseConnection.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getBoolean("isClosed");
+            }
+            return false;
+        }
+    }
+
     /*//add
     public void addUser(String firstName, String lastName, int age) {
         String sql = "INSERT INTO user (username, pin, balance, role) VALUES (?, ?, 0, 'user')";
@@ -30,21 +73,6 @@ public class UserDAO {
             pstmt.setInt(3, age);
             pstmt.executeUpdate();
             System.out.println("Użytkownik dodany!");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    //saldo konta
-    public void deposit(String username, double amount) throws SQLException {
-        String sql = "UPDATE users SET balance = balance + ? WHERE username = ?";
-
-        try(Connection con = DatabaseConnection.getConnection();
-            PreparedStatement pstmt = con.prepareStatement(sql)){
-            pstmt.setDouble(1, amount);
-            pstmt.setString(2, username);
-            pstmt.executeUpdate();
-            System.out.println("Wpłata zakończona");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -70,19 +98,5 @@ public class UserDAO {
         }
 
     }*/
-
-    //view
-    public void view(String username) throws SQLException{
-        String sql = "SELECT balance FROM users WHERE username = ?";
-
-        try(Connection con = DatabaseConnection.getConnection();
-            PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, username);
-            ResultSet rs = stmt.executeQuery();
-            if(rs.next()) {
-                System.out.println("Saldo: " + rs.getDouble("balance") + " PLN");
-            }
-        }
-    }
 
 }

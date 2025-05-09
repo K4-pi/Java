@@ -25,4 +25,8 @@ public class Window {
         return userInfoPanel;
     }
 
+    public JButton logOutButton() {
+        return new JButton("Log out");
+    }
+
 }
