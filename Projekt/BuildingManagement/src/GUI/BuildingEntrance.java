@@ -104,7 +104,7 @@ public class BuildingEntrance extends UserDAO {
 
     //On click function
     private void addActionListener(JButton b) {
-        b.addActionListener(e -> {
+        b.addActionListener(_ -> {
             String buttonText = b.getText();
             String getPinText = pinText.getText();
             if (getPinText.length() > 4) pinText.setText(buttonText); //clears text when pressed something while error message

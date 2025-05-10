@@ -32,7 +32,7 @@ public class UserDAO {
             if (status) System.out.println("Building closed");
             else System.out.println("Building opened");
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

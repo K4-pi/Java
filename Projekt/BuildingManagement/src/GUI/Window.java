@@ -32,7 +32,7 @@ public class Window {
         JButton logoutBtn = new JButton("Log out");
         logoutBtn.setVisible(true);
 
-        logoutBtn.addActionListener(e -> {
+        logoutBtn.addActionListener(_ -> {
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(logoutBtn);
             new BuildingEntrance().run();
             frame.dispose();
