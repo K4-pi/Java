@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserDAO {
 
@@ -34,6 +35,21 @@ public class UserDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    //view list of taken apartments
+    public ArrayList<Integer> apartmentsList() throws SQLException{
+        String sql = "SELECT nr FROM apartments";
+        ArrayList<Integer> list = new ArrayList<>();
+
+        try(Connection con = DatabaseConnection.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()) {
+                list.add(rs.getInt("nr"));
+            }
+        }
+        return list;
     }
 
     //view apartment info
@@ -96,7 +112,7 @@ public class UserDAO {
             pstmt.executeUpdate();
             System.out.println("Użytkownik dodany!");
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

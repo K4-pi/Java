@@ -20,17 +20,14 @@ public class Window {
     }
 
     // Panel that displays user info
-    public JPanel updateUserInfoPanel(String user) throws SQLException {
+    public JLabel updateUserInfoPanel(String user) throws SQLException {
         UserDAO userDAO = new UserDAO();
         String apartmentInfo = userDAO.apartmentInfo(userDAO.userId(user));
 
         JLabel userInfoLabel = new JLabel("<html>Hi " + user + "!<br/>" + apartmentInfo +"</html>", SwingConstants.LEFT);
         userInfoLabel.setVisible(true);
-        JPanel userInfoPanel = new JPanel();
-        userInfoPanel.setLayout(new FlowLayout());
-        userInfoPanel.add(userInfoLabel);
 
-        return userInfoPanel;
+        return userInfoLabel;
     }
 
     // button that takes you back to main menu

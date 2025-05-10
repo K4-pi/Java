@@ -13,7 +13,11 @@ public class UserPanel {
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
         // User info panel
-        JPanel userInfoPanel = window.updateUserInfoPanel(loggedUser);
+        JLabel userInfo = window.updateUserInfoPanel(loggedUser);
+        JPanel userInfoPanel = new JPanel();
+        userInfoPanel.setLayout(new BorderLayout());
+
+        userInfoPanel.add(userInfo, BorderLayout.LINE_START);
 
         // Buttons
         JPanel btnsPanel = new JPanel();
