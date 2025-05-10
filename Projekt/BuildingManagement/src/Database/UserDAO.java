@@ -36,18 +36,39 @@ public class UserDAO {
         }
     }
 
-    //view
-    public void view(String username) throws SQLException{
-        String sql = "SELECT balance FROM users WHERE username = ?";
+    //view apartment info
+    public String apartmentInfo(int userid) throws SQLException{
+        String sql = "SELECT * FROM apartments WHERE userid = ?";
+
+        try(Connection con = DatabaseConnection.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, userid);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()) {
+                return "User id: " + rs.getInt("userid") + "<br/>"
+                        + "Apartment nr: " + rs.getInt("nr") + "<br/>"
+                        + "Apartment electricity: " + rs.getBoolean("electricity") + "<br/>"
+                        + "Apartment light: " + rs.getBoolean("light") + "<br/>"
+                        + "Apartment air temp: " + rs.getDouble("airtemp") + "<br/>"
+                        + "Apartment water temp: " + rs.getDouble("watertemp");
+            }
+        }
+        return "Error while loading apartment info";
+    }
+
+    //view user id
+    public int userId(String username) throws SQLException{
+        String sql = "SELECT id FROM users WHERE username = ?";
 
         try(Connection con = DatabaseConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
             if(rs.next()) {
-                System.out.println("Saldo: " + rs.getDouble("balance") + " PLN");
+                return rs.getInt("id");
             }
         }
+        return -1;
     }
 
     //close building

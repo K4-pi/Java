@@ -15,7 +15,7 @@ public class AdminPanel extends UserDAO {
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
         // User info panel
-        JPanel userInfoPanel = window.userInfoPanel(loggedUser);
+        JPanel userInfoPanel = window.updateUserInfoPanel(loggedUser);
 
         // Buttons
         JButton closeBtn = closeBuildingButton();

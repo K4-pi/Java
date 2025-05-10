@@ -1,7 +1,10 @@
 package GUI;
 
+import Database.UserDAO;
+
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 
 public class Window {
 
@@ -17,8 +20,11 @@ public class Window {
     }
 
     // Panel that displays user info
-    public JPanel userInfoPanel(String user) {
-        JLabel userInfoLabel = new JLabel("You are a " + user);
+    public JPanel updateUserInfoPanel(String user) throws SQLException {
+        UserDAO userDAO = new UserDAO();
+        String apartmentInfo = userDAO.apartmentInfo(userDAO.userId(user));
+
+        JLabel userInfoLabel = new JLabel("<html>Hi " + user + "!<br/>" + apartmentInfo +"</html>", SwingConstants.LEFT);
         userInfoLabel.setVisible(true);
         JPanel userInfoPanel = new JPanel();
         userInfoPanel.setLayout(new FlowLayout());

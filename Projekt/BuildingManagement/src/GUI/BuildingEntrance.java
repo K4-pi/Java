@@ -86,14 +86,14 @@ public class BuildingEntrance extends UserDAO {
         if (authenticateUser(chosenUserValue, pin, username)) {
             if (chosenUserValue.equals("user")) {
                 if (!isClosed()) {
-                    UserPanel.run(chosenUserValue);
+                    UserPanel.run(username);
                     mainFrame.dispose();
                     System.out.println("PIN accepted");
                 }
                 else pinText.setText("Building is closed");
             }
             else if (chosenUserValue.equals("admin")) {
-                adminPanel.run(chosenUserValue);
+                adminPanel.run(username);
                 mainFrame.dispose();
                 System.out.println("PIN accepted");
             }
