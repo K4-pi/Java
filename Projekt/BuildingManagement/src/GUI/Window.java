@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class Window {
 
+    // Create new window
     public JFrame setWindow(String title, int sizeX, int sizeY, boolean resizable) {
         JFrame frame = new JFrame(title);
         frame.setResizable(resizable);
@@ -15,6 +16,7 @@ public class Window {
         return frame;
     }
 
+    // Panel that displays user info
     public JPanel userInfoPanel(String user) {
         JLabel userInfoLabel = new JLabel("You are a " + user);
         userInfoLabel.setVisible(true);
@@ -25,6 +27,7 @@ public class Window {
         return userInfoPanel;
     }
 
+    // button that takes you back to main menu
     public JButton logOutButton() {
         JButton logoutBtn = new JButton("Log out");
         logoutBtn.setVisible(true);

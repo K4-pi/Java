@@ -14,14 +14,13 @@ public class BuildingEntrance extends UserDAO {
     private JComboBox<String> chooseUser;
     private Label pinText;
     private String chosenUserValue;
+    private JTextField usernameField;
+    private String username;
 
     public void run() {
         mainFrame = window.setWindow("Building entrance", 400, 500, false);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-
-        JPanel textPanel = new JPanel();
-        textPanel.setLayout(new FlowLayout());
 
         // Who are you logging in as?
         String[] choices = {"user", "admin"};
@@ -31,7 +30,17 @@ public class BuildingEntrance extends UserDAO {
         comboBoxPanel.setLayout(new FlowLayout());
         comboBoxPanel.add(chooseUser);
 
+        // Enter username
+        usernameField = new JTextField(10);
+        usernameField.setPreferredSize(new Dimension(100, 30));
+        usernameField.setToolTipText("Enter username");
+        JPanel usernameInsertPanel = new JPanel();
+        usernameInsertPanel.setLayout(new FlowLayout());
+        usernameInsertPanel.add(usernameField);
+
         // PIN display
+        JPanel textPanel = new JPanel();
+        textPanel.setLayout(new FlowLayout());
         pinText = new Label();
         pinText.setText("");
         pinText.setPreferredSize(new Dimension(300, 200));
@@ -66,6 +75,7 @@ public class BuildingEntrance extends UserDAO {
         }
 
         mainPanel.add(comboBoxPanel);
+        mainPanel.add(usernameInsertPanel);
         mainPanel.add(textPanel);
         mainPanel.add(buttonPanel);
         mainFrame.add(mainPanel);
@@ -73,7 +83,7 @@ public class BuildingEntrance extends UserDAO {
 
     //On enter button function
     private void onEnter(String pin) throws SQLException {
-        if (authenticateUser(chosenUserValue, pin)) {
+        if (authenticateUser(chosenUserValue, pin, username)) {
             if (chosenUserValue.equals("user")) {
                 if (!isClosed()) {
                     UserPanel.run(chosenUserValue);
@@ -88,7 +98,7 @@ public class BuildingEntrance extends UserDAO {
                 System.out.println("PIN accepted");
             }
         } else {
-            pinText.setText("PIN rejected");
+            pinText.setText("Wrong PIN or username!");
         }
     }
 
@@ -97,12 +107,12 @@ public class BuildingEntrance extends UserDAO {
         b.addActionListener(e -> {
             String buttonText = b.getText();
             String getPinText = pinText.getText();
-            if (getPinText.equals("PIN rejected") ||
-                    getPinText.equals("Building is closed")) pinText.setText("" + buttonText); //clear text on button press
+            if (getPinText.length() > 4) pinText.setText(buttonText); //clears text when pressed something while error message
 
             switch (buttonText) {
                 case "Enter":
-                    chosenUserValue = (String) chooseUser.getSelectedItem();
+                    chosenUserValue = (String) chooseUser.getSelectedItem(); // get selected user type (user/admin)
+                    username = usernameField.getText(); // get username from text field
                     try {
                         onEnter(getPinText);
                     } catch (SQLException ex) {
