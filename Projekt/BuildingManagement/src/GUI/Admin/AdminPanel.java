@@ -10,52 +10,43 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AdminPanel extends UserDAO {
-    private final GUI.Window window = new Window(Entry.getLoggedUser() + " panel", 800, 600, false);
+    private final GUI.Window window = new Window(Entry.getLoggedUser() + "'s panel", 800, 600, false);
 
     public void run() throws SQLException {
-//        JFrame mainFrame = window.setWindow(loggedUser + " panel", 800, 600, false);
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BorderLayout());
+        JPanel mainPanel = new JPanel(new BorderLayout());
 
-        // Buttons
+        // Close button
         JButton closeBtn = closeBuildingButton();
-        JPanel btnsPanel = new JPanel();
-        btnsPanel.setLayout(new GridLayout(1, 2));
+        JPanel btnsPanel = new JPanel(new GridLayout(1, 2));
         btnsPanel.add(closeBtn);
+
+        // Logut button
         btnsPanel.add(window.logOutButton());
 
         // Apartments list
         JScrollPane apartmentsList = apartmentsList();
-        JPanel apartmentsListPanel = new JPanel();
-        apartmentsListPanel.setLayout(new FlowLayout());
+        JPanel apartmentsListPanel = new JPanel(new FlowLayout());
         apartmentsListPanel.add(apartmentsList);
 
-        /*JComboBox<Integer> apartmentsListBox = showApartmentsList();
-        JPanel apartmentsListPanel = new JPanel();
-        apartmentsListPanel.setLayout(new FlowLayout());
-        apartmentsListPanel.add(apartmentsListBox);*/
+        // Select apartment button and field
+        JTextArea chooseApartmentField = new JTextArea(1, 5);
+        JButton applayBtn = new JButton("Apply");
+        JPanel chooseApartmentPanel = new JPanel(new FlowLayout());
+        chooseApartmentPanel.add(chooseApartmentField);
+        chooseApartmentPanel.add(applayBtn);
+
+        // List and field for choosing apartment
+        JPanel combinedListButtonPanel = new JPanel();
+        combinedListButtonPanel.setLayout(new BoxLayout(combinedListButtonPanel, BoxLayout.Y_AXIS));
+        combinedListButtonPanel.add(apartmentsListPanel);
+        combinedListButtonPanel.add(chooseApartmentPanel);
 
         // main panel
-//        mainPanel.add(apartmentsListPanel);
-        mainPanel.add(apartmentsListPanel, BorderLayout.CENTER);
+        mainPanel.add(combinedListButtonPanel, BorderLayout.CENTER);
         mainPanel.add(btnsPanel, BorderLayout.PAGE_END);
 
         window.add(mainPanel);
     }
-
-    /*private JComboBox<Integer> showApartmentsList() throws SQLException {
-        JComboBox<Integer> apartmnetsListBox;
-        ArrayList<Integer> apartamentNumbers = apartmentsList();
-        Integer[] list = new Integer[apartamentNumbers.size()];
-
-        for (int i = 0; i < apartamentNumbers.size(); i ++) {
-            list[i] = apartamentNumbers.get(i);
-        }
-
-        apartmnetsListBox = new JComboBox<>(list);
-        apartmnetsListBox.setVisible(true);
-        return apartmnetsListBox;
-    }*/
 
     // Show apartments list
     private JScrollPane apartmentsList() throws SQLException {

@@ -8,7 +8,7 @@ import java.awt.*;
 import java.sql.SQLException;
 
 public class UserPanel {
-    private final GUI.Window window = new Window(Entry.getLoggedUser() + " panel", 800, 600, true);
+    private final GUI.Window window = new Window(Entry.getLoggedUser() + "'s panel", 800, 600, true);
 
     public void run() throws SQLException {
 //        JFrame mainFrame = window.setWindow(loggedUser + " panel", 800, 600, true);
@@ -22,8 +22,7 @@ public class UserPanel {
         userInfoPanel.add(userInfo, BorderLayout.LINE_START);*/
 
         // Buttons
-        JPanel btnsPanel = new JPanel();
-        btnsPanel.setLayout(new GridLayout(1, 1));
+        JPanel btnsPanel = new JPanel(new GridLayout(1, 1));
         btnsPanel.add(window.logOutButton());
 
 //        mainPanel.add(userInfoPanel);

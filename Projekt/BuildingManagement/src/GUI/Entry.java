@@ -25,29 +25,25 @@ public class Entry extends UserDAO {
     }
 
     public void run() {
-//        mainFrame = window.setWindow("Building entrance", 400, 500, false);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
         // Who are you logging in as?
         String[] choices = {"user", "admin"};
         chooseUser = new JComboBox<>(choices);
-        JPanel comboBoxPanel = new JPanel();
+        JPanel comboBoxPanel = new JPanel(new FlowLayout());
         comboBoxPanel.setVisible(true);
-        comboBoxPanel.setLayout(new FlowLayout());
         comboBoxPanel.add(chooseUser);
 
         // Enter username
         usernameField = new JTextField(10);
         usernameField.setPreferredSize(new Dimension(100, 30));
         usernameField.setToolTipText("Enter username");
-        JPanel usernameInsertPanel = new JPanel();
-        usernameInsertPanel.setLayout(new FlowLayout());
+        JPanel usernameInsertPanel = new JPanel(new FlowLayout());
         usernameInsertPanel.add(usernameField);
 
         // PIN display
-        JPanel textPanel = new JPanel();
-        textPanel.setLayout(new FlowLayout());
+        JPanel textPanel = new JPanel(new FlowLayout());
         pinText = new Label();
         pinText.setText("");
         pinText.setPreferredSize(new Dimension(300, 200));
@@ -55,8 +51,7 @@ public class Entry extends UserDAO {
         textPanel.add(pinText);
 
         // Buttons
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(4, 3));
+        JPanel buttonPanel = new JPanel(new GridLayout(4, 3));
 
         JButton[] btns = {
             new JButton("7"),

@@ -1,7 +1,5 @@
 package GUI;
 
-import Database.UserDAO;
-
 import javax.swing.*;
 
 public class Window extends JFrame{
@@ -15,7 +13,7 @@ public class Window extends JFrame{
     }
 
     // Create new window
-    public JFrame setWindow(String title, int sizeX, int sizeY, boolean resizable) {
+    /*public JFrame setWindow(String title, int sizeX, int sizeY, boolean resizable) {
         JFrame frame = new JFrame(title);
         frame.setResizable(resizable);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -23,10 +21,10 @@ public class Window extends JFrame{
         frame.setVisible(true);
 
         return frame;
-    }
+    }*/
 
-    /*// Panel that displays user info
-    public JLabel updateUserInfoPanel(String user) throws SQLException {
+    // Panel that displays user info
+    /*public JLabel updateUserInfoPanel(String user) throws SQLException {
         UserDAO userDAO = new UserDAO();
         String apartmentInfo = userDAO.apartmentInfo(userDAO.userId(user));
 
