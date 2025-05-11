@@ -16,33 +16,19 @@ public class AdminPanel extends UserDAO {
         JPanel mainPanel = new JPanel(new BorderLayout());
 
         // Close button
-        JButton closeBtn = closeBuildingButton();
         JPanel btnsPanel = new JPanel(new GridLayout(1, 2));
-        btnsPanel.add(closeBtn);
+        btnsPanel.add(closeBuildingButton());
 
         // Logut button
         btnsPanel.add(window.logOutButton());
 
-        // Apartments list
-        JScrollPane apartmentsList = apartmentsList();
-        JPanel apartmentsListPanel = new JPanel(new FlowLayout());
-        apartmentsListPanel.add(apartmentsList);
-
-        // Select apartment button and field
-        JTextArea chooseApartmentField = new JTextArea(1, 5);
-        JButton applayBtn = new JButton("Apply");
-        JPanel chooseApartmentPanel = new JPanel(new FlowLayout());
-        chooseApartmentPanel.add(chooseApartmentField);
-        chooseApartmentPanel.add(applayBtn);
-
-        // List and field for choosing apartment
-        JPanel combinedListButtonPanel = new JPanel();
-        combinedListButtonPanel.setLayout(new BoxLayout(combinedListButtonPanel, BoxLayout.Y_AXIS));
-        combinedListButtonPanel.add(apartmentsListPanel);
-        combinedListButtonPanel.add(chooseApartmentPanel);
+        // List and reports panel
+        JPanel combined = new JPanel(new GridLayout(1, 2));
+        combined.add(apartmentListAndApartmentSelector());
+        combined.add(apartmentListAndApartmentSelector());
 
         // main panel
-        mainPanel.add(combinedListButtonPanel, BorderLayout.CENTER);
+        mainPanel.add(combined, BorderLayout.CENTER);
         mainPanel.add(btnsPanel, BorderLayout.PAGE_END);
 
         window.add(mainPanel);
@@ -50,7 +36,7 @@ public class AdminPanel extends UserDAO {
 
     // Show apartments list
     private JScrollPane apartmentsList() throws SQLException {
-        JTextArea textArea = new JTextArea(25, 50);
+        JTextArea textArea = new JTextArea(25, 35);
         JScrollPane scrollPane = new JScrollPane(textArea);
         textArea.setVisible(true);
         scrollPane.setVisible(true);
@@ -61,6 +47,29 @@ public class AdminPanel extends UserDAO {
         }
 
         return scrollPane;
+    }
+
+    // List of apartments and field for choosing apartment
+    private JPanel apartmentListAndApartmentSelector() throws SQLException {
+        // Apartments list
+        JScrollPane apartmentsList = apartmentsList();
+        JPanel apartmentsListPanel = new JPanel(new FlowLayout());
+        apartmentsListPanel.add(apartmentsList);
+
+        // Select apartment field and button
+        JTextArea chooseApartmentField = new JTextArea(1, 5);
+        JButton applayBtn = new JButton("Apply");
+        JPanel chooseApartmentPanel = new JPanel(new FlowLayout());
+        chooseApartmentPanel.add(chooseApartmentField);
+        chooseApartmentPanel.add(applayBtn);
+
+        // List and field for choosing apartment
+        JPanel combinedPanel = new JPanel();
+        combinedPanel.setLayout(new BoxLayout(combinedPanel, BoxLayout.Y_AXIS));
+        combinedPanel.add(apartmentsListPanel);
+        combinedPanel.add(chooseApartmentPanel);
+
+        return combinedPanel;
     }
 
     // Closing building functionality
