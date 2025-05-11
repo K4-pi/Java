@@ -1,6 +1,7 @@
 package GUI.Admin;
 
 import Database.UserDAO;
+import GUI.Entry;
 import GUI.Window;
 
 import javax.swing.*;
@@ -9,10 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AdminPanel extends UserDAO {
-    private final GUI.Window window = new Window();
+    private final GUI.Window window = new Window(Entry.getLoggedUser() + " panel", 800, 600, false);
 
-    public void run(String loggedUser) throws SQLException {
-        JFrame mainFrame = window.setWindow(loggedUser + " panel", 800, 600, false);
+    public void run() throws SQLException {
+//        JFrame mainFrame = window.setWindow(loggedUser + " panel", 800, 600, false);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
 
@@ -39,7 +40,7 @@ public class AdminPanel extends UserDAO {
         mainPanel.add(apartmentsListPanel, BorderLayout.CENTER);
         mainPanel.add(btnsPanel, BorderLayout.PAGE_END);
 
-        mainFrame.add(mainPanel);
+        window.add(mainPanel);
     }
 
     /*private JComboBox<Integer> showApartmentsList() throws SQLException {

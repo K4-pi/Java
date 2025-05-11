@@ -1,5 +1,6 @@
 package GUI.User;
 
+import GUI.Entry;
 import GUI.Window;
 
 import javax.swing.*;
@@ -7,10 +8,10 @@ import java.awt.*;
 import java.sql.SQLException;
 
 public class UserPanel {
-    private final GUI.Window window = new Window();
+    private final GUI.Window window = new Window(Entry.getLoggedUser() + " panel", 800, 600, true);
 
-    public void run(String loggedUser) throws SQLException {
-        JFrame mainFrame = window.setWindow(loggedUser + " panel", 800, 600, true);
+    public void run() throws SQLException {
+//        JFrame mainFrame = window.setWindow(loggedUser + " panel", 800, 600, true);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
@@ -28,6 +29,6 @@ public class UserPanel {
 //        mainPanel.add(userInfoPanel);
         mainPanel.add(btnsPanel);
 
-        mainFrame.add(mainPanel);
+        window.add(mainPanel);
     }
 }

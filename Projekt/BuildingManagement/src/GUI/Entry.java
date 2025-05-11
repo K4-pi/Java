@@ -9,19 +9,23 @@ import java.awt.*;
 import java.sql.SQLException;
 
 public class Entry extends UserDAO {
-    private final Window window = new Window();
-    private final AdminPanel adminPanel = new AdminPanel();
-    private final UserPanel userPanel = new UserPanel();
+    private final Window window = new Window("Building entrance", 400, 500, false);
+//    private final AdminPanel adminPanel = new AdminPanel();
+//    private final UserPanel userPanel = new UserPanel();
 
-    private JFrame mainFrame;
+//    private JFrame mainFrame;
     private JComboBox<String> chooseUser;
     private Label pinText;
     private String chosenUserValue;
     private JTextField usernameField;
-    private String username;
+    private static String username;
+
+    public static String getLoggedUser() {
+        return username;
+    }
 
     public void run() {
-        mainFrame = window.setWindow("Building entrance", 400, 500, false);
+//        mainFrame = window.setWindow("Building entrance", 400, 500, false);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
@@ -81,7 +85,7 @@ public class Entry extends UserDAO {
         mainPanel.add(usernameInsertPanel);
         mainPanel.add(textPanel);
         mainPanel.add(buttonPanel);
-        mainFrame.add(mainPanel);
+        window.add(mainPanel);
     }
 
     //On enter button function
@@ -89,15 +93,15 @@ public class Entry extends UserDAO {
         if (authenticateUser(chosenUserValue, pin, username)) {
             if (chosenUserValue.equals("user")) {
                 if (!isClosed()) {
-                    userPanel.run(username);
-                    mainFrame.dispose();
+                    new UserPanel().run();
+                    window.dispose();
                     System.out.println("PIN accepted");
                 }
                 else pinText.setText("Building is closed");
             }
             else if (chosenUserValue.equals("admin")) {
-                adminPanel.run(username);
-                mainFrame.dispose();
+                new AdminPanel().run();
+                window.dispose();
                 System.out.println("PIN accepted");
             }
         } else {
@@ -129,7 +133,6 @@ public class Entry extends UserDAO {
                     if (getPinText.length() < 4) pinText.setText(getPinText + buttonText);
                     break;
             }
-
         });
     }
 }

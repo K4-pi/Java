@@ -4,7 +4,15 @@ import Database.UserDAO;
 
 import javax.swing.*;
 
-public class Window {
+public class Window extends JFrame{
+
+    public Window(String title, int sizeX, int sizeY, boolean resizable) {
+        this.setTitle(title);
+        this.setSize(sizeX, sizeY);
+        this.setResizable(resizable);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
 
     // Create new window
     public JFrame setWindow(String title, int sizeX, int sizeY, boolean resizable) {
