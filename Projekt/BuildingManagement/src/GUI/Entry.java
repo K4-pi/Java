@@ -1,14 +1,17 @@
 package GUI;
 
 import Database.UserDAO;
+import GUI.Admin.AdminPanel;
+import GUI.User.UserPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
 
-public class BuildingEntrance extends UserDAO {
+public class Entry extends UserDAO {
     private final Window window = new Window();
     private final AdminPanel adminPanel = new AdminPanel();
+    private final UserPanel userPanel = new UserPanel();
 
     private JFrame mainFrame;
     private JComboBox<String> chooseUser;
@@ -47,7 +50,7 @@ public class BuildingEntrance extends UserDAO {
         pinText.setAlignment(Label.CENTER);
         textPanel.add(pinText);
 
-        // Buttons with panel
+        // Buttons
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(4, 3));
 
@@ -86,7 +89,7 @@ public class BuildingEntrance extends UserDAO {
         if (authenticateUser(chosenUserValue, pin, username)) {
             if (chosenUserValue.equals("user")) {
                 if (!isClosed()) {
-                    UserPanel.run(username);
+                    userPanel.run(username);
                     mainFrame.dispose();
                     System.out.println("PIN accepted");
                 }

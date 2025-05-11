@@ -37,11 +37,10 @@ public class UserDAO {
         }
     }
 
-    //view list of taken apartments
-    public ArrayList<Integer> apartmentsList() throws SQLException{
-        String sql = "SELECT nr FROM apartments";
+    //view list of taken apartments by users
+    /*public ArrayList<Integer> apartmentsList() throws SQLException{
+        String sql = "SELECT nr FROM apartments WHERE role = 'user'";
         ArrayList<Integer> list = new ArrayList<>();
-
         try(Connection con = DatabaseConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
@@ -50,26 +49,30 @@ public class UserDAO {
             }
         }
         return list;
-    }
+    }*/
 
     //view apartment info
-    public String apartmentInfo(int userid) throws SQLException{
-        String sql = "SELECT * FROM apartments WHERE userid = ?";
+    public ArrayList<String> apartmentInfo() throws SQLException{
+        String sql = "SELECT * FROM apartments a " +
+                "JOIN users u ON a.userid = u.id " +
+                "WHERE u.role = 'user'";
 
         try(Connection con = DatabaseConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setInt(1, userid);
             ResultSet rs = stmt.executeQuery();
-            if(rs.next()) {
-                return "User id: " + rs.getInt("userid") + "<br/>"
-                        + "Apartment nr: " + rs.getInt("nr") + "<br/>"
-                        + "Apartment electricity: " + rs.getBoolean("electricity") + "<br/>"
-                        + "Apartment light: " + rs.getBoolean("light") + "<br/>"
-                        + "Apartment air temp: " + rs.getDouble("airtemp") + "<br/>"
-                        + "Apartment water temp: " + rs.getDouble("watertemp");
+            ArrayList<String> list = new ArrayList<>();
+            int i = 0;
+            while (rs.next()) {
+                i++;
+                String string = "[" + i + "] " + "Apartment nr: " + rs.getInt("nr") +
+                                " |🔌 " + rs.getBoolean("electricity") +
+                                " |💡 " + rs.getBoolean("light") +
+                                " |💨️🌡️ " + rs.getDouble("airtemp") +
+                                " |💦🌡️ " + rs.getDouble("watertemp");
+                list.add(string);
             }
+            return list;
         }
-        return "Error while loading apartment info";
     }
 
     //view user id

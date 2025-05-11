@@ -1,8 +1,8 @@
-import GUI.BuildingEntrance;
+import GUI.Entry;
 
 import javax.swing.*;
 
-public class Main extends BuildingEntrance{
+public class Main extends Entry{
     public static void main(String[] args) {
         /*System zarządzania budynkiem. Kontrola wejścia do budynku, zgłaszanie usterek, prób włamania,
         monitorowanie temperatury wody i powietrza, wyłączanie/włączanie światła, sieci elektrycznej,

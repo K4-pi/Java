@@ -3,8 +3,6 @@ package GUI;
 import Database.UserDAO;
 
 import javax.swing.*;
-import java.awt.*;
-import java.sql.SQLException;
 
 public class Window {
 
@@ -19,7 +17,7 @@ public class Window {
         return frame;
     }
 
-    // Panel that displays user info
+    /*// Panel that displays user info
     public JLabel updateUserInfoPanel(String user) throws SQLException {
         UserDAO userDAO = new UserDAO();
         String apartmentInfo = userDAO.apartmentInfo(userDAO.userId(user));
@@ -28,7 +26,7 @@ public class Window {
         userInfoLabel.setVisible(true);
 
         return userInfoLabel;
-    }
+    }*/
 
     // button that takes you back to main menu
     public JButton logOutButton() {
@@ -37,7 +35,7 @@ public class Window {
 
         logoutBtn.addActionListener(_ -> {
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(logoutBtn);
-            new BuildingEntrance().run();
+            new Entry().run();
             frame.dispose();
         });
 
