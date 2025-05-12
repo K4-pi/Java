@@ -99,7 +99,7 @@ public class UserDAO {
     }
 
     //view all apartments info
-    public ArrayList<String> apartmentsInfo() throws SQLException{
+    public ArrayList<String> apartmentsOwners() throws SQLException{
         String sql = "SELECT * FROM apartments a " +
                 "JOIN users u ON a.userid = u.id " +
                 "WHERE u.role = 'user'";
@@ -111,11 +111,9 @@ public class UserDAO {
             int i = 0;
             while (rs.next()) {
                 i++;
-                String string = "[" + i + "] " + "Apartment nr: " + rs.getInt("nr") +
-                                " |🔌 " + rs.getBoolean("electricity") +
-                                " |💡 " + rs.getBoolean("light") +
-                                " |💨️🌡️ " + rs.getDouble("airtemp") +
-                                " |💦🌡️ " + rs.getDouble("watertemp");
+                String string = " [" + i + "] " + "Apartment nr: " + rs.getInt("nr") +
+                                " | User ID: " + rs.getInt("u.id") +
+                                " | User: " + rs.getString("u.username");
                 list.add(string);
             }
             return list;

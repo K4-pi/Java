@@ -47,7 +47,7 @@ public class AdminPanel extends Window {
         textArea.setFocusable(false);
         scrollPane.setVisible(true);
 
-        ArrayList<String> list = userDAO.apartmentsInfo();
+        ArrayList<String> list = userDAO.apartmentsOwners();
         for (String s : list) {
             textArea.append(s + "\n");
         }
