@@ -2,7 +2,7 @@ import GUI.Entry;
 
 import javax.swing.*;
 
-public class Main extends Entry{
+public class Main {
     public static void main(String[] args) {
         /*System zarządzania budynkiem. Kontrola wejścia do budynku, zgłaszanie usterek, prób włamania,
         monitorowanie temperatury wody i powietrza, wyłączanie/włączanie światła, sieci elektrycznej,
@@ -20,6 +20,6 @@ public class Main extends Entry{
                     - Hasherowanie haseł
         */
 
-        SwingUtilities.invokeLater(() -> new Main().run());
+        SwingUtilities.invokeLater(() -> new Entry("Building entrance", 400, 500, false).run());
     }
 }

@@ -8,20 +8,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
 
-public class Entry extends UserDAO {
-    private final Window window = new Window("Building entrance", 400, 500, false);
+public class Entry extends Window {
+//    private final Window window = new Window("Building entrance", 400, 500, false);
 //    private final AdminPanel adminPanel = new AdminPanel();
 //    private final UserPanel userPanel = new UserPanel();
+    UserDAO userDAO = new UserDAO();
 
 //    private JFrame mainFrame;
     private JComboBox<String> chooseUser;
     private Label pinText;
     private String chosenUserValue;
     private JTextField usernameField;
-    private static String username;
+    private String username;
 
-    public static String getLoggedUser() {
-        return username;
+    public Entry(String title, int sizeX, int sizeY, boolean resizable) {
+        super(title, sizeX, sizeY, resizable);
+    }
+
+    public Entry(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
+        super(title, sizeX, sizeY, resizable, disposeOnClose);
     }
 
     public void run() {
@@ -80,23 +85,23 @@ public class Entry extends UserDAO {
         mainPanel.add(usernameInsertPanel);
         mainPanel.add(textPanel);
         mainPanel.add(buttonPanel);
-        window.add(mainPanel);
+        this.add(mainPanel);
     }
 
     //On enter button function
     private void onEnter(String pin) throws SQLException {
-        if (authenticateUser(chosenUserValue, pin, username)) {
+        if (userDAO.authenticateUser(chosenUserValue, pin, username)) {
             if (chosenUserValue.equals("user")) {
-                if (!isClosed()) {
-                    new UserPanel().run();
-                    window.dispose();
+                if (!userDAO.isClosed()) {
+                    new UserPanel(username + "'s panel", 800, 600, false).run();
+                    this.dispose();
                     System.out.println("PIN accepted");
                 }
                 else pinText.setText("Building is closed");
             }
             else if (chosenUserValue.equals("admin")) {
-                new AdminPanel().run();
-                window.dispose();
+                new AdminPanel(username + "'s panel", 800, 600, false).run();
+                this.dispose();
                 System.out.println("PIN accepted");
             }
         } else {

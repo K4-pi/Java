@@ -44,18 +44,6 @@ public class Window extends JFrame{
         return userInfoLabel;
     }*/
 
-    // button that takes you back to main menu
-    public JButton logOutButton() {
-        JButton logoutBtn = new JButton("Log out");
-        logoutBtn.setVisible(true);
 
-        logoutBtn.addActionListener(_ -> {
-            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(logoutBtn);
-            new Entry().run();
-            frame.dispose();
-        });
-
-        return logoutBtn;
-    }
 
 }
