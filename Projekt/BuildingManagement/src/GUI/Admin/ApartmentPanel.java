@@ -5,6 +5,8 @@ import GUI.Window;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -19,13 +21,22 @@ public class ApartmentPanel extends Window {
         this.apartmentNr = apartmentNr;
     }
 
-    public void run() throws SQLException {
+    public void run(JFrame parent) throws SQLException {
         JPanel mainPanel = new JPanel(new BorderLayout());
 
         apartmentLabel = new JTextArea(4, 10);
         apartmentLabel.setEditable(false);
         apartmentLabel.setFocusable(false);
         showApartmentLabel();
+
+        // On exit set parent window editable
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                parent.setEnabled(true);
+            }
+        });
 
         // Buttons that update parameters
         JPanel buttonsPanel = new JPanel(new GridLayout(1, 4));

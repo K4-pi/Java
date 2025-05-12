@@ -71,13 +71,15 @@ public class AdminPanel extends Window {
 
         applayBtn.addActionListener(_ ->
         {
+            this.setEnabled(false);
+
             // Get apartment number
             int nr = -1;
             String choosenNumber = chooseApartmentField.getText();
             if (!choosenNumber.isEmpty()) nr = Integer.parseInt(choosenNumber);
 
             try {
-                if (nr > 0) new ApartmentPanel("Apartment panel", 400, 400, false, true, nr).run();
+                if (nr > 0) new ApartmentPanel("Apartment panel", 400, 400, false, true, nr).run(this);
                 else System.out.println("Invalid apartment number");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
