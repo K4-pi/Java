@@ -4,17 +4,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserDAO {
 
     //Uwierzytelnianie
-    public boolean authenticateUser(String role, String pin) throws SQLException {
-        String sql = "SELECT * FROM users WHERE role = ? AND pin = ?";
+    public boolean authenticateUser(String role, String pin, String username) throws SQLException {
+        String sql = "SELECT * FROM users WHERE role = ? AND pin = ? AND username = ?";
 
         try (Connection con = DatabaseConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, role);
             stmt.setString(2, pin);
+            stmt.setString(3, username);
             ResultSet rs = stmt.executeQuery();
             return rs.next();
         }
@@ -31,22 +33,108 @@ public class UserDAO {
             if (status) System.out.println("Building closed");
             else System.out.println("Building opened");
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
-    //view
-    public void view(String username) throws SQLException{
-        String sql = "SELECT balance FROM users WHERE username = ?";
+    //view list of taken apartments by users
+    /*public ArrayList<Integer> apartmentsList() throws SQLException{
+        String sql = "SELECT nr FROM apartments WHERE role = 'user'";
+        ArrayList<Integer> list = new ArrayList<>();
+        try(Connection con = DatabaseConnection.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()) {
+                list.add(rs.getInt("nr"));
+            }
+        }
+        return list;
+    }*/
+
+    // Update double value
+    public void updateDoubleValue(String column, double value, int apartmentNr) throws SQLException {
+        String sql = "UPDATE apartments SET " + column + " = " + column + " + ? WHERE nr = ?";
+
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setDouble(1, value);
+            pstmt.setInt(2, apartmentNr);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Update boolean value
+    public void updateBooleanValue(String column, boolean value, int apartmentNr) throws SQLException {
+        String sql = "UPDATE apartments SET " + column + " = " + value + " WHERE nr = ?";
+
+        try (Connection con = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setInt(1, apartmentNr);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //View one apartment info
+    public ArrayList<Object> viewApartment(int apartmentNr) throws SQLException{
+        String sql = "SELECT * FROM apartments WHERE nr = ?";
+//                "JOIN users u ON a.userid = u.id " +
+//                "WHERE u.role = 'user'";
+
+        try(Connection con = DatabaseConnection.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, apartmentNr);
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Object> list = new ArrayList<>();
+            if (rs.next()) {
+                list.add(rs.getInt("nr"));
+                list.add(rs.getBoolean("electricity"));
+                list.add(rs.getBoolean("light"));
+                list.add(rs.getDouble("airtemp"));
+                list.add(rs.getDouble("watertemp"));
+            }
+            return list;
+        }
+    }
+
+    //view all apartments info
+    public ArrayList<String> apartmentsOwners() throws SQLException{
+        String sql = "SELECT * FROM apartments a " +
+                "JOIN users u ON a.userid = u.id " +
+                "WHERE u.role = 'user'";
+
+        try(Connection con = DatabaseConnection.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<String> list = new ArrayList<>();
+            int i = 0;
+            while (rs.next()) {
+                i++;
+                String string = " [" + i + "] " + "Apartment nr: " + rs.getInt("nr") +
+                                " | User ID: " + rs.getInt("u.id") +
+                                " | User: " + rs.getString("u.username");
+                list.add(string);
+            }
+            return list;
+        }
+    }
+
+    //view user id
+    public int userId(String username) throws SQLException{
+        String sql = "SELECT id FROM users WHERE username = ?";
 
         try(Connection con = DatabaseConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
             if(rs.next()) {
-                System.out.println("Saldo: " + rs.getDouble("balance") + " PLN");
+                return rs.getInt("id");
             }
         }
+        return -1;
     }
 
     //close building
@@ -74,7 +162,7 @@ public class UserDAO {
             pstmt.executeUpdate();
             System.out.println("Użytkownik dodany!");
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

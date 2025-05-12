@@ -1,4 +1,4 @@
-import GUI.BuildingEntrance;
+import GUI.Entry;
 
 import javax.swing.*;
 
@@ -11,15 +11,15 @@ public class Main {
         /* TASKS:
                 DONE:
                     - Kontrola wejścia
-                TODO:
                     - Włączanie/wyłączanie światła
                     - Kontrolowanie sieci elektrycznej
                     - Monitorowanie temperatury wody i powietrza
+                TODO:
                     - Zgłaszanie usterek
                     - Zgłaszanie prób włamania
-                    - Hasherowanie haseł
+                    - Hasherowanie haseł ?
         */
 
-        SwingUtilities.invokeLater(() -> new BuildingEntrance().run());
+        SwingUtilities.invokeLater(() -> new Entry("Building entrance", 400, 500, false).run());
     }
 }

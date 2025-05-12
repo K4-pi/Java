@@ -1,11 +1,28 @@
 package GUI;
 
 import javax.swing.*;
-import java.awt.*;
 
-public class Window {
+public class Window extends JFrame{
 
-    public JFrame setWindow(String title, int sizeX, int sizeY, boolean resizable) {
+    public Window(String title, int sizeX, int sizeY, boolean resizable) {
+        this.setTitle(title);
+        this.setSize(sizeX, sizeY);
+        this.setResizable(resizable);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+
+    public Window(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
+        this.setTitle(title);
+        this.setSize(sizeX, sizeY);
+        this.setResizable(resizable);
+        if (disposeOnClose) this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        else this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+
+    // Create new window
+    /*public JFrame setWindow(String title, int sizeX, int sizeY, boolean resizable) {
         JFrame frame = new JFrame(title);
         frame.setResizable(resizable);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -13,29 +30,19 @@ public class Window {
         frame.setVisible(true);
 
         return frame;
-    }
+    }*/
 
-    public JPanel userInfoPanel(String user) {
-        JLabel userInfoLabel = new JLabel("You are a " + user);
+    // Panel that displays user info
+    /*public JLabel updateUserInfoPanel(String user) throws SQLException {
+        UserDAO userDAO = new UserDAO();
+        String apartmentInfo = userDAO.apartmentInfo(userDAO.userId(user));
+
+        JLabel userInfoLabel = new JLabel("<html>Hi " + user + "!<br/>" + apartmentInfo +"</html>", SwingConstants.LEFT);
         userInfoLabel.setVisible(true);
-        JPanel userInfoPanel = new JPanel();
-        userInfoPanel.setLayout(new FlowLayout());
-        userInfoPanel.add(userInfoLabel);
 
-        return userInfoPanel;
-    }
+        return userInfoLabel;
+    }*/
 
-    public JButton logOutButton() {
-        JButton logoutBtn = new JButton("Log out");
-        logoutBtn.setVisible(true);
 
-        logoutBtn.addActionListener(e -> {
-            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(logoutBtn);
-            new BuildingEntrance().run();
-            frame.dispose();
-        });
-
-        return logoutBtn;
-    }
 
 }
