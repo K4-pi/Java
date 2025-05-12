@@ -68,7 +68,7 @@ public class ApartmentPanel extends Window {
         label.setText(labelText);
         buttonOn.addActionListener(_ -> {
             try {
-                userDAO.updateBooleanValue(SQLColumnName, true);
+                userDAO.updateBooleanValue(SQLColumnName, true, apartmentNr);
                 showApartmentLabel();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
@@ -76,7 +76,7 @@ public class ApartmentPanel extends Window {
         });
         buttonOff.addActionListener(_ -> {
             try {
-                userDAO.updateBooleanValue(SQLColumnName, false);
+                userDAO.updateBooleanValue(SQLColumnName, false, apartmentNr);
                 showApartmentLabel();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
@@ -101,7 +101,7 @@ public class ApartmentPanel extends Window {
         label.setText(labelText);
         buttonUp.addActionListener(_ -> {
             try {
-                userDAO.updateDoubleValue(SQLColumnName, 0.1);
+                userDAO.updateDoubleValue(SQLColumnName, 0.1, apartmentNr);
                 showApartmentLabel();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
@@ -109,7 +109,7 @@ public class ApartmentPanel extends Window {
         });
         buttonDown.addActionListener(_ -> {
             try {
-                userDAO.updateDoubleValue(SQLColumnName, -0.1);
+                userDAO.updateDoubleValue(SQLColumnName, -0.1, apartmentNr);
                 showApartmentLabel();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);

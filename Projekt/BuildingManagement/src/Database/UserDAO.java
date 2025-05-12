@@ -52,12 +52,13 @@ public class UserDAO {
     }*/
 
     // Update double value
-    public void updateDoubleValue(String column, double value) throws SQLException {
-        String sql = "UPDATE apartments SET " + column + " = " + column + " + ?";
+    public void updateDoubleValue(String column, double value, int apartmentNr) throws SQLException {
+        String sql = "UPDATE apartments SET " + column + " = " + column + " + ? WHERE nr = ?";
 
         try (Connection con = DatabaseConnection.getConnection();
              PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setDouble(1, value);
+            pstmt.setInt(2, apartmentNr);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -65,11 +66,12 @@ public class UserDAO {
     }
 
     // Update boolean value
-    public void updateBooleanValue(String column, boolean value) throws SQLException {
-        String sql = "UPDATE apartments SET " + column + " = " + value;
+    public void updateBooleanValue(String column, boolean value, int apartmentNr) throws SQLException {
+        String sql = "UPDATE apartments SET " + column + " = " + value + " WHERE nr = ?";
 
         try (Connection con = DatabaseConnection.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setInt(1, apartmentNr);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
