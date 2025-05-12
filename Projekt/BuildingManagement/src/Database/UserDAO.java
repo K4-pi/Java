@@ -51,8 +51,55 @@ public class UserDAO {
         return list;
     }*/
 
-    //view apartment info
-    public ArrayList<String> apartmentInfo() throws SQLException{
+    // Update double value
+    public void updateDoubleValue(String column, double value) throws SQLException {
+        String sql = "UPDATE apartments SET " + column + " = " + column + " + ?";
+
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setDouble(1, value);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Update boolean value
+    public void updateBooleanValue(String column, boolean value) throws SQLException {
+        String sql = "UPDATE apartments SET " + column + " = " + value;
+
+        try (Connection con = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //View one apartment info
+    public ArrayList<Object> viewApartment(int apartmentNr) throws SQLException{
+        String sql = "SELECT * FROM apartments WHERE nr = ?";
+//                "JOIN users u ON a.userid = u.id " +
+//                "WHERE u.role = 'user'";
+
+        try(Connection con = DatabaseConnection.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, apartmentNr);
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Object> list = new ArrayList<>();
+            if (rs.next()) {
+                list.add(rs.getInt("nr"));
+                list.add(rs.getBoolean("electricity"));
+                list.add(rs.getBoolean("light"));
+                list.add(rs.getDouble("airtemp"));
+                list.add(rs.getDouble("watertemp"));
+            }
+            return list;
+        }
+    }
+
+    //view all apartments info
+    public ArrayList<String> apartmentsInfo() throws SQLException{
         String sql = "SELECT * FROM apartments a " +
                 "JOIN users u ON a.userid = u.id " +
                 "WHERE u.role = 'user'";

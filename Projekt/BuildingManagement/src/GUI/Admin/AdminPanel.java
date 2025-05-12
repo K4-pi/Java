@@ -1,7 +1,7 @@
 package GUI.Admin;
 
 import Database.UserDAO;
-import GUI.LogOutButton;
+import GUI.Buttons;
 import GUI.Window;
 
 import javax.swing.*;
@@ -16,10 +16,6 @@ public class AdminPanel extends Window {
         super(title, sizeX, sizeY, resizable);
     }
 
-//    public AdminPanel(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
-//        super(title, sizeX, sizeY, resizable, disposeOnClose);
-//    }
-
     public void run() throws SQLException {
         JPanel mainPanel = new JPanel(new BorderLayout());
 
@@ -28,7 +24,7 @@ public class AdminPanel extends Window {
         btnsPanel.add(closeBuildingButton());
 
         // Logut button
-        btnsPanel.add(LogOutButton.logOutButton());
+        btnsPanel.add(Buttons.logOutButton());
 
         // List and reports panel
         JPanel combined = new JPanel(new GridLayout(1, 2));
@@ -47,9 +43,11 @@ public class AdminPanel extends Window {
         JTextArea textArea = new JTextArea(25, 35);
         JScrollPane scrollPane = new JScrollPane(textArea);
         textArea.setVisible(true);
+        textArea.setEditable(false);
+        textArea.setFocusable(false);
         scrollPane.setVisible(true);
 
-        ArrayList<String> list = userDAO.apartmentInfo();
+        ArrayList<String> list = userDAO.apartmentsInfo();
         for (String s : list) {
             textArea.append(s + "\n");
         }
@@ -72,7 +70,19 @@ public class AdminPanel extends Window {
         chooseApartmentPanel.add(applayBtn);
 
         applayBtn.addActionListener(_ ->
-                new ApartmentPanel("Apartment panel", 400, 400, false, true).run());
+        {
+            // Get apartment number
+            int nr = -1;
+            String choosenNumber = chooseApartmentField.getText();
+            if (!choosenNumber.isEmpty()) nr = Integer.parseInt(choosenNumber);
+
+            try {
+                if (nr > 0) new ApartmentPanel("Apartment panel", 400, 400, false, true, nr).run();
+                else System.out.println("Invalid apartment number");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         // List and field for choosing apartment
         JPanel combinedPanel = new JPanel();

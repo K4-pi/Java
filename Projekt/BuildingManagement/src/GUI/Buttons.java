@@ -1,8 +1,12 @@
 package GUI;
 
-import javax.swing.*;
+import Database.UserDAO;
 
-public class LogOutButton {
+import javax.swing.*;
+import java.sql.SQLException;
+import java.util.concurrent.atomic.AtomicReference;
+
+public class Buttons {
 
     // button that takes you back to main menu
     public static JButton logOutButton() {
@@ -17,4 +21,6 @@ public class LogOutButton {
 
         return logoutBtn;
     }
+
+
 }

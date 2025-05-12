@@ -1,6 +1,6 @@
 package GUI.User;
 
-import GUI.LogOutButton;
+import GUI.Buttons;
 import GUI.Window;
 
 import javax.swing.*;
@@ -27,7 +27,7 @@ public class UserPanel extends Window {
 
         // Buttons
         JPanel btnsPanel = new JPanel(new GridLayout(1, 1));
-        btnsPanel.add(LogOutButton.logOutButton());
+        btnsPanel.add(Buttons.logOutButton());
 
 //        mainPanel.add(userInfoPanel);
         mainPanel.add(btnsPanel);
