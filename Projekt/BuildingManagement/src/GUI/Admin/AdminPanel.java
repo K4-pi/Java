@@ -10,16 +10,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AdminPanel extends Window {
-//    private final GUI.Window window = new Window(Entry.getLoggedUser() + "'s panel", 800, 600, false);
-    private UserDAO userDAO = new UserDAO();
+    private final UserDAO userDAO = new UserDAO();
 
     public AdminPanel(String title, int sizeX, int sizeY, boolean resizable) {
         super(title, sizeX, sizeY, resizable);
     }
 
-    public AdminPanel(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
-        super(title, sizeX, sizeY, resizable, disposeOnClose);
-    }
+//    public AdminPanel(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
+//        super(title, sizeX, sizeY, resizable, disposeOnClose);
+//    }
 
     public void run() throws SQLException {
         JPanel mainPanel = new JPanel(new BorderLayout());
@@ -72,9 +71,8 @@ public class AdminPanel extends Window {
         chooseApartmentPanel.add(chooseApartmentField);
         chooseApartmentPanel.add(applayBtn);
 
-        applayBtn.addActionListener(_ -> {
-            new ApartmentPanel("Apartment panel", 400, 400, false, true).run();
-        });
+        applayBtn.addActionListener(_ ->
+                new ApartmentPanel("Apartment panel", 400, 400, false, true).run());
 
         // List and field for choosing apartment
         JPanel combinedPanel = new JPanel();

@@ -1,25 +1,21 @@
 package GUI.User;
 
-import GUI.Entry;
 import GUI.LogOutButton;
 import GUI.Window;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
 
 public class UserPanel extends Window {
     public UserPanel(String title, int sizeX, int sizeY, boolean resizable) {
         super(title, sizeX, sizeY, resizable);
     }
 
-    public UserPanel(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
-        super(title, sizeX, sizeY, resizable, disposeOnClose);
-    }
-//    private final GUI.Window window = new Window(Entry.getLoggedUser() + "'s panel", 800, 600, true);
+//    public UserPanel(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
+//        super(title, sizeX, sizeY, resizable, disposeOnClose);
+//    }
 
-    public void run() throws SQLException {
-//        JFrame mainFrame = window.setWindow(loggedUser + " panel", 800, 600, true);
+    public void run() {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 

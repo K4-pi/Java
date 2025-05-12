@@ -9,12 +9,8 @@ import java.awt.*;
 import java.sql.SQLException;
 
 public class Entry extends Window {
-//    private final Window window = new Window("Building entrance", 400, 500, false);
-//    private final AdminPanel adminPanel = new AdminPanel();
-//    private final UserPanel userPanel = new UserPanel();
     UserDAO userDAO = new UserDAO();
 
-//    private JFrame mainFrame;
     private JComboBox<String> chooseUser;
     private Label pinText;
     private String chosenUserValue;
@@ -25,9 +21,9 @@ public class Entry extends Window {
         super(title, sizeX, sizeY, resizable);
     }
 
-    public Entry(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
-        super(title, sizeX, sizeY, resizable, disposeOnClose);
-    }
+//    public Entry(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
+//        super(title, sizeX, sizeY, resizable, disposeOnClose);
+//    }
 
     public void run() {
         JPanel mainPanel = new JPanel();
