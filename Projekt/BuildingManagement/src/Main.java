@@ -11,13 +11,13 @@ public class Main {
         /* TASKS:
                 DONE:
                     - Kontrola wejścia
-                TODO:
                     - Włączanie/wyłączanie światła
                     - Kontrolowanie sieci elektrycznej
                     - Monitorowanie temperatury wody i powietrza
+                TODO:
                     - Zgłaszanie usterek
                     - Zgłaszanie prób włamania
-                    - Hasherowanie haseł
+                    - Hasherowanie haseł ?
         */
 
         SwingUtilities.invokeLater(() -> new Entry("Building entrance", 400, 500, false).run());
