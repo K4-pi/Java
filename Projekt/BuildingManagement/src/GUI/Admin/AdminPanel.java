@@ -63,6 +63,10 @@ public class AdminPanel extends UserDAO {
         chooseApartmentPanel.add(chooseApartmentField);
         chooseApartmentPanel.add(applayBtn);
 
+        applayBtn.addActionListener(_ -> {
+            new ApartmentPanel();
+        });
+
         // List and field for choosing apartment
         JPanel combinedPanel = new JPanel();
         combinedPanel.setLayout(new BoxLayout(combinedPanel, BoxLayout.Y_AXIS));
@@ -75,14 +79,14 @@ public class AdminPanel extends UserDAO {
     // Closing building functionality
     private JButton closeBuildingButton() throws SQLException {
         JButton closeBtn = new JButton();
-        if (isClosed()) closeBtn.setText("OPEN");
-        else closeBtn.setText("CLOSE");
+        if (isClosed()) closeBtn.setText("OPEN BUILDING");
+        else closeBtn.setText("CLOSE BUILDING");
 
         closeBtn.addActionListener(_ -> {
             try {
                 updateDoorStatus(!isClosed());
-                if (isClosed()) closeBtn.setText("OPEN");
-                else closeBtn.setText("CLOSE");
+                if (isClosed()) closeBtn.setText("OPEN BUILDING");
+                else closeBtn.setText("CLOSE BUILDING");
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }

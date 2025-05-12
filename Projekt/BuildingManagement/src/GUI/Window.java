@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 
 public class Window extends JFrame{
 
@@ -9,6 +10,15 @@ public class Window extends JFrame{
         this.setSize(sizeX, sizeY);
         this.setResizable(resizable);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+
+    public Window(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
+        this.setTitle(title);
+        this.setSize(sizeX, sizeY);
+        this.setResizable(resizable);
+        if (disposeOnClose) this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        else this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
 
