@@ -102,20 +102,22 @@ public class UserDAO {
 
     //view all apartments info
     public ArrayList<String> apartmentsOwners() throws SQLException{
-        String sql = "SELECT * FROM apartments a " +
-                "JOIN users u ON a.userid = u.id " +
-                "WHERE u.role = 'user'";
+        String sql = "SELECT a.nr, u.id AS user_id, u.username " +
+                "FROM apartments a " +
+                "LEFT JOIN users u ON a.userid = u.id";
 
-        try(Connection con = DatabaseConnection.getConnection();
-            PreparedStatement stmt = con.prepareStatement(sql)) {
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
             ArrayList<String> list = new ArrayList<>();
             int i = 0;
             while (rs.next()) {
                 i++;
+                String userId = rs.getString("user_id") != null ? rs.getString("user_id") : "null";
+                String username = rs.getString("username") != null ? rs.getString("username") : "null";
                 String string = " [" + i + "] " + "Apartment nr: " + rs.getInt("nr") +
-                                " | User ID: " + rs.getInt("u.id") +
-                                " | User: " + rs.getString("u.username");
+                        " | User ID: " + userId +
+                        " | User: " + username;
                 list.add(string);
             }
             return list;
@@ -151,40 +153,69 @@ public class UserDAO {
         }
     }
 
-    /*//add
-    public void addUser(String firstName, String lastName, int age) {
-        String sql = "INSERT INTO user (username, pin, balance, role) VALUES (?, ?, 0, 'user')";
+    //add apartment
+    public int addApartmentToDB(String apartmentNumber) {
+        String sql = "INSERT INTO apartments (nr) VALUES (?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, firstName);
-            pstmt.setString(2, lastName);
-            pstmt.setInt(3, age);
+            pstmt.setInt(1, Integer.parseInt(apartmentNumber));
             pstmt.executeUpdate();
-            System.out.println("Użytkownik dodany!");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            return e.getErrorCode();
         }
+        return 0;
     }
 
-    public void withdraw(String username, double amount) throws SQLException {
-        String checkSQL = "SELECT balance FROM users WHERE username = ?";
-        String updateSQL = "UPDATE users SET balance = balance - ? WHERE username = ?";
-
-        try(Connection con = DatabaseConnection.getConnection();
-            PreparedStatement checkStmt = con.prepareStatement(checkSQL)){
-            checkStmt.setString(1, username);
-            ResultSet rs = checkStmt.executeQuery();
-            if (rs.next() && rs.getDouble("balance") >= amount) {
-                try(PreparedStatement updateStmt = con.prepareStatement(updateSQL)) {
-                    updateStmt.setDouble(1, amount);
-                    updateStmt.setString(2, username);
-                    updateStmt.executeUpdate();
-                    System.out.println("Wpłata zakończona sukcesem!");
-                }
-            }
-            else System.out.println("Brak kaski");
+    //add user
+    public int addUserToDB(String username, String pin, String role) {
+        String sql = "INSERT INTO users (username, pin, role) VALUES (?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, username);
+            pstmt.setString(2, pin);
+            pstmt.setString(3, role);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            return e.getErrorCode();
         }
+        return 0;
+    }
 
-    }*/
+    //add user to apartment
+    public int addUserToApartmentDB(String username, String apartmentNumber) {
+        String sql = "UPDATE apartments SET userid = (SELECT id FROM users WHERE username = ?) WHERE nr = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, username);
+            pstmt.setInt(2, Integer.parseInt(apartmentNumber));
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+            return e.getErrorCode();
+        }
+        return 0;
+    }
+
+//    public void withdraw(String username, double amount) throws SQLException {
+//        String checkSQL = "SELECT balance FROM users WHERE username = ?";
+//        String updateSQL = "UPDATE users SET balance = balance - ? WHERE username = ?";
+//
+//        try(Connection con = DatabaseConnection.getConnection();
+//            PreparedStatement checkStmt = con.prepareStatement(checkSQL)){
+//            checkStmt.setString(1, username);
+//            ResultSet rs = checkStmt.executeQuery();
+//            if (rs.next() && rs.getDouble("balance") >= amount) {
+//                try(PreparedStatement updateStmt = con.prepareStatement(updateSQL)) {
+//                    updateStmt.setDouble(1, amount);
+//                    updateStmt.setString(2, username);
+//                    updateStmt.executeUpdate();
+//                    System.out.println("Wpłata zakończona sukcesem!");
+//                }
+//            }
+//            else System.out.println("Brak kaski");
+//        }
+//
+//    }
 
 }

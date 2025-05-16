@@ -21,28 +21,11 @@ public class Window extends JFrame{
         this.setVisible(true);
     }
 
-    // Create new window
-    /*public JFrame setWindow(String title, int sizeX, int sizeY, boolean resizable) {
-        JFrame frame = new JFrame(title);
-        frame.setResizable(resizable);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(sizeX, sizeY);
-        frame.setVisible(true);
+    public void errorWindow(String errorMessage) {
+        JOptionPane.showMessageDialog(this, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+    }
 
-        return frame;
-    }*/
-
-    // Panel that displays user info
-    /*public JLabel updateUserInfoPanel(String user) throws SQLException {
-        UserDAO userDAO = new UserDAO();
-        String apartmentInfo = userDAO.apartmentInfo(userDAO.userId(user));
-
-        JLabel userInfoLabel = new JLabel("<html>Hi " + user + "!<br/>" + apartmentInfo +"</html>", SwingConstants.LEFT);
-        userInfoLabel.setVisible(true);
-
-        return userInfoLabel;
-    }*/
-
-
-
+    public void messageWindow(String message) {
+        JOptionPane.showMessageDialog(this, message, "Message", JOptionPane.INFORMATION_MESSAGE);
+    }
 }
