@@ -12,7 +12,8 @@ public class Entry extends Window {
     UserDAO userDAO = new UserDAO();
 
     private JComboBox<String> chooseUser;
-    private Label pinText;
+//    private Label pinText;
+    private JTextField pinText;
     private String chosenUserValue;
     private JTextField usernameField;
     private String username;
@@ -40,15 +41,20 @@ public class Entry extends Window {
         usernameField = new JTextField(10);
         usernameField.setPreferredSize(new Dimension(100, 30));
         usernameField.setToolTipText("Enter username");
+        usernameField.setBackground(Color.WHITE);
         JPanel usernameInsertPanel = new JPanel(new FlowLayout());
         usernameInsertPanel.add(usernameField);
 
         // PIN display
-        JPanel textPanel = new JPanel(new FlowLayout());
-        pinText = new Label();
+        pinText = new JTextField(10);
+        pinText.setPreferredSize(new Dimension(100, 30));
+        pinText.setToolTipText("Enter PIN");
+        pinText.setBackground(Color.WHITE);
+        pinText.setEditable(false);
+        pinText.setFocusable(false);
         pinText.setText("");
-        pinText.setPreferredSize(new Dimension(300, 200));
-        pinText.setAlignment(Label.CENTER);
+        pinText.setHorizontalAlignment(SwingConstants.CENTER);
+        JPanel textPanel = new JPanel(new FlowLayout());
         textPanel.add(pinText);
 
         // Buttons

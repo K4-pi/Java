@@ -28,8 +28,9 @@ public class AdminPanel extends Window {
 
         // List and reports panel
         JPanel combined = new JPanel(new GridLayout(1, 2));
-        combined.add(apartmentListAndApartmentSelector());
-        combined.add(apartmentListAndApartmentSelector());
+        combined.add(apartmentModify());
+
+        combined.add(apartmentModify()); //TODO: to change
 
         // main panel
         mainPanel.add(combined, BorderLayout.CENTER);
@@ -56,7 +57,7 @@ public class AdminPanel extends Window {
     }
 
     // List of apartments and field for choosing apartment
-    private JPanel apartmentListAndApartmentSelector() throws SQLException {
+    private JPanel apartmentModify() throws SQLException {
         // Apartments list
         JScrollPane apartmentsList = apartmentsList();
         JPanel apartmentsListPanel = new JPanel(new FlowLayout());
@@ -86,11 +87,18 @@ public class AdminPanel extends Window {
             }
         });
 
+        JButton addApartmentBtn = new JButton("Add");
+        addApartmentBtn.addActionListener(_ -> {
+            this.setEnabled(false);
+            new AddApartmentUser("Add", 400, 400, false, true).run(this);
+        });
+
         // List and field for choosing apartment
         JPanel combinedPanel = new JPanel();
         combinedPanel.setLayout(new BoxLayout(combinedPanel, BoxLayout.Y_AXIS));
         combinedPanel.add(apartmentsListPanel);
         combinedPanel.add(chooseApartmentPanel);
+        combinedPanel.add(addApartmentBtn);
 
         return combinedPanel;
     }
