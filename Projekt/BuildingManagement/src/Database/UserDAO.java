@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class UserDAO {
 
-    //Uwierzytelnianie
+    // Authenticate user
     public boolean authenticateUser(String role, String pin, String username) throws SQLException {
         String sql = "SELECT * FROM users WHERE role = ? AND pin = ? AND username = ?";
 
@@ -37,19 +37,39 @@ public class UserDAO {
         }
     }
 
-    //view list of taken apartments by users
-    /*public ArrayList<Integer> apartmentsList() throws SQLException{
-        String sql = "SELECT nr FROM apartments WHERE role = 'user'";
-        ArrayList<Integer> list = new ArrayList<>();
-        try(Connection con = DatabaseConnection.getConnection();
-            PreparedStatement stmt = con.prepareStatement(sql)) {
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                list.add(rs.getInt("nr"));
-            }
+    // Delete apartment
+    public int deleteApartmentDB(int nr) {
+        String sql = "DELETE FROM apartments WHERE nr = ?";
+
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setInt(1, nr);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+            return e.getErrorCode();
         }
-        return list;
-    }*/
+        return 0;
+    }
+
+    // Delete user
+    public int deleteUserDB(String username) {
+        String sqlNullForeignKey = "UPDATE apartments SET userid = NULL WHERE userid = (SELECT id FROM users WHERE username = ?)";
+        String sqlDeleteUser = "DELETE FROM users WHERE username = ? AND role = 'user'";
+
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement stmt1 = con.prepareStatement(sqlNullForeignKey);
+             PreparedStatement stmt2 = con.prepareStatement(sqlDeleteUser)) {
+            stmt1.setString(1, username);
+            stmt1.executeUpdate();
+
+            stmt2.setString(1, username);
+            stmt2.executeUpdate();
+        } catch (SQLException e) {
+            return e.getErrorCode();
+        }
+        return 0;
+    }
 
     // Update double value
     public void updateDoubleValue(String column, double value, int apartmentNr) throws SQLException {
@@ -81,8 +101,6 @@ public class UserDAO {
     //View one apartment info
     public ArrayList<Object> viewApartment(int apartmentNr) throws SQLException{
         String sql = "SELECT * FROM apartments WHERE nr = ?";
-//                "JOIN users u ON a.userid = u.id " +
-//                "WHERE u.role = 'user'";
 
         try(Connection con = DatabaseConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -101,7 +119,7 @@ public class UserDAO {
     }
 
     //view all apartments info
-    public ArrayList<String> apartmentsOwners() throws SQLException{
+    public ArrayList<String> apartmentsList() throws SQLException{
         String sql = "SELECT a.nr, u.id AS user_id, u.username " +
                 "FROM apartments a " +
                 "LEFT JOIN users u ON a.userid = u.id";
@@ -113,31 +131,57 @@ public class UserDAO {
             int i = 0;
             while (rs.next()) {
                 i++;
-                String userId = rs.getString("user_id") != null ? rs.getString("user_id") : "null";
-                String username = rs.getString("username") != null ? rs.getString("username") : "null";
-                String string = " [" + i + "] " + "Apartment nr: " + rs.getInt("nr") +
-                        " | User ID: " + userId +
-                        " | User: " + username;
+                String string;
+                String userId = rs.getString("user_id");
+                String username = rs.getString("username");
+                if (userId == null && username == null) {
+                    string = " [" + i + "] " + "Apartment nr: " + rs.getInt("nr") + " | Empty";
+                }
+                else {
+                    string = " [" + i + "] " + "Apartment nr: " + rs.getInt("nr") +
+                            " | User ID: " + userId +
+                            " | User: " + username;
+                }
                 list.add(string);
             }
             return list;
         }
     }
 
-    //view user id
-    public int userId(String username) throws SQLException{
-        String sql = "SELECT id FROM users WHERE username = ?";
+    //view all users
+    public ArrayList<String> usersList() throws SQLException{
+        String sql = "SELECT * FROM users";
 
-        try(Connection con = DatabaseConnection.getConnection();
-            PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, username);
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
-            if(rs.next()) {
-                return rs.getInt("id");
+            ArrayList<String> list = new ArrayList<>();
+            int i = 0;
+            while (rs.next()) {
+                i++;
+                String username = rs.getString("username");
+                String userId = rs.getString("id");
+                String string = " [" + i + "] " + "User: " + username + " | ID: " + userId;
+                list.add(string);
             }
+            return list;
         }
-        return -1;
     }
+
+//    //view user id
+//    public int userId(String username) throws SQLException{
+//        String sql = "SELECT id FROM users WHERE username = ?";
+//
+//        try(Connection con = DatabaseConnection.getConnection();
+//            PreparedStatement stmt = con.prepareStatement(sql)) {
+//            stmt.setString(1, username);
+//            ResultSet rs = stmt.executeQuery();
+//            if(rs.next()) {
+//                return rs.getInt("id");
+//            }
+//        }
+//        return -1;
+//    }
 
     //close building
     public boolean isClosed() throws SQLException{
@@ -196,26 +240,4 @@ public class UserDAO {
         }
         return 0;
     }
-
-//    public void withdraw(String username, double amount) throws SQLException {
-//        String checkSQL = "SELECT balance FROM users WHERE username = ?";
-//        String updateSQL = "UPDATE users SET balance = balance - ? WHERE username = ?";
-//
-//        try(Connection con = DatabaseConnection.getConnection();
-//            PreparedStatement checkStmt = con.prepareStatement(checkSQL)){
-//            checkStmt.setString(1, username);
-//            ResultSet rs = checkStmt.executeQuery();
-//            if (rs.next() && rs.getDouble("balance") >= amount) {
-//                try(PreparedStatement updateStmt = con.prepareStatement(updateSQL)) {
-//                    updateStmt.setDouble(1, amount);
-//                    updateStmt.setString(2, username);
-//                    updateStmt.executeUpdate();
-//                    System.out.println("Wpłata zakończona sukcesem!");
-//                }
-//            }
-//            else System.out.println("Brak kaski");
-//        }
-//
-//    }
-
 }

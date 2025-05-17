@@ -1,22 +1,22 @@
 package GUI.Admin;
 
 import Database.UserDAO;
+import GUI.CheckValue;
 import GUI.Window;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class AddApartmentUser extends Window  {
+public class Add extends Window  {
     private UserDAO userDAO = new UserDAO();
 
     private int errorCode = 0;
 
-    public AddApartmentUser(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
+    public Add(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
         super(title, sizeX, sizeY, resizable, disposeOnClose);
     }
 
@@ -24,7 +24,7 @@ public class AddApartmentUser extends Window  {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
-        //Enable parent window on close
+        //Go back to admin panel
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
@@ -85,7 +85,7 @@ public class AddApartmentUser extends Window  {
             String usernameValue = username.getText();
             String apartmentValue = apartment.getText();
 
-            if (!isNumber(apartmentValue)) {
+            if (!CheckValue.isNumber(apartmentValue)) {
                 errorWindow("Apartment number must be a number!");
                 return;
             }
@@ -167,7 +167,7 @@ public class AddApartmentUser extends Window  {
                 errorWindow("PIN must be 4 digits!");
                 return;
             }
-            if (!isNumber(pinValue)) {
+            if (!CheckValue.isNumber(pinValue)) {
                 errorWindow("PIN must be a number!");
                 return;
             }
@@ -218,7 +218,7 @@ public class AddApartmentUser extends Window  {
             System.out.println("PIN: " + nr.getText());
             String pin = nr.getText();
 
-            if (!isNumber(pin)) {
+            if (!CheckValue.isNumber(pin)) {
                 errorWindow("Apartment number must be a number!");
                 return;
             }
@@ -240,23 +240,5 @@ public class AddApartmentUser extends Window  {
         return addBtn;
     }
 
-    private boolean isNumber(String value) {
-        //Checking if String is number
-        char[] numbers = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
-        char[] chars = value.toCharArray();
-        boolean isNumber = false;
 
-        for (char c : chars) {
-            System.out.println("c: " + c);
-            for (char i : numbers) {
-                if (c == i) {
-                    isNumber = true;
-                    break;
-                }
-                isNumber = false;
-            }
-        }
-
-        return isNumber;
-    }
 }

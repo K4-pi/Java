@@ -22,10 +22,6 @@ public class Entry extends Window {
         super(title, sizeX, sizeY, resizable);
     }
 
-//    public Entry(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
-//        super(title, sizeX, sizeY, resizable, disposeOnClose);
-//    }
-
     public void run() {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -42,6 +38,7 @@ public class Entry extends Window {
         usernameField.setPreferredSize(new Dimension(100, 30));
         usernameField.setToolTipText("Enter username");
         usernameField.setBackground(Color.WHITE);
+        usernameField.setHorizontalAlignment(SwingConstants.CENTER);
         JPanel usernameInsertPanel = new JPanel(new FlowLayout());
         usernameInsertPanel.add(usernameField);
 
@@ -99,7 +96,7 @@ public class Entry extends Window {
                     this.dispose();
                     System.out.println("PIN accepted");
                 }
-                else pinText.setText("Building is closed");
+                else messageWindow("Building is closed");
             }
             else if (chosenUserValue.equals("admin")) {
                 new AdminPanel(username + "'s panel", 800, 600, false).run();
@@ -107,7 +104,7 @@ public class Entry extends Window {
                 System.out.println("PIN accepted");
             }
         } else {
-            pinText.setText("Wrong PIN or username!");
+            errorWindow("Wrong PIN or username!");
         }
     }
 
