@@ -11,11 +11,13 @@ import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
 public class Remove extends Window {
-    private UserDAO userDAO = new UserDAO();
+    private final UserDAO userDAO = new UserDAO();
     private int errorCode = 0;
+    private final JFrame parent;
 
-    public Remove(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
+    public Remove(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose, JFrame parent) {
         super(title, sizeX, sizeY, resizable, disposeOnClose);
+        this.parent = parent;
     }
 
     public void run() {
@@ -25,7 +27,7 @@ public class Remove extends Window {
             public void windowClosed(WindowEvent e) {
                 super.windowClosed(e);
                 try {
-                    new AdminPanel("Admin panel", 800, 600, false).run();
+                    new AdminPanel("Admin panel", 800, 600, true).run();
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }

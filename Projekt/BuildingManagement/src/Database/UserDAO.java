@@ -1,9 +1,6 @@
 package Database;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class UserDAO {
@@ -128,6 +125,7 @@ public class UserDAO {
              PreparedStatement stmt = con.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
             ArrayList<String> list = new ArrayList<>();
+            list.add("APARTMENTS:");
             int i = 0;
             while (rs.next()) {
                 i++;
@@ -156,12 +154,37 @@ public class UserDAO {
              PreparedStatement stmt = con.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
             ArrayList<String> list = new ArrayList<>();
+            list.add("USERS:");
             int i = 0;
             while (rs.next()) {
                 i++;
                 String username = rs.getString("username");
                 String userId = rs.getString("id");
-                String string = " [" + i + "] " + "User: " + username + " | ID: " + userId;
+                String role = rs.getString("role");
+                String string = " [" + i + "] " + role + ": " + username + " | ID: " + userId;
+                list.add(string);
+            }
+            return list;
+        }
+    }
+
+    public ArrayList<String> reportsList() throws SQLException {
+        String sql = "SELECT * FROM reports";
+
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<String> list = new ArrayList<>();
+            list.add("REPORTS:");
+            int i = 0;
+            while (rs.next()) {
+                i++;
+                String reportId = rs.getString("id");
+                Timestamp time = rs.getTimestamp("messagetime");
+                String apartmentNr = rs.getString("apartmentnr");
+                String username = rs.getString("username");
+                String string = "{ " + reportId + " } <" + time + ">(Apartment: " + apartmentNr +
+                         ") " + username + ": " + rs.getString("message");
                 list.add(string);
             }
             return list;

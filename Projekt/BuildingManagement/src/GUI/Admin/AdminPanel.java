@@ -28,7 +28,7 @@ public class AdminPanel extends Window {
 
         // List and reports panel
         JPanel combined = new JPanel(new GridLayout(1, 1));
-        combined.add(displayApartmentsAndUserList());
+        combined.add(displayLists());
 
         // main panel
         mainPanel.add(combined, BorderLayout.CENTER);
@@ -38,7 +38,7 @@ public class AdminPanel extends Window {
     }
 
     // apartments list
-    private JScrollPane getList(ArrayList<String> arr) throws SQLException {
+    private JScrollPane getList(ArrayList<String> arr) {
         JTextArea textArea = new JTextArea(25, 35);
         JScrollPane scrollPane = new JScrollPane(textArea);
         textArea.setVisible(true);
@@ -46,19 +46,18 @@ public class AdminPanel extends Window {
         textArea.setFocusable(false);
         scrollPane.setVisible(true);
 
-        ArrayList<String> list = arr;
-        for (String s : list) {
+        for (String s : arr) {
             textArea.append(s + "\n");
         }
         return scrollPane;
     }
 
     // List of apartments and field for choosing apartment
-    private JPanel displayApartmentsAndUserList() throws SQLException {
+    private JPanel displayLists() throws SQLException {
         // Apartments list
         JScrollPane apartmentsList = getList(userDAO.apartmentsList());
         JScrollPane usersList = getList(userDAO.usersList());
-        JScrollPane reportsList = getList(userDAO.apartmentsList());
+        JScrollPane reportsList = getList(userDAO.reportsList());
         JPanel apartmentsAndUsersPanel = new JPanel(new GridLayout(2, 1));
         apartmentsAndUsersPanel.add(apartmentsList);
         apartmentsAndUsersPanel.add(usersList);
@@ -72,11 +71,6 @@ public class AdminPanel extends Window {
         JTextField chooseApartmentField = new JTextField(10);
         chooseApartmentField.setPreferredSize(new Dimension(100, 30));
         JButton applyBtn = new JButton("Modify");
-        JPanel chooseApartmentPanel = new JPanel(new FlowLayout());
-        chooseApartmentPanel.add(new JLabel("Apartment nr: "), new FlowLayout());
-        chooseApartmentPanel.add(chooseApartmentField);
-        chooseApartmentPanel.add(applyBtn);
-
         applyBtn.addActionListener(_ ->
         {
             // Get apartment number
@@ -104,18 +98,20 @@ public class AdminPanel extends Window {
         JButton removeBtn = new JButton("Remove");
         removeBtn.addActionListener(_ -> {
             this.dispose();
-            new Remove("Remove", 400, 400, false, true).run();
+            new Remove("Remove", 400, 150, false, true, this).run();
         });
-        JPanel buttonsPanel = new JPanel();
-        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
+
+        JPanel buttonsPanel = new JPanel(new FlowLayout());
         buttonsPanel.add(addBtn);
         buttonsPanel.add(removeBtn);
+        buttonsPanel.add(new JLabel("Apartment nr: "), new FlowLayout());
+        buttonsPanel.add(chooseApartmentField);
+        buttonsPanel.add(applyBtn);
 
         // List and field for choosing apartment
         JPanel combinedPanel = new JPanel();
         combinedPanel.setLayout(new BoxLayout(combinedPanel, BoxLayout.Y_AXIS));
         combinedPanel.add(combineListsPanel);
-        combinedPanel.add(chooseApartmentPanel);
         combinedPanel.add(buttonsPanel);
 
         return combinedPanel;

@@ -92,14 +92,14 @@ public class Entry extends Window {
         if (userDAO.authenticateUser(chosenUserValue, pin, username)) {
             if (chosenUserValue.equals("user")) {
                 if (!userDAO.isClosed()) {
-                    new UserPanel(username + "'s panel", 800, 600, false).run();
+                    new UserPanel(username + "'s panel", 800, 600, true).run();
                     this.dispose();
                     System.out.println("PIN accepted");
                 }
                 else messageWindow("Building is closed");
             }
             else if (chosenUserValue.equals("admin")) {
-                new AdminPanel(username + "'s panel", 800, 600, false).run();
+                new AdminPanel(username + "'s panel", 800, 600, true).run();
                 this.dispose();
                 System.out.println("PIN accepted");
             }

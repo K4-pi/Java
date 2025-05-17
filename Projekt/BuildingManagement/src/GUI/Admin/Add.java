@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class Add extends Window  {
-    private UserDAO userDAO = new UserDAO();
+    private final UserDAO userDAO = new UserDAO();
 
     private int errorCode = 0;
 
@@ -21,28 +21,34 @@ public class Add extends Window  {
     }
 
     public void run() {
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-
-        //Go back to admin panel
+        // Go back to admin panel
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
                 super.windowClosed(e);
                 try {
-                    new AdminPanel("Admin panel", 800, 600, false).run();
+                    new AdminPanel("Admin panel", 800, 600, true).run();
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
             }
         });
+        CardLayout mainLayout = new CardLayout();
+        JPanel mainPanel = new JPanel(mainLayout);
 
-        mainPanel.add(addUser());
-        mainPanel.add(addApartment());
-        mainPanel.add(addUserToApartment());
+        String[] panelNames = {"Add user", "Add apartment", "Add user to apartment"};
+        JComboBox<String> comboBox = new JComboBox<>(panelNames);
+        comboBox.addActionListener(_ -> {
+            String selectedPanel = (String) comboBox.getSelectedItem();
+            mainLayout.show(mainPanel, selectedPanel);
+        });
+        mainPanel.add(addUser(), "Add user");
+        mainPanel.add(addApartment(), "Add apartment");
+        mainPanel.add(addUserToApartment(), "Add user to apartment");
 
-        this.add(mainPanel);
-        this.pack();
+        this.setLayout(new BorderLayout());
+        this.add(comboBox, BorderLayout.NORTH);
+        this.add(mainPanel, BorderLayout.CENTER);
     }
 
     private JPanel addUserToApartment() {
@@ -55,13 +61,11 @@ public class Add extends Window  {
         JPanel usernamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JPanel apartmentPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-        JTextArea username = new JTextArea();
-        username.setRows(1);
-        username.setColumns(20);
+        JTextField username = new JTextField(10);
+        username.setPreferredSize(new Dimension(100, 30));
 
-        JTextArea apartment = new JTextArea();
-        apartment.setRows(1);
-        apartment.setColumns(20);
+        JTextField apartment = new JTextField(10);
+        apartment.setPreferredSize(new Dimension(100, 30));
 
         JButton addBtn = addUserToApartmentBtn(username, apartment);
 
@@ -78,7 +82,7 @@ public class Add extends Window  {
         return addUserToApartmentPanel;
     }
 
-    private JButton addUserToApartmentBtn(JTextArea username, JTextArea apartment) {
+    private JButton addUserToApartmentBtn(JTextField username, JTextField apartment) {
         JButton addBtn = new JButton("ADD");
 
         addBtn.addActionListener(_ -> {
@@ -95,24 +99,15 @@ public class Add extends Window  {
             }
 
             errorCode = userDAO.addUserToApartmentDB(usernameValue, apartmentValue);
-            switch (errorCode) {
-                case 0:
-                    messageWindow("User: " + usernameValue + " added to apartment: " + apartmentValue);
-                    break;
-                case 1062:
-                    errorWindow("idk " + errorCode);
-                    break;
-                default:
-                    System.out.println("Error number: " + errorCode);
-                    break;
-            }
+            if (errorCode == 0) messageWindow("User: " + usernameValue + " added to apartment: " + apartmentValue);
+            else errorWindow("Error number: " + errorCode);
         });
         return addBtn;
     }
 
     private JPanel addUser() {
         JPanel addUserPanel = new JPanel();
-        addUserPanel.setLayout(new GridLayout(6, 1));
+        addUserPanel.setLayout(new GridLayout(5, 1));
 
         JLabel addUserLabel = new JLabel("  Add user: ");
         JLabel usernameLabel = new JLabel("Username: ");
@@ -123,16 +118,14 @@ public class Add extends Window  {
         JPanel usernamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JPanel rolePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-        JTextArea username = new JTextArea();
-        username.setRows(1);
-        username.setColumns(20);
+        JTextField username = new JTextField();
+        username.setPreferredSize(new Dimension(100, 30));
 
-        JTextArea pin = new JTextArea();
-        pin.setRows(1);
-        pin.setColumns(20);
+        JTextField pin = new JTextField();
+        pin.setPreferredSize(new Dimension(100, 30));
 
         String[] choices = {"user", "admin"};
-        JComboBox role = new JComboBox<>(choices);
+        JComboBox<String> role = new JComboBox<>(choices);
 
         JButton addBtn = addUserBtn(username, pin, role);
 
@@ -151,7 +144,7 @@ public class Add extends Window  {
         return addUserPanel;
     }
 
-    private JButton addUserBtn(JTextArea username, JTextArea pin, JComboBox role) {
+    private JButton addUserBtn(JTextField username, JTextField pin, JComboBox role) {
         JButton userBtn = new JButton("ADD");
 
         userBtn.addActionListener(_ -> {
@@ -189,16 +182,15 @@ public class Add extends Window  {
     }
 
     private JPanel addApartment() {
-        JPanel addApartmentPanel = new JPanel(new GridLayout(4, 1));
+        JPanel addApartmentPanel = new JPanel(new GridLayout(3, 1));
 
         JLabel addApartmentLabel = new JLabel("  Add apartment: ");
         JLabel apartmentNrLabel = new JLabel("NR: ");
 
         JPanel apartmentPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-        JTextArea nr = new JTextArea();
-        nr.setRows(1);
-        nr.setColumns(10);
+        JTextField nr = new JTextField();
+        nr.setPreferredSize(new Dimension(100, 30));
 
         JButton addBtn = addApartmentBtn(nr);
 
@@ -211,7 +203,7 @@ public class Add extends Window  {
         return addApartmentPanel;
     }
 
-    private JButton addApartmentBtn(JTextArea nr) {
+    private JButton addApartmentBtn(JTextField nr) {
         JButton addBtn = new JButton("ADD");
 
         addBtn.addActionListener(_ -> {

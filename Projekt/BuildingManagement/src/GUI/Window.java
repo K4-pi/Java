@@ -21,6 +21,16 @@ public class Window extends JFrame{
         this.setVisible(true);
     }
 
+    public void UpdateWindow(JFrame frame, JComponent newContent) {
+        SwingUtilities.invokeLater(() -> {
+            frame.getContentPane().removeAll(); // Usunięcie istniejących komponentów
+            frame.getContentPane().add(newContent); // Dodanie nowej zawartości
+            frame.revalidate(); // Aktualizacja układu
+            frame.repaint(); // Odświeżenie widoku
+            System.out.println("Frame Updated!");
+        });
+    }
+
     public void errorWindow(String errorMessage) {
         JOptionPane.showMessageDialog(this, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
     }
