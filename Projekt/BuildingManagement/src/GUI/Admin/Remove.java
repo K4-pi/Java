@@ -36,7 +36,7 @@ public class Remove extends Window {
         CardLayout mainLayout = new CardLayout();
         JPanel mainPanel = new JPanel(mainLayout);
 
-        String[] panelNames = {"Remove user", "Remove apartment"};
+        String[] panelNames = {"Remove user", "Remove apartment", "Remove report"};
         JComboBox<String> comboBox = new JComboBox<>(panelNames);
         comboBox.addActionListener(_ -> {
             String selectedPanel = (String) comboBox.getSelectedItem();
@@ -44,10 +44,52 @@ public class Remove extends Window {
         });
         mainPanel.add(removeUser(), "Remove user");
         mainPanel.add(removeApartment(), "Remove apartment");
+        mainPanel.add(removeReport(), "Remove report");
 
         this.setLayout(new BorderLayout());
         this.add(comboBox, BorderLayout.NORTH);
         this.add(mainPanel, BorderLayout.CENTER);
+    }
+
+    private JPanel removeReport() {
+        JPanel removeReportPanel = new JPanel();
+        removeReportPanel.setLayout(new BoxLayout(removeReportPanel, BoxLayout.Y_AXIS));
+
+        JLabel removeReportLabel = new JLabel("  Remove report: ");
+        JLabel reportLabel = new JLabel("ID: ");
+
+        JPanel componentsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        JTextField idField = new JTextField();
+        idField.setPreferredSize(new Dimension(100, 30));
+
+        JButton removeBtn = removeReportBtn(idField);
+
+        componentsPanel.add(reportLabel);
+        componentsPanel.add(idField);
+        componentsPanel.add(removeBtn);
+
+        removeReportPanel.add(removeReportLabel, new FlowLayout(FlowLayout.LEFT));
+        removeReportPanel.add(componentsPanel);
+        return removeReportPanel;
+    }
+
+    private JButton removeReportBtn(JTextField idField) {
+        JButton removeBtn = new JButton("REMOVE");
+        removeBtn.addActionListener(_ -> {
+            String id = idField.getText();
+            if (id.isEmpty()) {
+                errorWindow("ID cannot be empty!");
+                return;
+            }
+            if (!CheckValue.isNumber(id)) {
+                errorWindow("ID must be a number!");
+                return;
+            }
+
+            messageWindow(id);
+        });
+        return removeBtn;
     }
 
     private JPanel removeUser() {
