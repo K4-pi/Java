@@ -13,11 +13,9 @@ import java.sql.SQLException;
 public class Remove extends Window {
     private final UserDAO userDAO = new UserDAO();
     private int errorCode = 0;
-    private final JFrame parent;
 
-    public Remove(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose, JFrame parent) {
-        super(title, sizeX, sizeY, resizable, disposeOnClose);
-        this.parent = parent;
+    public Remove(String title, int sizeX, int sizeY, boolean resizable, boolean maximized, boolean disposeOnClose) {
+        super(title, sizeX, sizeY, resizable, maximized, disposeOnClose);
     }
 
     public void run() {
@@ -27,7 +25,7 @@ public class Remove extends Window {
             public void windowClosed(WindowEvent e) {
                 super.windowClosed(e);
                 try {
-                    new AdminPanel("Admin panel", 800, 600, true).run();
+                    new AdminPanel("Admin panel", 800, 600, true, true).run();
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -86,7 +84,9 @@ public class Remove extends Window {
                 errorWindow("ID must be a number!");
                 return;
             }
-            messageWindow(id);
+            errorCode = userDAO.deleteReportDB(Integer.parseInt(id));
+            if (errorCode == 0) messageWindow("Report with ID: " + id + " removed!");
+            else errorWindow("Error: " + errorCode);
         });
         return removeBtn;
     }

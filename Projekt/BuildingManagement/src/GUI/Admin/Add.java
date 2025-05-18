@@ -16,8 +16,8 @@ public class Add extends Window  {
 
     private int errorCode = 0;
 
-    public Add(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
-        super(title, sizeX, sizeY, resizable, disposeOnClose);
+    public Add(String title, int sizeX, int sizeY, boolean resizable, boolean maximized, boolean disposeOnClose) {
+        super(title, sizeX, sizeY, resizable, maximized, disposeOnClose);
     }
 
     public void run() {
@@ -27,7 +27,7 @@ public class Add extends Window  {
             public void windowClosed(WindowEvent e) {
                 super.windowClosed(e);
                 try {
-                    new AdminPanel("Admin panel", 800, 600, true).run();
+                    new AdminPanel("Admin panel", 800, 600, true, true).run();
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }

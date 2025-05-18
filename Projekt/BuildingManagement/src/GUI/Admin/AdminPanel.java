@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class AdminPanel extends Window {
     private final UserDAO userDAO = new UserDAO();
 
-    public AdminPanel(String title, int sizeX, int sizeY, boolean resizable) {
-        super(title, sizeX, sizeY, resizable);
+    public AdminPanel(String title, int sizeX, int sizeY, boolean resizable, boolean maximized) {
+        super(title, sizeX, sizeY, resizable, maximized);
     }
 
     public void run() throws SQLException {
@@ -92,13 +92,13 @@ public class AdminPanel extends Window {
         JButton addBtn = new JButton("Add");
         addBtn.addActionListener(_ -> {
             this.dispose();
-            new Add("Add", 400, 400, false, true).run();
+            new Add("Add", 400, 400, false, false, true).run();
         });
 
         JButton removeBtn = new JButton("Remove");
         removeBtn.addActionListener(_ -> {
             this.dispose();
-            new Remove("Remove", 400, 150, false, true, this).run();
+            new Remove("Remove", 400, 150, false, false, true).run();
         });
 
         JPanel buttonsPanel = new JPanel(new FlowLayout());

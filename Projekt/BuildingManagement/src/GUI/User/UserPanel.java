@@ -7,8 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class UserPanel extends Window {
-    public UserPanel(String title, int sizeX, int sizeY, boolean resizable) {
-        super(title, sizeX, sizeY, resizable);
+    public UserPanel(String title, int sizeX, int sizeY, boolean resizable, boolean maximized) {
+        super(title, sizeX, sizeY, resizable, maximized);
     }
 
 //    public UserPanel(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {

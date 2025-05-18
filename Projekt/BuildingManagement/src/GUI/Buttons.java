@@ -11,7 +11,7 @@ public class Buttons {
 
         logoutBtn.addActionListener(_ -> {
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(logoutBtn);
-            new Entry("Building entrance", 400, 500, false).run();
+            new Entry("Building entrance", 400, 500, false, false).run();
             frame.dispose();
         });
 

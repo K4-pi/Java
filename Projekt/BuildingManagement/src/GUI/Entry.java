@@ -12,14 +12,13 @@ public class Entry extends Window {
     UserDAO userDAO = new UserDAO();
 
     private JComboBox<String> chooseUser;
-//    private Label pinText;
     private JTextField pinText;
     private String chosenUserValue;
     private JTextField usernameField;
     private String username;
 
-    public Entry(String title, int sizeX, int sizeY, boolean resizable) {
-        super(title, sizeX, sizeY, resizable);
+    public Entry(String title, int sizeX, int sizeY, boolean resizable, boolean maximized) {
+        super(title, sizeX, sizeY, resizable, maximized);
     }
 
     public void run() {
@@ -104,14 +103,14 @@ public class Entry extends Window {
         if (userDAO.authenticateUser(chosenUserValue, pin, username)) {
             if (chosenUserValue.equals("user")) {
                 if (!userDAO.isClosed()) {
-                    new UserPanel(username + "'s panel", 800, 600, true).run();
+                    new UserPanel(username + "'s panel", 800, 600, true, false).run();
                     this.dispose();
                     System.out.println("PIN accepted");
                 }
                 else messageWindow("Building is closed");
             }
             else if (chosenUserValue.equals("admin")) {
-                new AdminPanel(username + "'s panel", 800, 600, true).run();
+                new AdminPanel(username + "'s panel", 800, 600, true, true).run();
                 this.dispose();
                 System.out.println("PIN accepted");
             }
