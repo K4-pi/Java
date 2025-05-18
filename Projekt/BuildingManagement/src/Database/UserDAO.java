@@ -191,9 +191,7 @@ public class UserDAO {
             ResultSet rs = stmt.executeQuery();
             ArrayList<String> list = new ArrayList<>();
             list.add("REPORTS:");
-            int i = 0;
             while (rs.next()) {
-                i++;
                 String reportId = rs.getString("id");
                 Timestamp time = rs.getTimestamp("messagetime");
                 String apartmentNr = rs.getString("apartmentnr");

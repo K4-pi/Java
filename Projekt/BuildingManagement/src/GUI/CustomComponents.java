@@ -68,22 +68,6 @@ public class CustomComponents {
         label.setText(labelText);
         buttonOn.addActionListener(buttonOnL);
         buttonOff.addActionListener(buttonOffL);
-//        buttonOn.addActionListener(_ -> {
-//            try {
-//                userDAO.updateBooleanValue(SQLColumnName, true, apartmentNr);
-//                showApartmentLabel();
-//            } catch (SQLException ex) {
-//                throw new RuntimeException(ex);
-//            }
-//        });
-//        buttonOff.addActionListener(_ -> {
-//            try {
-//                userDAO.updateBooleanValue(SQLColumnName, false, apartmentNr);
-//                showApartmentLabel();
-//            } catch (SQLException ex) {
-//                throw new RuntimeException(ex);
-//            }
-//        });
 
         panel.add(label);
         panel.add(buttonOn);
@@ -103,22 +87,6 @@ public class CustomComponents {
         label.setText(labelText);
         buttonUp.addActionListener(buttonUpL);
         buttonDown.addActionListener(buttonDownL);
-//        buttonUp.addActionListener(_ -> {
-//            try {
-//                userDAO.updateDoubleValue(SQLColumnName, 0.1, apartmentNr);
-//                showApartmentLabel();
-//            } catch (SQLException ex) {
-//                throw new RuntimeException(ex);
-//            }
-//        });
-//        buttonDown.addActionListener(_ -> {
-//            try {
-//                userDAO.updateDoubleValue(SQLColumnName, -0.1, apartmentNr);
-//                showApartmentLabel();
-//            } catch (SQLException ex) {
-//                throw new RuntimeException(ex);
-//            }
-//        });
 
         panel.add(label);
         panel.add(buttonUp);
