@@ -86,7 +86,6 @@ public class Remove extends Window {
                 errorWindow("ID must be a number!");
                 return;
             }
-
             messageWindow(id);
         });
         return removeBtn;

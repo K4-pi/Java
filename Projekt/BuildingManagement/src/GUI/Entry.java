@@ -39,6 +39,7 @@ public class Entry extends Window {
         usernameField.setToolTipText("Enter username");
         usernameField.setBackground(Color.WHITE);
         usernameField.setHorizontalAlignment(SwingConstants.CENTER);
+
         JPanel usernameInsertPanel = new JPanel(new FlowLayout());
         usernameInsertPanel.add(usernameField);
 
@@ -51,6 +52,7 @@ public class Entry extends Window {
         pinText.setFocusable(false);
         pinText.setText("");
         pinText.setHorizontalAlignment(SwingConstants.CENTER);
+
         JPanel textPanel = new JPanel(new FlowLayout());
         textPanel.add(pinText);
 
@@ -80,8 +82,18 @@ public class Entry extends Window {
             buttonPanel.add(b);
         }
 
+        JPanel usernameLabel = new JPanel();
+        usernameLabel.setLayout(new BoxLayout(usernameLabel, BoxLayout.X_AXIS));
+        usernameLabel.add(new JLabel("Username"));
+
+        JPanel pinLabel = new JPanel();
+        pinLabel.setLayout(new BoxLayout(pinLabel, BoxLayout.X_AXIS));
+        pinLabel.add(new JLabel("PIN"));
+
         mainPanel.add(comboBoxPanel);
+        mainPanel.add(usernameLabel);
         mainPanel.add(usernameInsertPanel);
+        mainPanel.add(pinLabel);
         mainPanel.add(textPanel);
         mainPanel.add(buttonPanel);
         this.add(mainPanel);
