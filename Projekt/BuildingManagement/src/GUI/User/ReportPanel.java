@@ -58,7 +58,7 @@ public class ReportPanel extends Window {
             int userId = userDAO.getUserId(username);
             String message = messageArea.getText();
 
-            errorCode = userDAO.createReportDB(message, username, apartmentNr, userId);
+            errorCode = userDAO.addReport(message, username, apartmentNr, userId);
             if (errorCode == 0) messageWindow("Your report has been sent to the administrator");
             else errorWindow("Error code: " + errorCode);
         });

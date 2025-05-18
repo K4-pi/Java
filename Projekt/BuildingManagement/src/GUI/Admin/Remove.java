@@ -52,22 +52,16 @@ public class Remove extends Window {
     private JPanel removeReport() {
         JPanel removeReportPanel = new JPanel();
         removeReportPanel.setLayout(new BoxLayout(removeReportPanel, BoxLayout.Y_AXIS));
-
-        JLabel removeReportLabel = new JLabel("  Remove report: ");
         JLabel reportLabel = new JLabel("ID: ");
 
         JPanel componentsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
         JTextField idField = new JTextField();
         idField.setPreferredSize(new Dimension(100, 30));
-
         JButton removeBtn = removeReportBtn(idField);
 
         componentsPanel.add(reportLabel);
         componentsPanel.add(idField);
         componentsPanel.add(removeBtn);
-
-        removeReportPanel.add(removeReportLabel, new FlowLayout(FlowLayout.LEFT));
         removeReportPanel.add(componentsPanel);
         return removeReportPanel;
     }

@@ -110,7 +110,7 @@ public class UserDAO {
     }
 
     //View one apartment info
-    public ArrayList<Object> viewApartment(int apartmentNr) throws SQLException{
+    public ArrayList<Object> getApartment(int apartmentNr) throws SQLException{
         String sql = "SELECT * FROM apartments WHERE nr = ?";
 
         try(Connection con = DatabaseConnection.getConnection();
@@ -130,7 +130,7 @@ public class UserDAO {
     }
 
     //view all apartments info
-    public ArrayList<String> apartmentsList() throws SQLException{
+    public ArrayList<String> getApartments() throws SQLException{
         String sql = "SELECT a.nr, u.id AS user_id, u.username " +
                 "FROM apartments a " +
                 "LEFT JOIN users u ON a.userid = u.id";
@@ -161,7 +161,7 @@ public class UserDAO {
     }
 
     //view all users
-    public ArrayList<String> usersList() throws SQLException{
+    public ArrayList<String> getUsers() throws SQLException{
         String sql = "SELECT * FROM users";
 
         try (Connection con = DatabaseConnection.getConnection();
@@ -177,27 +177,6 @@ public class UserDAO {
                 String role = rs.getString("role");
                 String pin = rs.getString("pin");
                 String string = " [" + i + "] " + role + ": " + username + " | ID: " + userId + " | PIN: " + pin;
-                list.add(string);
-            }
-            return list;
-        }
-    }
-
-    public ArrayList<String> reportsList() throws SQLException {
-        String sql = "SELECT * FROM reports";
-
-        try (Connection con = DatabaseConnection.getConnection();
-             PreparedStatement stmt = con.prepareStatement(sql)) {
-            ResultSet rs = stmt.executeQuery();
-            ArrayList<String> list = new ArrayList<>();
-            list.add("REPORTS:");
-            while (rs.next()) {
-                String reportId = rs.getString("id");
-                Timestamp time = rs.getTimestamp("messagetime");
-                String apartmentNr = rs.getString("apartmentnr");
-                String username = rs.getString("username");
-                String string = "{ " + reportId + " } <" + time + ">(Apartment: " + apartmentNr +
-                         ") " + username + ": " + rs.getString("message");
                 list.add(string);
             }
             return list;
@@ -222,7 +201,28 @@ public class UserDAO {
         return userDetails;
     }
 
-    public int getApartmentNumber(String username) throws SQLException {
+    public ArrayList<String> getReports() throws SQLException {
+        String sql = "SELECT * FROM reports";
+
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<String> list = new ArrayList<>();
+            list.add("REPORTS:");
+            while (rs.next()) {
+                String reportId = rs.getString("id");
+                Timestamp time = rs.getTimestamp("messagetime");
+                String apartmentNr = rs.getString("apartmentnr");
+                String username = rs.getString("username");
+                String string = "{ " + reportId + " } <" + time + ">(Apartment: " + apartmentNr +
+                         ") " + username + ": " + rs.getString("message");
+                list.add(string);
+            }
+            return list;
+        }
+    }
+
+    public int getUserApartment(String username) throws SQLException {
         String sql = "SELECT nr FROM apartments WHERE userid = (SELECT id FROM users WHERE username = ?)";
 
         try (Connection con = DatabaseConnection.getConnection();
@@ -252,7 +252,7 @@ public class UserDAO {
     }
 
     // Create report
-    public int createReportDB(String message, String username, int apartmentNr, int userId) {
+    public int addReport(String message, String username, int apartmentNr, int userId) {
         String sql = "INSERT INTO reports (message, username, apartmentnr, userid) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

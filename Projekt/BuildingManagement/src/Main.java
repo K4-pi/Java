@@ -14,9 +14,10 @@ public class Main {
                     - Włączanie/wyłączanie światła
                     - Kontrolowanie sieci elektrycznej
                     - Monitorowanie temperatury wody i powietrza
-                TODO:
                     - Zgłaszanie usterek
                     - Zgłaszanie prób włamania
+                TODO:
+                    - Nic :)
         */
 
         SwingUtilities.invokeLater(() -> new Entry("Building entrance", 400, 500, false, false).run());

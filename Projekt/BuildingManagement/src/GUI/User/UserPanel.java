@@ -25,7 +25,7 @@ public class UserPanel extends Window {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
 
-        apartmentNr = userDAO.getApartmentNumber(username);
+        apartmentNr = userDAO.getUserApartment(username);
 
         // User info panel
         infoArea = new JTextArea(12, 50);
@@ -78,7 +78,7 @@ public class UserPanel extends Window {
         infoText.append(" ".repeat(10) + "|Apartment|" + "\n");
 
         // Apartment
-        ArrayList<Object> list = userDAO.viewApartment(apartmentNr);
+        ArrayList<Object> list = userDAO.getApartment(apartmentNr);
         infoText.append("Apartment number: " + list.get(0) + "\n");
         infoText.append("Electricity: " + list.get(1) + "\n");
         infoText.append("Light: " + list.get(2) + "\n");

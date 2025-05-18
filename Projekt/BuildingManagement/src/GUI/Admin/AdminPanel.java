@@ -39,9 +39,9 @@ public class AdminPanel extends Window {
     // List of apartments and field for choosing apartment
     private JPanel displayLists() throws SQLException {
         // Apartments list
-        JScrollPane apartmentsList = CustomComponents.getList(userDAO.apartmentsList());
-        JScrollPane usersList = CustomComponents.getList(userDAO.usersList());
-        JScrollPane reportsList = CustomComponents.getList(userDAO.reportsList());
+        JScrollPane apartmentsList = CustomComponents.getList(userDAO.getApartments());
+        JScrollPane usersList = CustomComponents.getList(userDAO.getUsers());
+        JScrollPane reportsList = CustomComponents.getList(userDAO.getReports());
         JPanel apartmentsAndUsersPanel = new JPanel(new GridLayout(2, 1));
         apartmentsAndUsersPanel.add(apartmentsList);
         apartmentsAndUsersPanel.add(usersList);

@@ -102,7 +102,7 @@ public class ApartmentPanel extends Window {
     }
 
     private void showApartmentLabel() throws SQLException {
-        ArrayList<Object> list = userDAO.viewApartment(apartmentNr);
+        ArrayList<Object> list = userDAO.getApartment(apartmentNr);
 
         apartmentLabel.setText(""); // Clear the text
         apartmentLabel.append("Apartment number: " + list.get(0) + "\n");
