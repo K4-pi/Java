@@ -1,6 +1,9 @@
 package GUI;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CustomComponents {
@@ -49,5 +52,79 @@ public class CustomComponents {
             }
         }
         return isNumber;
+    }
+
+    public static JPanel switchButtonBoolean(String labelText, ActionListener buttonOnL, ActionListener buttonOffL) {
+        JPanel panel = new JPanel(new GridLayout(3, 1));
+
+        JLabel label = new JLabel(labelText);
+        JButton buttonOn = new JButton("ON");
+        JButton buttonOff = new JButton("OFF");
+
+        Dimension buttonSize = new Dimension(20, 50);
+        buttonOn.setPreferredSize(buttonSize);
+        buttonOff.setPreferredSize(buttonSize);
+
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        label.setText(labelText);
+        buttonOn.addActionListener(buttonOnL);
+        buttonOff.addActionListener(buttonOffL);
+//        buttonOn.addActionListener(_ -> {
+//            try {
+//                userDAO.updateBooleanValue(SQLColumnName, true, apartmentNr);
+//                showApartmentLabel();
+//            } catch (SQLException ex) {
+//                throw new RuntimeException(ex);
+//            }
+//        });
+//        buttonOff.addActionListener(_ -> {
+//            try {
+//                userDAO.updateBooleanValue(SQLColumnName, false, apartmentNr);
+//                showApartmentLabel();
+//            } catch (SQLException ex) {
+//                throw new RuntimeException(ex);
+//            }
+//        });
+
+        panel.add(label);
+        panel.add(buttonOn);
+        panel.add(buttonOff);
+
+        return panel;
+    }
+
+    public static JPanel switchButtonDouble(String labelText, ActionListener buttonUpL, ActionListener buttonDownL) {
+        JPanel panel = new JPanel(new GridLayout(3, 1));
+
+        JLabel label = new JLabel(labelText);
+        JButton buttonUp = new JButton("UP");
+        JButton buttonDown = new JButton("DOWN");
+
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        label.setText(labelText);
+        buttonUp.addActionListener(buttonUpL);
+        buttonDown.addActionListener(buttonDownL);
+//        buttonUp.addActionListener(_ -> {
+//            try {
+//                userDAO.updateDoubleValue(SQLColumnName, 0.1, apartmentNr);
+//                showApartmentLabel();
+//            } catch (SQLException ex) {
+//                throw new RuntimeException(ex);
+//            }
+//        });
+//        buttonDown.addActionListener(_ -> {
+//            try {
+//                userDAO.updateDoubleValue(SQLColumnName, -0.1, apartmentNr);
+//                showApartmentLabel();
+//            } catch (SQLException ex) {
+//                throw new RuntimeException(ex);
+//            }
+//        });
+
+        panel.add(label);
+        panel.add(buttonUp);
+        panel.add(buttonDown);
+
+        return panel;
     }
 }

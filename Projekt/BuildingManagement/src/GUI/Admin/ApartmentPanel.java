@@ -1,10 +1,12 @@
 package GUI.Admin;
 
 import Database.UserDAO;
+import GUI.CustomComponents;
 import GUI.Window;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
@@ -43,10 +45,10 @@ public class ApartmentPanel extends Window {
 
         // Buttons that update parameters
         JPanel buttonsPanel = new JPanel(new GridLayout(1, 4));
-        buttonsPanel.add(switchButtonDouble("airtemp", "Air temp"));
-        buttonsPanel.add(switchButtonDouble("watertemp", "Water temp"));
-        buttonsPanel.add(switchButtonBoolean("electricity", "Electricity"));
-        buttonsPanel.add(switchButtonBoolean("light", "Light"));
+        buttonsPanel.add(CustomComponents.switchButtonDouble("Air temp", doubleUpListener("airtemp"), doubleDownListener("airtemp")));
+        buttonsPanel.add(CustomComponents.switchButtonDouble("Water temp", doubleUpListener("watertemp"), doubleDownListener("watertemp")));
+        buttonsPanel.add(CustomComponents.switchButtonBoolean("Electricity", booleanButtonOnListener("electricity", true), booleanButtonOffListener("electricity", false)));
+        buttonsPanel.add(CustomComponents.switchButtonBoolean("Light", booleanButtonOnListener("light", true), booleanButtonOffListener("light", false)));
 
         JPanel apartmentPanel = new JPanel(new FlowLayout());
         apartmentPanel.add(scrollPane);
@@ -56,74 +58,48 @@ public class ApartmentPanel extends Window {
         this.add(mainPanel);
     }
 
-    private JPanel switchButtonBoolean(String SQLColumnName, String labelText) {
-        JPanel panel = new JPanel(new GridLayout(3, 1));
-
-        JLabel label = new JLabel(labelText);
-        JButton buttonOn = new JButton("ON");
-        JButton buttonOff = new JButton("OFF");
-
-        Dimension buttonSize = new Dimension(20, 50);
-        buttonOn.setPreferredSize(buttonSize);
-        buttonOff.setPreferredSize(buttonSize);
-
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setText(labelText);
-        buttonOn.addActionListener(_ -> {
+    private ActionListener booleanButtonOnListener(String SQLColumnName, boolean value) {
+        return _ -> {
             try {
-                userDAO.updateBooleanValue(SQLColumnName, true, apartmentNr);
+                userDAO.updateBooleanValue(SQLColumnName, value, apartmentNr);
                 showApartmentLabel();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-        });
-        buttonOff.addActionListener(_ -> {
-            try {
-                userDAO.updateBooleanValue(SQLColumnName, false, apartmentNr);
-                showApartmentLabel();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        panel.add(label);
-        panel.add(buttonOn);
-        panel.add(buttonOff);
-
-        return panel;
+        };
     }
 
-    private JPanel switchButtonDouble(String SQLColumnName, String labelText) {
-        JPanel panel = new JPanel(new GridLayout(3, 1));
+    private ActionListener booleanButtonOffListener(String SQLColumnName, boolean value) {
+        return _ -> {
+            try {
+                userDAO.updateBooleanValue(SQLColumnName, value, apartmentNr);
+                showApartmentLabel();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        };
+    }
 
-        JLabel label = new JLabel(labelText);
-        JButton buttonUp = new JButton("UP");
-        JButton buttonDown = new JButton("DOWN");
-
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setText(labelText);
-        buttonUp.addActionListener(_ -> {
+    private ActionListener doubleUpListener(String SQLColumnName) {
+        return _ -> {
             try {
                 userDAO.updateDoubleValue(SQLColumnName, 0.1, apartmentNr);
                 showApartmentLabel();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-        });
-        buttonDown.addActionListener(_ -> {
+        };
+    }
+
+    private ActionListener doubleDownListener(String SQLColumnName) {
+        return _ -> {
             try {
                 userDAO.updateDoubleValue(SQLColumnName, -0.1, apartmentNr);
                 showApartmentLabel();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-        });
-
-        panel.add(label);
-        panel.add(buttonUp);
-        panel.add(buttonDown);
-
-        return panel;
+        };
     }
 
     private void showApartmentLabel() throws SQLException {
