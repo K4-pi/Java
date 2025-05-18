@@ -1,7 +1,7 @@
 package GUI.Admin;
 
 import Database.UserDAO;
-import GUI.CheckValue;
+import GUI.CustomComponents;
 import GUI.Window;
 
 import javax.swing.*;
@@ -89,7 +89,7 @@ public class Add extends Window  {
             String usernameValue = username.getText();
             String apartmentValue = apartment.getText();
 
-            if (!CheckValue.isNumber(apartmentValue)) {
+            if (!CustomComponents.isNumber(apartmentValue)) {
                 errorWindow("Apartment number must be a number!");
                 return;
             }
@@ -160,7 +160,7 @@ public class Add extends Window  {
                 errorWindow("PIN must be 4 digits!");
                 return;
             }
-            if (!CheckValue.isNumber(pinValue)) {
+            if (!CustomComponents.isNumber(pinValue)) {
                 errorWindow("PIN must be a number!");
                 return;
             }
@@ -210,7 +210,7 @@ public class Add extends Window  {
             System.out.println("PIN: " + nr.getText());
             String pin = nr.getText();
 
-            if (!CheckValue.isNumber(pin)) {
+            if (!CustomComponents.isNumber(pin)) {
                 errorWindow("Apartment number must be a number!");
                 return;
             }

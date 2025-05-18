@@ -1,13 +1,12 @@
 package GUI.Admin;
 
 import Database.UserDAO;
-import GUI.Buttons;
+import GUI.CustomComponents;
 import GUI.Window;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class AdminPanel extends Window {
     private final UserDAO userDAO = new UserDAO();
@@ -24,7 +23,7 @@ public class AdminPanel extends Window {
         btnsPanel.add(closeBuildingButton());
 
         // Logout button
-        btnsPanel.add(Buttons.logOutButton());
+        btnsPanel.add(CustomComponents.logOutButton());
 
         // List and reports panel
         JPanel combined = new JPanel(new GridLayout(1, 1));
@@ -37,27 +36,12 @@ public class AdminPanel extends Window {
         this.add(mainPanel);
     }
 
-    // apartments list
-    private JScrollPane getList(ArrayList<String> arr) {
-        JTextArea textArea = new JTextArea(25, 35);
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        textArea.setVisible(true);
-        textArea.setEditable(false);
-        textArea.setFocusable(false);
-        scrollPane.setVisible(true);
-
-        for (String s : arr) {
-            textArea.append(s + "\n");
-        }
-        return scrollPane;
-    }
-
     // List of apartments and field for choosing apartment
     private JPanel displayLists() throws SQLException {
         // Apartments list
-        JScrollPane apartmentsList = getList(userDAO.apartmentsList());
-        JScrollPane usersList = getList(userDAO.usersList());
-        JScrollPane reportsList = getList(userDAO.reportsList());
+        JScrollPane apartmentsList = CustomComponents.getList(userDAO.apartmentsList());
+        JScrollPane usersList = CustomComponents.getList(userDAO.usersList());
+        JScrollPane reportsList = CustomComponents.getList(userDAO.reportsList());
         JPanel apartmentsAndUsersPanel = new JPanel(new GridLayout(2, 1));
         apartmentsAndUsersPanel.add(apartmentsList);
         apartmentsAndUsersPanel.add(usersList);
@@ -81,7 +65,7 @@ public class AdminPanel extends Window {
             try {
                 if (nr > 0) {
                     this.setEnabled(false);
-                    new ApartmentPanel("Apartment panel", 400, 400, false, true, nr).run(this);
+                    new ApartmentPanel("Apartment panel", 400, 400, false, false, true, nr).run(this);
                 }
                 else System.out.println("Invalid apartment number");
             } catch (SQLException e) {

@@ -175,7 +175,8 @@ public class UserDAO {
                 String username = rs.getString("username");
                 String userId = rs.getString("id");
                 String role = rs.getString("role");
-                String string = " [" + i + "] " + role + ": " + username + " | ID: " + userId;
+                String pin = rs.getString("pin");
+                String string = " [" + i + "] " + role + ": " + username + " | ID: " + userId + " | PIN: " + pin;
                 list.add(string);
             }
             return list;

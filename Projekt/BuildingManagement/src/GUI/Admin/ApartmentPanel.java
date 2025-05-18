@@ -16,17 +16,20 @@ public class ApartmentPanel extends Window {
     private final int apartmentNr;
     private JTextArea apartmentLabel;
 
-    public ApartmentPanel(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose, int apartmentNr) {
-        super(title, sizeX, sizeY, resizable, disposeOnClose);
+    public ApartmentPanel(String title, int sizeX, int sizeY, boolean resizable, boolean maximize, boolean disposeOnClose, int apartmentNr) {
+        super(title, sizeX, sizeY, resizable, maximize, disposeOnClose);
         this.apartmentNr = apartmentNr;
     }
 
     public void run(JFrame parent) throws SQLException {
         JPanel mainPanel = new JPanel(new BorderLayout());
 
-        apartmentLabel = new JTextArea(4, 10);
+        apartmentLabel = new JTextArea(6, 10);
+        JScrollPane scrollPane = new JScrollPane(apartmentLabel);
+        apartmentLabel.setVisible(true);
         apartmentLabel.setEditable(false);
         apartmentLabel.setFocusable(false);
+        scrollPane.setVisible(true);
         showApartmentLabel();
 
         // On exit set parent window editable
@@ -46,7 +49,7 @@ public class ApartmentPanel extends Window {
         buttonsPanel.add(switchButtonBoolean("light", "Light"));
 
         JPanel apartmentPanel = new JPanel(new FlowLayout());
-        apartmentPanel.add(apartmentLabel);
+        apartmentPanel.add(scrollPane);
 
         mainPanel.add(apartmentPanel, BorderLayout.CENTER);
         mainPanel.add(buttonsPanel, BorderLayout.PAGE_END);

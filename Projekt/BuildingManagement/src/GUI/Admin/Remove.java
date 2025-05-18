@@ -1,7 +1,7 @@
 package GUI.Admin;
 
 import Database.UserDAO;
-import GUI.CheckValue;
+import GUI.CustomComponents;
 import GUI.Window;
 
 import javax.swing.*;
@@ -80,7 +80,7 @@ public class Remove extends Window {
                 errorWindow("ID cannot be empty!");
                 return;
             }
-            if (!CheckValue.isNumber(id)) {
+            if (!CustomComponents.isNumber(id)) {
                 errorWindow("ID must be a number!");
                 return;
             }
@@ -143,7 +143,7 @@ public class Remove extends Window {
         JButton removeBtn = new JButton("REMOVE");
         removeBtn.addActionListener(_ -> {
             String apartment = apartmentField.getText();
-            if (!CheckValue.isNumber(apartment)) {
+            if (!CustomComponents.isNumber(apartment)) {
                 errorWindow("Apartment number must be a number!");
                 return;
             }
