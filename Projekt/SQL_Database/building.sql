@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Maj 12, 2025 at 03:53 PM
+-- Generation Time: Maj 18, 2025 at 02:03 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -32,8 +32,8 @@ CREATE TABLE `apartments` (
   `nr` int(11) DEFAULT NULL CHECK (`nr` >= 0),
   `electricity` tinyint(1) DEFAULT 0,
   `light` tinyint(1) DEFAULT 0,
-  `watertemp` double DEFAULT 32,
-  `airtemp` double DEFAULT 12,
+  `watertemp` decimal(4,1) DEFAULT NULL,
+  `airtemp` decimal(4,1) DEFAULT NULL,
   `userid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -43,9 +43,12 @@ CREATE TABLE `apartments` (
 
 INSERT INTO `apartments` (`id`, `nr`, `electricity`, `light`, `watertemp`, `airtemp`, `userid`) VALUES
 (1, 0, 0, 0, 4.4, -4.6, 1),
-(2, 12, 0, 0, 40.500000000000064, 8.000000000000014, 2),
-(7, 13, 1, 1, 36.40000000000006, 7.400000000000016, 3),
-(8, 14, 0, 0, 36.40000000000006, 7.400000000000016, 4);
+(7, 13, 0, 1, 39.6, 5.5, 30),
+(8, 14, 0, 0, 37.1, 6.8, NULL),
+(14, 98, 0, 0, 32.0, 12.0, 27),
+(17, 67, 1, 0, 32.0, 12.0, 23),
+(18, 76, 0, 0, 30.6, 13.0, 25),
+(23, 12, 0, 0, 32.0, 12.0, NULL);
 
 -- --------------------------------------------------------
 
@@ -68,6 +71,28 @@ INSERT INTO `doorstatus` (`id`, `isclosed`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `reports`
+--
+
+CREATE TABLE `reports` (
+  `id` int(11) NOT NULL,
+  `messagetime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `message` varchar(150) NOT NULL,
+  `username` varchar(25) DEFAULT NULL,
+  `userid` int(11) DEFAULT NULL,
+  `apartmentnr` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reports`
+--
+
+INSERT INTO `reports` (`id`, `messagetime`, `message`, `username`, `userid`, `apartmentnr`) VALUES
+(3, '2025-05-17 17:45:41', 'testowy report 3', 'Karol', 23, 67);
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `users`
 --
 
@@ -75,7 +100,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `role` varchar(15) NOT NULL,
   `pin` varchar(4) NOT NULL,
-  `username` varchar(25) NOT NULL DEFAULT 'UNIQUE'
+  `username` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -84,10 +109,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `role`, `pin`, `username`) VALUES
 (1, 'admin', '9999', 'admin'),
-(2, 'user', '1234', 'Katarzyna'),
-(3, 'user', '1111', 'Bob'),
-(4, 'user', '2222', 'Robert'),
-(5, 'user', '4444', 'Grzegorz');
+(23, 'user', '1234', 'Karol'),
+(25, 'user', '1234', 'koks'),
+(26, 'user', '1234', 'koksss'),
+(27, 'user', '1234', 'test'),
+(28, 'admin', '1234', 'test2'),
+(30, 'user', '1234', 'user');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -108,10 +135,18 @@ ALTER TABLE `doorstatus`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeksy dla tabeli `reports`
+--
+ALTER TABLE `reports`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_user` (`userid`);
+
+--
 -- Indeksy dla tabeli `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -121,7 +156,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `apartments`
 --
 ALTER TABLE `apartments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `doorstatus`
@@ -130,10 +165,16 @@ ALTER TABLE `doorstatus`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `reports`
+--
+ALTER TABLE `reports`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Constraints for dumped tables
@@ -144,6 +185,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `apartments`
   ADD CONSTRAINT `apartments_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `reports`
+--
+ALTER TABLE `reports`
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`userid`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

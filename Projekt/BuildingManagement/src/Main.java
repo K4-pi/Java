@@ -17,7 +17,6 @@ public class Main {
                 TODO:
                     - Zgłaszanie usterek
                     - Zgłaszanie prób włamania
-                    - Hasherowanie haseł ?
         */
 
         SwingUtilities.invokeLater(() -> new Entry("Building entrance", 400, 500, false, false).run());
