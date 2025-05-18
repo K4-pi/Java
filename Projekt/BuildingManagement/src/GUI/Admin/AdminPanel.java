@@ -1,19 +1,18 @@
 package GUI.Admin;
 
 import Database.UserDAO;
-import GUI.Buttons;
+import GUI.CustomComponents;
 import GUI.Window;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class AdminPanel extends Window {
     private final UserDAO userDAO = new UserDAO();
 
-    public AdminPanel(String title, int sizeX, int sizeY, boolean resizable) {
-        super(title, sizeX, sizeY, resizable);
+    public AdminPanel(String title, int sizeX, int sizeY, boolean resizable, boolean maximized) {
+        super(title, sizeX, sizeY, resizable, maximized);
     }
 
     public void run() throws SQLException {
@@ -23,13 +22,12 @@ public class AdminPanel extends Window {
         JPanel btnsPanel = new JPanel(new GridLayout(1, 2));
         btnsPanel.add(closeBuildingButton());
 
-        // Logut button
-        btnsPanel.add(Buttons.logOutButton());
+        // Logout button
+        btnsPanel.add(CustomComponents.logOutButton());
 
         // List and reports panel
-        JPanel combined = new JPanel(new GridLayout(1, 2));
-        combined.add(apartmentListAndApartmentSelector());
-        combined.add(apartmentListAndApartmentSelector());
+        JPanel combined = new JPanel(new GridLayout(1, 1));
+        combined.add(displayLists());
 
         // main panel
         mainPanel.add(combined, BorderLayout.CENTER);
@@ -38,59 +36,67 @@ public class AdminPanel extends Window {
         this.add(mainPanel);
     }
 
-    // Show apartments list
-    private JScrollPane apartmentsList() throws SQLException {
-        JTextArea textArea = new JTextArea(25, 35);
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        textArea.setVisible(true);
-        textArea.setEditable(false);
-        textArea.setFocusable(false);
-        scrollPane.setVisible(true);
-
-        ArrayList<String> list = userDAO.apartmentsOwners();
-        for (String s : list) {
-            textArea.append(s + "\n");
-        }
-
-        return scrollPane;
-    }
-
     // List of apartments and field for choosing apartment
-    private JPanel apartmentListAndApartmentSelector() throws SQLException {
+    private JPanel displayLists() throws SQLException {
         // Apartments list
-        JScrollPane apartmentsList = apartmentsList();
-        JPanel apartmentsListPanel = new JPanel(new FlowLayout());
-        apartmentsListPanel.add(apartmentsList);
+        JScrollPane apartmentsList = CustomComponents.getList(userDAO.apartmentsList());
+        JScrollPane usersList = CustomComponents.getList(userDAO.usersList());
+        JScrollPane reportsList = CustomComponents.getList(userDAO.reportsList());
+        JPanel apartmentsAndUsersPanel = new JPanel(new GridLayout(2, 1));
+        apartmentsAndUsersPanel.add(apartmentsList);
+        apartmentsAndUsersPanel.add(usersList);
+
+        // Combined users, apartments and reports
+        JPanel combineListsPanel = new JPanel(new GridLayout(1, 2));
+        combineListsPanel.add(reportsList);
+        combineListsPanel.add(apartmentsAndUsersPanel);
 
         // Select apartment field and button
-        JTextArea chooseApartmentField = new JTextArea(1, 5);
-        JButton applayBtn = new JButton("Apply");
-        JPanel chooseApartmentPanel = new JPanel(new FlowLayout());
-        chooseApartmentPanel.add(chooseApartmentField);
-        chooseApartmentPanel.add(applayBtn);
-
-        applayBtn.addActionListener(_ ->
+        JTextField chooseApartmentField = new JTextField(10);
+        chooseApartmentField.setPreferredSize(new Dimension(100, 30));
+        JButton applyBtn = new JButton("Modify");
+        applyBtn.addActionListener(_ ->
         {
-            this.setEnabled(false);
-
             // Get apartment number
             int nr = -1;
             String choosenNumber = chooseApartmentField.getText();
             if (!choosenNumber.isEmpty()) nr = Integer.parseInt(choosenNumber);
 
             try {
-                if (nr > 0) new ApartmentPanel("Apartment panel", 400, 400, false, true, nr).run(this);
+                if (nr > 0) {
+                    this.setEnabled(false);
+                    new ApartmentPanel("Apartment panel", 400, 400, false, false, true, nr).run(this);
+                }
                 else System.out.println("Invalid apartment number");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         });
 
+        JButton addBtn = new JButton("Add");
+        addBtn.addActionListener(_ -> {
+            this.dispose();
+            new Add("Add", 400, 400, false, false, true).run();
+        });
+
+        JButton removeBtn = new JButton("Remove");
+        removeBtn.addActionListener(_ -> {
+            this.dispose();
+            new Remove("Remove", 400, 150, false, false, true).run();
+        });
+
+        JPanel buttonsPanel = new JPanel(new FlowLayout());
+        buttonsPanel.add(addBtn);
+        buttonsPanel.add(removeBtn);
+        buttonsPanel.add(new JLabel("Apartment nr: "), new FlowLayout());
+        buttonsPanel.add(chooseApartmentField);
+        buttonsPanel.add(applyBtn);
+
         // List and field for choosing apartment
         JPanel combinedPanel = new JPanel();
         combinedPanel.setLayout(new BoxLayout(combinedPanel, BoxLayout.Y_AXIS));
-        combinedPanel.add(apartmentsListPanel);
-        combinedPanel.add(chooseApartmentPanel);
+        combinedPanel.add(combineListsPanel);
+        combinedPanel.add(buttonsPanel);
 
         return combinedPanel;
     }

@@ -12,18 +12,14 @@ public class Entry extends Window {
     UserDAO userDAO = new UserDAO();
 
     private JComboBox<String> chooseUser;
-    private Label pinText;
+    private JTextField pinText;
     private String chosenUserValue;
     private JTextField usernameField;
     private String username;
 
-    public Entry(String title, int sizeX, int sizeY, boolean resizable) {
-        super(title, sizeX, sizeY, resizable);
+    public Entry(String title, int sizeX, int sizeY, boolean resizable, boolean maximized) {
+        super(title, sizeX, sizeY, resizable, maximized);
     }
-
-//    public Entry(String title, int sizeX, int sizeY, boolean resizable, boolean disposeOnClose) {
-//        super(title, sizeX, sizeY, resizable, disposeOnClose);
-//    }
 
     public void run() {
         JPanel mainPanel = new JPanel();
@@ -40,15 +36,23 @@ public class Entry extends Window {
         usernameField = new JTextField(10);
         usernameField.setPreferredSize(new Dimension(100, 30));
         usernameField.setToolTipText("Enter username");
+        usernameField.setBackground(Color.WHITE);
+        usernameField.setHorizontalAlignment(SwingConstants.CENTER);
+
         JPanel usernameInsertPanel = new JPanel(new FlowLayout());
         usernameInsertPanel.add(usernameField);
 
         // PIN display
-        JPanel textPanel = new JPanel(new FlowLayout());
-        pinText = new Label();
+        pinText = new JTextField(10);
+        pinText.setPreferredSize(new Dimension(100, 30));
+        pinText.setToolTipText("Enter PIN");
+        pinText.setBackground(Color.WHITE);
+        pinText.setEditable(false);
+        pinText.setFocusable(false);
         pinText.setText("");
-        pinText.setPreferredSize(new Dimension(300, 200));
-        pinText.setAlignment(Label.CENTER);
+        pinText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JPanel textPanel = new JPanel(new FlowLayout());
         textPanel.add(pinText);
 
         // Buttons
@@ -77,8 +81,18 @@ public class Entry extends Window {
             buttonPanel.add(b);
         }
 
+        JPanel usernameLabel = new JPanel();
+        usernameLabel.setLayout(new BoxLayout(usernameLabel, BoxLayout.X_AXIS));
+        usernameLabel.add(new JLabel("Username"));
+
+        JPanel pinLabel = new JPanel();
+        pinLabel.setLayout(new BoxLayout(pinLabel, BoxLayout.X_AXIS));
+        pinLabel.add(new JLabel("PIN"));
+
         mainPanel.add(comboBoxPanel);
+        mainPanel.add(usernameLabel);
         mainPanel.add(usernameInsertPanel);
+        mainPanel.add(pinLabel);
         mainPanel.add(textPanel);
         mainPanel.add(buttonPanel);
         this.add(mainPanel);
@@ -89,19 +103,19 @@ public class Entry extends Window {
         if (userDAO.authenticateUser(chosenUserValue, pin, username)) {
             if (chosenUserValue.equals("user")) {
                 if (!userDAO.isClosed()) {
-                    new UserPanel(username + "'s panel", 800, 600, false).run();
+                    new UserPanel(username + "'s panel", 700, 500, false, false, username).run();
                     this.dispose();
                     System.out.println("PIN accepted");
                 }
-                else pinText.setText("Building is closed");
+                else messageWindow("Building is closed");
             }
             else if (chosenUserValue.equals("admin")) {
-                new AdminPanel(username + "'s panel", 800, 600, false).run();
+                new AdminPanel(username + "'s panel", 800, 600, true, true).run();
                 this.dispose();
                 System.out.println("PIN accepted");
             }
         } else {
-            pinText.setText("Wrong PIN or username!");
+            errorWindow("Wrong PIN or username!");
         }
     }
 

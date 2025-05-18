@@ -20,6 +20,6 @@ public class Main {
                     - Hasherowanie haseł ?
         */
 
-        SwingUtilities.invokeLater(() -> new Entry("Building entrance", 400, 500, false).run());
+        SwingUtilities.invokeLater(() -> new Entry("Building entrance", 400, 500, false, false).run());
     }
 }
