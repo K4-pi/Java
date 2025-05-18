@@ -26,7 +26,7 @@ public class ApartmentPanel extends Window {
     public void run(JFrame parent) throws SQLException {
         JPanel mainPanel = new JPanel(new BorderLayout());
 
-        apartmentLabel = new JTextArea(6, 10);
+        apartmentLabel = new JTextArea(6, 14);
         JScrollPane scrollPane = new JScrollPane(apartmentLabel);
         apartmentLabel.setVisible(true);
         apartmentLabel.setEditable(false);
@@ -103,28 +103,14 @@ public class ApartmentPanel extends Window {
     }
 
     private void showApartmentLabel() throws SQLException {
-        ArrayList<Object> apartment = userDAO.viewApartment(apartmentNr);
+        ArrayList<Object> list = userDAO.viewApartment(apartmentNr);
 
         apartmentLabel.setText(""); // Clear the text
-        for (int i = 0; i < apartment.size(); i++) {
-            switch (i) {
-                case 0:
-                    apartmentLabel.append("NR: " + apartment.get(i) + "\n");
-                    break;
-                case 1:
-                    apartmentLabel.append("Electricity: " + apartment.get(i) + "\n");
-                    break;
-                case 2:
-                    apartmentLabel.append("Light: " + apartment.get(i) + "\n");
-                    break;
-                case 3:
-                    apartmentLabel.append("Air temp: " + new DecimalFormat("##.#").format(apartment.get(i)) + "\n");
-                    break;
-                case 4:
-                    apartmentLabel.append("Water temp: " + new DecimalFormat("##.#").format(apartment.get(i)) + "\n");
-                    break;
-            }
-        }
+        apartmentLabel.append("Apartment number: " + list.get(0) + "\n");
+        apartmentLabel.append("Electricity: " + list.get(1) + "\n");
+        apartmentLabel.append("Light: " + list.get(2) + "\n");
+        apartmentLabel.append("Air temp: " + list.get(3) + " Celsius\n");
+        apartmentLabel.append("Water temp: " + list.get(4) + " Celsius\n");
     }
 }
 

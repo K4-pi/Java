@@ -206,20 +206,37 @@ public class UserDAO {
         }
     }
 
-//    //view user id
-//    public int userId(String username) throws SQLException{
-//        String sql = "SELECT id FROM users WHERE username = ?";
-//
-//        try(Connection con = DatabaseConnection.getConnection();
-//            PreparedStatement stmt = con.prepareStatement(sql)) {
-//            stmt.setString(1, username);
-//            ResultSet rs = stmt.executeQuery();
-//            if(rs.next()) {
-//                return rs.getInt("id");
-//            }
-//        }
-//        return -1;
-//    }
+    public ArrayList<String> getUser(String username) throws SQLException {
+        String sql = "SELECT * FROM users WHERE username = ?";
+
+        ArrayList<String> userDetails = new ArrayList<>();
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                userDetails.add(rs.getString("id"));
+                userDetails.add(rs.getString("role"));
+                userDetails.add(rs.getString("username"));
+                userDetails.add(rs.getString("pin"));
+            }
+        }
+        return userDetails;
+    }
+
+    public int getApartmentNumber(String username) throws SQLException {
+        String sql = "SELECT nr FROM apartments WHERE userid = (SELECT id FROM users WHERE username = ?)";
+
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("nr");
+            }
+        }
+        return -1;
+    }
 
     //close building
     public boolean isClosed() throws SQLException{
