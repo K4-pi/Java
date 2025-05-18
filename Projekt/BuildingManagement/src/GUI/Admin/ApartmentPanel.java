@@ -47,8 +47,8 @@ public class ApartmentPanel extends Window {
         JPanel buttonsPanel = new JPanel(new GridLayout(1, 4));
         buttonsPanel.add(CustomComponents.switchButtonDouble("Air temp", doubleUpListener("airtemp"), doubleDownListener("airtemp")));
         buttonsPanel.add(CustomComponents.switchButtonDouble("Water temp", doubleUpListener("watertemp"), doubleDownListener("watertemp")));
-        buttonsPanel.add(CustomComponents.switchButtonBoolean("Electricity", booleanButtonOnListener("electricity", true), booleanButtonOffListener("electricity", false)));
-        buttonsPanel.add(CustomComponents.switchButtonBoolean("Light", booleanButtonOnListener("light", true), booleanButtonOffListener("light", false)));
+        buttonsPanel.add(CustomComponents.switchButtonBoolean("Electricity", booleanButtonOnListener("electricity"), booleanButtonOffListener("electricity")));
+        buttonsPanel.add(CustomComponents.switchButtonBoolean("Light", booleanButtonOnListener("light"), booleanButtonOffListener("light")));
 
         JPanel apartmentPanel = new JPanel(new FlowLayout());
         apartmentPanel.add(scrollPane);
@@ -58,10 +58,10 @@ public class ApartmentPanel extends Window {
         this.add(mainPanel);
     }
 
-    private ActionListener booleanButtonOnListener(String SQLColumnName, boolean value) {
+    private ActionListener booleanButtonOnListener(String SQLColumnName) {
         return _ -> {
             try {
-                userDAO.updateBooleanValue(SQLColumnName, value, apartmentNr);
+                userDAO.updateBooleanValue(SQLColumnName, true, apartmentNr);
                 showApartmentLabel();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
@@ -69,10 +69,10 @@ public class ApartmentPanel extends Window {
         };
     }
 
-    private ActionListener booleanButtonOffListener(String SQLColumnName, boolean value) {
+    private ActionListener booleanButtonOffListener(String SQLColumnName) {
         return _ -> {
             try {
-                userDAO.updateBooleanValue(SQLColumnName, value, apartmentNr);
+                userDAO.updateBooleanValue(SQLColumnName, false, apartmentNr);
                 showApartmentLabel();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
