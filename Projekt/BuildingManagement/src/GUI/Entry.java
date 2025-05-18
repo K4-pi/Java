@@ -103,7 +103,7 @@ public class Entry extends Window {
         if (userDAO.authenticateUser(chosenUserValue, pin, username)) {
             if (chosenUserValue.equals("user")) {
                 if (!userDAO.isClosed()) {
-                    new UserPanel(username + "'s panel", 700, 500, false, false, username).run();
+                    new UserPanel("User panel", 700, 500, false, false, username).run();
                     this.dispose();
                     System.out.println("PIN accepted");
                 }

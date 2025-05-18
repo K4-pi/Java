@@ -236,6 +236,37 @@ public class UserDAO {
         return -1;
     }
 
+    public int getUserId(String username) {
+        String sql = "SELECT id FROM users WHERE username = ?";
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
+        } catch (SQLException e) {
+            return e.getErrorCode();
+        }
+        return -1;
+    }
+
+    // Create report
+    public int createReportDB(String message, String username, int apartmentNr, int userId) {
+        String sql = "INSERT INTO reports (message, username, apartmentnr, userid) VALUES (?, ?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, message);
+            pstmt.setString(2, username);
+            pstmt.setInt(3, apartmentNr);
+            pstmt.setInt(4, userId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            return e.getErrorCode();
+        }
+        return 0;
+    }
+
     //close building
     public boolean isClosed() throws SQLException{
         String sql = "SELECT * FROM doorstatus WHERE id = 1";

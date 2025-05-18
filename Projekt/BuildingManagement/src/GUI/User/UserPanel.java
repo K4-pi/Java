@@ -47,7 +47,7 @@ public class UserPanel extends Window {
 
         // Logout button
         JPanel logoutPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        logoutPanel.add(fileReport());
+        logoutPanel.add(sendReportPanel());
         logoutPanel.add(CustomComponents.logOutButton());
 
         mainPanel.add(infoPanel, BorderLayout.CENTER);
@@ -56,8 +56,12 @@ public class UserPanel extends Window {
         this.add(mainPanel);
     }
 
-    private JButton fileReport() {
+    private JButton sendReportPanel() {
         JButton b = new JButton("File report");
+        b.addActionListener(_ -> {
+            this.dispose();
+            new ReportPanel("Report panel", 400, 500, false, false, true, username, apartmentNr).run();
+        });
         return b;
     }
 
