@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        /*System zarządzania budynkiem. Kontrola wejścia do budynku, zgłaszanie usterek, prób włamania,
+        /*System zarządzania mieszkalnym budynkiem. Kontrola wejścia do budynku, zgłaszanie usterek, prób włamania,
         monitorowanie temperatury wody i powietrza, wyłączanie/włączanie światła, sieci elektrycznej,
         zamykanie/otwieranie budynku, itp.*/
 
@@ -14,8 +14,8 @@ public class Main {
                     - Włączanie/wyłączanie światła
                     - Kontrolowanie sieci elektrycznej
                     - Monitorowanie temperatury wody i powietrza
-                    - Zgłaszanie usterek
-                    - Zgłaszanie prób włamania
+                    - Zgłaszanie usterek / Zgłaszanie prób włamania
+                    - Zamykanie/otwieranie budynku
                 TODO:
                     - Nic :)
         */
