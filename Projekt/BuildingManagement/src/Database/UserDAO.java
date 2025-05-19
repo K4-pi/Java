@@ -215,7 +215,7 @@ public class UserDAO {
                 String apartmentNr = rs.getString("apartmentnr");
                 String username = rs.getString("username");
                 String string = "{ " + reportId + " } <" + time + ">(Apartment: " + apartmentNr +
-                         ") " + username + ": " + rs.getString("message");
+                         ") " + username + ": " + rs.getString("description");
                 list.add(string);
             }
             return list;
@@ -266,14 +266,15 @@ public class UserDAO {
     }
 
     // Create report
-    public int addReport(String message, String username, int apartmentNr, int userId) {
-        String sql = "INSERT INTO reports (message, username, apartmentnr, userid) VALUES (?, ?, ?, ?)";
+    public int addReport(String message, String description, String username, int apartmentNr, int userId) {
+        String sql = "INSERT INTO reports (message, description, username, apartmentnr, userid) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, message);
-            pstmt.setString(2, username);
-            pstmt.setInt(3, apartmentNr);
-            pstmt.setInt(4, userId);
+            pstmt.setString(2, description);
+            pstmt.setString(3, username);
+            pstmt.setInt(4, apartmentNr);
+            pstmt.setInt(5, userId);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             return e.getErrorCode();
