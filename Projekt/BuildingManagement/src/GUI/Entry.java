@@ -11,9 +11,7 @@ import java.sql.SQLException;
 public class Entry extends Window {
     UserDAO userDAO = new UserDAO();
 
-    private JComboBox<String> chooseUser;
     private JTextField pinText;
-    private String chosenUserValue;
     private JTextField usernameField;
     private String username;
 
@@ -24,13 +22,6 @@ public class Entry extends Window {
     public void run() {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-
-        // Who are you logging in as?
-        String[] choices = {"user", "admin"};
-        chooseUser = new JComboBox<>(choices);
-        JPanel comboBoxPanel = new JPanel(new FlowLayout());
-        comboBoxPanel.setVisible(true);
-        comboBoxPanel.add(chooseUser);
 
         // Enter username
         usernameField = new JTextField(10);
@@ -89,7 +80,6 @@ public class Entry extends Window {
         pinLabel.setLayout(new BoxLayout(pinLabel, BoxLayout.X_AXIS));
         pinLabel.add(new JLabel("PIN"));
 
-        mainPanel.add(comboBoxPanel);
         mainPanel.add(usernameLabel);
         mainPanel.add(usernameInsertPanel);
         mainPanel.add(pinLabel);
@@ -100,17 +90,17 @@ public class Entry extends Window {
 
     //On enter button function
     private void onEnter(String pin) throws SQLException {
-        if (userDAO.authenticateUser(chosenUserValue, pin, username)) {
-            if (chosenUserValue.equals("user")) {
-                if (!userDAO.isClosed()) {
-                    new UserPanel("User panel", 700, 500, false, false, username).run();
-                    this.dispose();
-                    System.out.println("PIN accepted");
-                }
-                else messageWindow("Building is closed");
+        if (userDAO.authenticateUser("admin", pin, username)) {
+            new AdminPanel(username + "'s panel", 800, 600, true, true).run();
+            this.dispose();
+            System.out.println("PIN accepted");
+        }
+        else if (userDAO.authenticateUser("user", pin, username)) {
+            if (userDAO.isClosed()) {
+                errorWindow("Building is closed!");
             }
-            else if (chosenUserValue.equals("admin")) {
-                new AdminPanel(username + "'s panel", 800, 600, true, true).run();
+            else {
+                new UserPanel("User panel", 700, 500, false, false, username).run();
                 this.dispose();
                 System.out.println("PIN accepted");
             }
@@ -128,7 +118,6 @@ public class Entry extends Window {
 
             switch (buttonText) {
                 case "Enter":
-                    chosenUserValue = (String) chooseUser.getSelectedItem(); // get selected user type (user/admin)
                     username = usernameField.getText(); // get username from text field
                     try {
                         onEnter(getPinText);
