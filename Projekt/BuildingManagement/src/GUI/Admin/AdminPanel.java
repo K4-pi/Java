@@ -38,10 +38,11 @@ public class AdminPanel extends Window {
 
     // List of apartments and field for choosing apartment
     private JPanel displayLists() throws SQLException {
-        // Apartments list
+        // Lists
         JScrollPane apartmentsList = CustomComponents.getList(userDAO.getApartments());
         JScrollPane usersList = CustomComponents.getList(userDAO.getUsers());
         JScrollPane reportsList = CustomComponents.getList(userDAO.getReports());
+
         JPanel apartmentsAndUsersPanel = new JPanel(new GridLayout(2, 1));
         apartmentsAndUsersPanel.add(apartmentsList);
         apartmentsAndUsersPanel.add(usersList);
@@ -53,10 +54,12 @@ public class AdminPanel extends Window {
 
         // Select apartment field and button
         JTextField chooseApartmentField = new JTextField(10);
+        JTextField reportField = new JTextField(10);
         chooseApartmentField.setPreferredSize(new Dimension(100, 30));
+        reportField.setPreferredSize(new Dimension(100, 30));
+
         JButton applyBtn = new JButton("Modify");
-        applyBtn.addActionListener(_ ->
-        {
+        applyBtn.addActionListener(_ -> {
             // Get apartment number
             int nr = -1;
             String choosenNumber = chooseApartmentField.getText();
@@ -71,6 +74,7 @@ public class AdminPanel extends Window {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+            chooseApartmentField.setText("");
         });
 
         JButton addBtn = new JButton("Add");
@@ -85,10 +89,28 @@ public class AdminPanel extends Window {
             new Remove("Remove", 300, 200, false, false, true).run();
         });
 
+        JButton reportBtn = new JButton("See report");
+        reportBtn.addActionListener(_ -> {
+            String message;
+            try {
+                message = userDAO.getReportMessage(Integer.parseInt(reportField.getText()));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            if (message == null) messageWindow("Report not found");
+            else new ReportMessageWindow("Report", 400, 300, true, false, true, message);
+            reportField.setText("");
+        });
+
+        JPanel reportPanel = new JPanel(new FlowLayout());
+        reportPanel.add(new JLabel("Report ID"));
+        reportPanel.add(reportField);
+        reportPanel.add(reportBtn);
+
         JPanel buttonsPanel = new JPanel(new FlowLayout());
         buttonsPanel.add(addBtn);
         buttonsPanel.add(removeBtn);
-        buttonsPanel.add(new JLabel("Apartment nr: "), new FlowLayout());
+        buttonsPanel.add(new JLabel("Apartment nr: "));
         buttonsPanel.add(chooseApartmentField);
         buttonsPanel.add(applyBtn);
 
@@ -97,6 +119,7 @@ public class AdminPanel extends Window {
         combinedPanel.setLayout(new BoxLayout(combinedPanel, BoxLayout.Y_AXIS));
         combinedPanel.add(combineListsPanel);
         combinedPanel.add(buttonsPanel);
+        combinedPanel.add(reportPanel);
 
         return combinedPanel;
     }

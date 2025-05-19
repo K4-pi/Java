@@ -44,7 +44,7 @@ public class ReportPanel extends Window {
         messageArea.setLineWrap(true);
         messageArea.setWrapStyleWord(true);
         JScrollPane scrollPane = new JScrollPane(messageArea);
-        JButton sendButton = sendButton(messageArea);
+        JButton sendButton = sendButtonReport(messageArea);
 
         mainPanel.add(new JPanel(new FlowLayout()).add(messageLabel));
         mainPanel.add(new JPanel(new FlowLayout()).add(scrollPane));
@@ -52,7 +52,7 @@ public class ReportPanel extends Window {
         this.add(mainPanel);
     }
 
-    private JButton sendButton(JTextArea messageArea) {
+    private JButton sendButtonReport(JTextArea messageArea) {
         JButton b = new JButton("Send");
         b.addActionListener(_ -> {
             int userId = userDAO.getUserId(username);
@@ -61,6 +61,8 @@ public class ReportPanel extends Window {
             errorCode = userDAO.addReport(message, username, apartmentNr, userId);
             if (errorCode == 0) messageWindow("Your report has been sent to the administrator");
             else errorWindow("Error code: " + errorCode);
+
+            messageArea.setText(""); //Clears text on send
         });
         return b;
     }

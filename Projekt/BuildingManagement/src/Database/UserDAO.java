@@ -222,6 +222,20 @@ public class UserDAO {
         }
     }
 
+    public String getReportMessage(int id) throws SQLException {
+        String sql = "SELECT message FROM reports WHERE id = ?";
+
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("message");
+            }
+        }
+        return null;
+    }
+
     public int getUserApartment(String username) throws SQLException {
         String sql = "SELECT nr FROM apartments WHERE userid = (SELECT id FROM users WHERE username = ?)";
 

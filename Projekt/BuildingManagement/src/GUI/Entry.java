@@ -124,6 +124,7 @@ public class Entry extends Window {
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }
+                    pinText.setText("");
                     break;
                 case "Clear":
                     pinText.setText("");
