@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Maj 18, 2025 at 02:03 PM
+-- Generation Time: Maj 19, 2025 at 05:43 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -42,13 +42,10 @@ CREATE TABLE `apartments` (
 --
 
 INSERT INTO `apartments` (`id`, `nr`, `electricity`, `light`, `watertemp`, `airtemp`, `userid`) VALUES
-(1, 0, 0, 0, 4.4, -4.6, 1),
-(7, 13, 0, 1, 39.6, 5.5, 30),
-(8, 14, 0, 0, 37.1, 6.8, NULL),
-(14, 98, 0, 0, 32.0, 12.0, 27),
-(17, 67, 1, 0, 32.0, 12.0, 23),
-(18, 76, 0, 0, 30.6, 13.0, 25),
-(23, 12, 0, 0, 32.0, 12.0, NULL);
+(17, 67, 1, 1, 31.8, 12.9, 23),
+(25, 10, 0, 0, NULL, NULL, NULL),
+(26, 25, 0, 0, NULL, NULL, NULL),
+(27, 100, 0, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -80,15 +77,9 @@ CREATE TABLE `reports` (
   `message` varchar(150) NOT NULL,
   `username` varchar(25) DEFAULT NULL,
   `userid` int(11) DEFAULT NULL,
-  `apartmentnr` int(11) NOT NULL
+  `apartmentnr` int(11) NOT NULL,
+  `description` varchar(100) DEFAULT 'No description'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `reports`
---
-
-INSERT INTO `reports` (`id`, `messagetime`, `message`, `username`, `userid`, `apartmentnr`) VALUES
-(3, '2025-05-17 17:45:41', 'testowy report 3', 'Karol', 23, 67);
 
 -- --------------------------------------------------------
 
@@ -109,12 +100,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `role`, `pin`, `username`) VALUES
 (1, 'admin', '9999', 'admin'),
-(23, 'user', '1234', 'Karol'),
-(25, 'user', '1234', 'koks'),
-(26, 'user', '1234', 'koksss'),
-(27, 'user', '1234', 'test'),
-(28, 'admin', '1234', 'test2'),
-(30, 'user', '1234', 'user');
+(23, 'user', '1234', 'Karol');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -156,7 +142,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `apartments`
 --
 ALTER TABLE `apartments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `doorstatus`
@@ -168,13 +154,13 @@ ALTER TABLE `doorstatus`
 -- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Constraints for dumped tables
