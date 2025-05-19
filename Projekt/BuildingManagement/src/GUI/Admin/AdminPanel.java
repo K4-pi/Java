@@ -27,7 +27,7 @@ public class AdminPanel extends Window {
 
         // List and reports panel
         JPanel combined = new JPanel(new GridLayout(1, 1));
-        combined.add(displayLists());
+        combined.add(displayPanel());
 
         // main panel
         mainPanel.add(combined, BorderLayout.CENTER);
@@ -37,7 +37,7 @@ public class AdminPanel extends Window {
     }
 
     // List of apartments and field for choosing apartment
-    private JPanel displayLists() throws SQLException {
+    private JPanel displayPanel() throws SQLException {
         // Lists
         JScrollPane apartmentsList = CustomComponents.getList(userDAO.getApartments());
         JScrollPane usersList = CustomComponents.getList(userDAO.getUsers());
@@ -58,8 +58,8 @@ public class AdminPanel extends Window {
         chooseApartmentField.setPreferredSize(new Dimension(100, 30));
         reportField.setPreferredSize(new Dimension(100, 30));
 
-        JButton applyBtn = new JButton("Modify");
-        applyBtn.addActionListener(_ -> {
+        JButton modifyApartmentBtn = new JButton("Modify");
+        modifyApartmentBtn.addActionListener(_ -> {
             // Get apartment number
             int nr = -1;
             String choosenNumber = chooseApartmentField.getText();
@@ -107,18 +107,21 @@ public class AdminPanel extends Window {
         reportPanel.add(reportField);
         reportPanel.add(reportBtn);
 
+        JPanel apartmentPanel = new JPanel(new FlowLayout());
+        apartmentPanel.add(new JLabel("Modify apartment nr: "));
+        apartmentPanel.add(chooseApartmentField);
+        apartmentPanel.add(modifyApartmentBtn);
+
         JPanel buttonsPanel = new JPanel(new FlowLayout());
         buttonsPanel.add(addBtn);
         buttonsPanel.add(removeBtn);
-        buttonsPanel.add(new JLabel("Apartment nr: "));
-        buttonsPanel.add(chooseApartmentField);
-        buttonsPanel.add(applyBtn);
 
         // List and field for choosing apartment
         JPanel combinedPanel = new JPanel();
         combinedPanel.setLayout(new BoxLayout(combinedPanel, BoxLayout.Y_AXIS));
         combinedPanel.add(combineListsPanel);
         combinedPanel.add(buttonsPanel);
+        combinedPanel.add(apartmentPanel);
         combinedPanel.add(reportPanel);
 
         return combinedPanel;
