@@ -52,7 +52,7 @@ public class UserDAO {
     // Delete user
     public int deleteUserDB(String username) {
         String sqlNullForeignKey = "UPDATE apartments SET userid = NULL WHERE userid = (SELECT id FROM users WHERE username = ?)";
-        String sqlDeleteUser = "DELETE FROM users WHERE username = ? AND role = 'user'";
+        String sqlDeleteUser = "DELETE FROM users WHERE username = ? AND NOT username = 'admin'";
 
         try (Connection con = DatabaseConnection.getConnection();
              PreparedStatement stmt1 = con.prepareStatement(sqlNullForeignKey);
