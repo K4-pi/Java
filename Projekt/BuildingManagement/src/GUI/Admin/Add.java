@@ -52,14 +52,15 @@ public class Add extends Window  {
     }
 
     private JPanel addUserToApartment() {
-        JPanel addUserToApartmentPanel = new JPanel(new GridLayout(4, 1));
+        JPanel addUserToApartmentPanel = new JPanel();
+        addUserToApartmentPanel.setLayout(new BoxLayout(addUserToApartmentPanel, BoxLayout.Y_AXIS));
 
-        JLabel addUserToApartmentLabel = new JLabel("  Add user to apartment: ");
         JLabel usernameLabel = new JLabel("Username: ");
         JLabel apartmentLabel = new JLabel("Apartment: ");
 
         JPanel usernamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JPanel apartmentPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel buttonPanel = new JPanel(new BorderLayout());
 
         JTextField username = new JTextField(10);
         username.setPreferredSize(new Dimension(100, 30));
@@ -67,17 +68,16 @@ public class Add extends Window  {
         JTextField apartment = new JTextField(10);
         apartment.setPreferredSize(new Dimension(100, 30));
 
-        JButton addBtn = addUserToApartmentBtn(username, apartment);
+        buttonPanel.add(addUserToApartmentBtn(username, apartment), BorderLayout.PAGE_END);
 
         usernamePanel.add(usernameLabel);
         usernamePanel.add(username);
         apartmentPanel.add(apartmentLabel);
         apartmentPanel.add(apartment);
 
-        addUserToApartmentPanel.add(addUserToApartmentLabel);
         addUserToApartmentPanel.add(usernamePanel);
         addUserToApartmentPanel.add(apartmentPanel);
-        addUserToApartmentPanel.add(addBtn, new FlowLayout(FlowLayout.LEFT));
+        addUserToApartmentPanel.add(buttonPanel);
 
         return addUserToApartmentPanel;
     }
@@ -107,9 +107,8 @@ public class Add extends Window  {
 
     private JPanel addUser() {
         JPanel addUserPanel = new JPanel();
-        addUserPanel.setLayout(new GridLayout(5, 1));
+        addUserPanel.setLayout(new BoxLayout(addUserPanel, BoxLayout.Y_AXIS));
 
-        JLabel addUserLabel = new JLabel("  Add user: ");
         JLabel usernameLabel = new JLabel("Username: ");
         JLabel pinLabel = new JLabel("PIN: ");
         JLabel roleLabel = new JLabel("Role: ");
@@ -117,6 +116,7 @@ public class Add extends Window  {
         JPanel pinPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JPanel usernamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JPanel rolePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel buttonPanel = new JPanel(new BorderLayout());
 
         JTextField username = new JTextField();
         username.setPreferredSize(new Dimension(100, 30));
@@ -127,7 +127,7 @@ public class Add extends Window  {
         String[] choices = {"user", "admin"};
         JComboBox<String> role = new JComboBox<>(choices);
 
-        JButton addBtn = addUserBtn(username, pin, role);
+        buttonPanel.add(addUserBtn(username, pin, role), BorderLayout.PAGE_END);
 
         usernamePanel.add(usernameLabel);
         usernamePanel.add(username);
@@ -136,11 +136,10 @@ public class Add extends Window  {
         rolePanel.add(roleLabel);
         rolePanel.add(role);
 
-        addUserPanel.add(addUserLabel);
         addUserPanel.add(usernamePanel);
         addUserPanel.add(pinPanel);
         addUserPanel.add(rolePanel);
-        addUserPanel.add(addBtn, new FlowLayout(FlowLayout.LEFT));
+        addUserPanel.add(buttonPanel);
         return addUserPanel;
     }
 
@@ -182,24 +181,24 @@ public class Add extends Window  {
     }
 
     private JPanel addApartment() {
-        JPanel addApartmentPanel = new JPanel(new GridLayout(3, 1));
+        JPanel addApartmentPanel = new JPanel();
+        addApartmentPanel.setLayout(new BoxLayout(addApartmentPanel, BoxLayout.Y_AXIS));
 
-        JLabel addApartmentLabel = new JLabel("  Add apartment: ");
         JLabel apartmentNrLabel = new JLabel("NR: ");
 
         JPanel apartmentPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel buttonPanel = new JPanel(new BorderLayout());
 
         JTextField nr = new JTextField();
         nr.setPreferredSize(new Dimension(100, 30));
 
-        JButton addBtn = addApartmentBtn(nr);
+        buttonPanel.add(addApartmentBtn(nr), BorderLayout.PAGE_END);
 
         apartmentPanel.add(apartmentNrLabel);
         apartmentPanel.add(nr);
 
-        addApartmentPanel.add(addApartmentLabel);
         addApartmentPanel.add(apartmentPanel);
-        addApartmentPanel.add(addBtn, new FlowLayout(FlowLayout.LEFT));
+        addApartmentPanel.add(buttonPanel);
         return addApartmentPanel;
     }
 

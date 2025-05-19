@@ -76,13 +76,13 @@ public class AdminPanel extends Window {
         JButton addBtn = new JButton("Add");
         addBtn.addActionListener(_ -> {
             this.dispose();
-            new Add("Add", 400, 400, false, false, true).run();
+            new Add("Add", 400, 300, false, false, true).run();
         });
 
         JButton removeBtn = new JButton("Remove");
         removeBtn.addActionListener(_ -> {
             this.dispose();
-            new Remove("Remove", 400, 150, false, false, true).run();
+            new Remove("Remove", 300, 200, false, false, true).run();
         });
 
         JPanel buttonsPanel = new JPanel(new FlowLayout());

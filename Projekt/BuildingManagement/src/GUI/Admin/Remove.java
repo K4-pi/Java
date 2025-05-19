@@ -52,17 +52,19 @@ public class Remove extends Window {
     private JPanel removeReport() {
         JPanel removeReportPanel = new JPanel();
         removeReportPanel.setLayout(new BoxLayout(removeReportPanel, BoxLayout.Y_AXIS));
-        JLabel reportLabel = new JLabel("ID: ");
+        JLabel reportLabel = new JLabel("Report ID: ");
 
+        JPanel buttonPanel = new JPanel(new BorderLayout());
         JPanel componentsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JTextField idField = new JTextField();
         idField.setPreferredSize(new Dimension(100, 30));
-        JButton removeBtn = removeReportBtn(idField);
 
+        buttonPanel.add(removeReportBtn(idField), BorderLayout.PAGE_END);
         componentsPanel.add(reportLabel);
         componentsPanel.add(idField);
-        componentsPanel.add(removeBtn);
+
         removeReportPanel.add(componentsPanel);
+        removeReportPanel.add(buttonPanel);
         return removeReportPanel;
     }
 
@@ -89,17 +91,18 @@ public class Remove extends Window {
         JPanel removeUserPanel = new JPanel();
         removeUserPanel.setLayout(new BoxLayout(removeUserPanel, BoxLayout.Y_AXIS));
 
+        JPanel buttonPanel = new JPanel(new BorderLayout());
         JLabel username = new JLabel("Username: ");
         JTextField usernameField = new JTextField(10);
         usernameField.setPreferredSize(new Dimension(200, 30));
         JPanel combinedPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JButton applyBtn = removeUserBtn(usernameField);
 
+        buttonPanel.add(removeUserBtn(usernameField), BorderLayout.PAGE_END);
         combinedPanel.add(username);
         combinedPanel.add(usernameField);
-        combinedPanel.add(applyBtn);
 
         removeUserPanel.add(combinedPanel);
+        removeUserPanel.add(buttonPanel);
         return removeUserPanel;
     }
 
@@ -119,17 +122,18 @@ public class Remove extends Window {
         JPanel removeApartmentPanel = new JPanel();
         removeApartmentPanel.setLayout(new BoxLayout(removeApartmentPanel, BoxLayout.Y_AXIS));
 
+        JPanel buttonPanel = new JPanel(new BorderLayout());
         JLabel apartment = new JLabel("Apartment NR: ");
         JTextField apartmentField = new JTextField(10);
         apartmentField.setPreferredSize(new Dimension(200, 30));
         JPanel combinedPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JButton applyBtn = removeApartmentBtn(apartmentField);
 
+        buttonPanel.add(removeApartmentBtn(apartmentField), BorderLayout.PAGE_END);
         combinedPanel.add(apartment);
         combinedPanel.add(apartmentField);
-        combinedPanel.add(applyBtn);
 
         removeApartmentPanel.add(combinedPanel);
+        removeApartmentPanel.add(buttonPanel);
         return removeApartmentPanel;
     }
 
