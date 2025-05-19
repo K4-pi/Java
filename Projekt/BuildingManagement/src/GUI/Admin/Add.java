@@ -97,6 +97,14 @@ public class Add extends Window  {
                 errorWindow("Usernames must be less than 25 characters!");
                 return;
             }
+            if (usernameValue.isEmpty()) {
+                errorWindow("Provide username!");
+                return;
+            }
+            if (apartmentValue.isEmpty()) {
+                errorWindow("Provide apartment number!");
+                return;
+            }
 
             errorCode = userDAO.addUserToApartmentDB(usernameValue, apartmentValue);
             if (errorCode == 0) messageWindow("User: " + usernameValue + " added to apartment: " + apartmentValue);
@@ -151,8 +159,16 @@ public class Add extends Window  {
             String usernameValue = username.getText();
             String roleValue = Objects.requireNonNull(role.getSelectedItem()).toString();
 
+            if (usernameValue.isEmpty()) {
+                errorWindow("Provide username!");
+                return;
+            }
             if (usernameValue.length() > 25) {
                 errorWindow("Usernames must be less than 25 characters!");
+                return;
+            }
+            if (pinValue.isEmpty()) {
+                errorWindow("Provide PIN!");
                 return;
             }
             if (pinValue.length() > 4) {
@@ -165,17 +181,9 @@ public class Add extends Window  {
             }
 
             errorCode = userDAO.addUserToDB(usernameValue, pinValue, roleValue);
-            switch (errorCode) {
-                case 0:
-                    messageWindow("User: " + usernameValue + " added");
-                    break;
-                case 1062:
-                    errorWindow("User already exists!");
-                    break;
-                default:
-                    System.out.println("Error number: " + errorCode);
-                    break;
-            }
+            if (errorCode == 0) messageWindow("User: " + usernameValue + " added");
+            else if (errorCode == 1062) errorWindow("User already exists!");
+            else errorWindow("Error number: " + errorCode);
         });
         return userBtn;
     }
@@ -207,29 +215,22 @@ public class Add extends Window  {
 
         addBtn.addActionListener(_ -> {
             System.out.println("PIN: " + nr.getText());
-            String pin = nr.getText();
+            String apartmentNr = nr.getText();
 
-            if (!CustomComponents.isNumber(pin)) {
+            if (!CustomComponents.isNumber(apartmentNr)) {
                 errorWindow("Apartment number must be a number!");
                 return;
             }
-
-            errorCode = userDAO.addApartmentToDB(pin);
-
-            switch (errorCode) {
-                case 0:
-                    messageWindow("Apartment " + nr.getText() + " added");
-                    break;
-                case 1062:
-                    errorWindow("Apartment already exists!");
-                    break;
-                default:
-                    System.out.println("Error number: " + errorCode);
-                    break;
+            if (apartmentNr.isEmpty()) {
+                errorWindow("Provide apartment number!");
+                return;
             }
+
+            errorCode = userDAO.addApartmentToDB(apartmentNr);
+            if (errorCode == 0) messageWindow("Apartment " + nr.getText() + " added");
+            else if (errorCode == 1062) errorWindow("Apartment already exists!");
+            else errorWindow("Error number: " + errorCode);
         });
         return addBtn;
     }
-
-
 }

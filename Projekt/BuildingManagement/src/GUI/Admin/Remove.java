@@ -73,7 +73,7 @@ public class Remove extends Window {
         removeBtn.addActionListener(_ -> {
             String id = idField.getText();
             if (id.isEmpty()) {
-                errorWindow("ID cannot be empty!");
+                errorWindow("Provide report ID!");
                 return;
             }
             if (!CustomComponents.isNumber(id)) {
@@ -110,7 +110,10 @@ public class Remove extends Window {
         JButton removeBtn = new JButton("REMOVE");
         removeBtn.addActionListener(_ -> {
             String username = usernameField.getText();
-
+            if (username.isEmpty()) {
+                errorWindow("Provide username!");
+                return;
+            }
             errorCode = userDAO.deleteUserDB(username);
             if (errorCode == 0) messageWindow("User: " + username + " removed!");
             else errorWindow("Error: " + errorCode);
@@ -143,6 +146,10 @@ public class Remove extends Window {
             String apartment = apartmentField.getText();
             if (!CustomComponents.isNumber(apartment)) {
                 errorWindow("Apartment number must be a number!");
+                return;
+            }
+            if (apartment.isEmpty()) {
+                errorWindow("Provide apartment number!");
                 return;
             }
             errorCode = userDAO.deleteApartmentDB(Integer.parseInt(apartment));
