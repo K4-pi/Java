@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class ApartmentPanel extends Window {
     private final UserDAO userDAO = new UserDAO();
     private final int apartmentNr;
-    private JTextArea apartmentLabel;
+    private JList<String> apartmentLabel;
 
     public ApartmentPanel(String title, int sizeX, int sizeY, boolean resizable, boolean maximize, boolean disposeOnClose, int apartmentNr) {
         super(title, sizeX, sizeY, resizable, maximize, disposeOnClose);
@@ -25,12 +25,12 @@ public class ApartmentPanel extends Window {
     public void run(JFrame parent) throws SQLException {
         JPanel mainPanel = new JPanel(new BorderLayout());
 
-        apartmentLabel = new JTextArea(6, 14);
-        JScrollPane scrollPane = new JScrollPane(apartmentLabel);
+//        apartmentLabel = new JTextArea(6, 14);
+//        JScrollPane scrollPane = new JScrollPane(apartmentLabel);
+        apartmentLabel = new JList<>();
+
         apartmentLabel.setVisible(true);
-        apartmentLabel.setEditable(false);
         apartmentLabel.setFocusable(false);
-        scrollPane.setVisible(true);
         showApartmentLabel();
 
         // On exit set parent window editable
@@ -50,7 +50,7 @@ public class ApartmentPanel extends Window {
         buttonsPanel.add(CustomComponents.switchButtonBoolean("Light", booleanButtonOnListener("light"), booleanButtonOffListener("light")));
 
         JPanel apartmentPanel = new JPanel(new FlowLayout());
-        apartmentPanel.add(scrollPane);
+        apartmentPanel.add(apartmentLabel);
 
         mainPanel.add(apartmentPanel, BorderLayout.CENTER);
         mainPanel.add(buttonsPanel, BorderLayout.PAGE_END);
@@ -103,13 +103,15 @@ public class ApartmentPanel extends Window {
 
     private void showApartmentLabel() throws SQLException {
         ArrayList<Object> list = userDAO.getApartment(apartmentNr);
+        DefaultListModel<String> listModel = new DefaultListModel<>();
 
-        apartmentLabel.setText(""); // Clear the text
-        apartmentLabel.append("Apartment number: " + list.get(0) + "\n");
-        apartmentLabel.append("Electricity: " + list.get(1) + "\n");
-        apartmentLabel.append("Light: " + list.get(2) + "\n");
-        apartmentLabel.append("Air temp: " + list.get(3) + " Celsius\n");
-        apartmentLabel.append("Water temp: " + list.get(4) + " Celsius\n");
+        listModel.addElement("Apartment number: " + list.get(0));
+        listModel.addElement("Electricity: " + list.get(1));
+        listModel.addElement("Light: " + list.get(2));
+        listModel.addElement("Air temp: " + list.get(3) + " Celsius");
+        listModel.addElement("Water temp: " + list.get(4) + " Celsius");
+
+        apartmentLabel.setModel(listModel);
     }
 }
 

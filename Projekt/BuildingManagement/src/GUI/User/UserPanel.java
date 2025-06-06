@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public class UserPanel extends Window {
     private final UserDAO userDAO = new UserDAO();
     private int apartmentNr;
-    private JTextArea infoArea;
+    private JList<String> apartmentInfoArea;
+    private JList<String> userInfoArea;
     String username;
 
     public UserPanel(String title, int sizeX, int sizeY, boolean resizable, boolean maximized, String username) {
@@ -27,15 +28,29 @@ public class UserPanel extends Window {
 
         apartmentNr = userDAO.getUserApartment(username);
 
-        // User info panel
-        infoArea = new JTextArea(12, 50);
-        JScrollPane scrollPane = new JScrollPane(infoArea);
-        infoArea.setEditable(false);
-        infoArea.setFocusable(false);
-        updateInfo(infoArea);
+        // User/Apartment info panel
+        JPanel infoPanel = new JPanel();
+        infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 
-        JPanel infoPanel = new JPanel(new BorderLayout());
-        infoPanel.add(scrollPane, BorderLayout.WEST);
+        // User
+        JLabel userLabel = new JLabel("USER");
+        userLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        userInfoArea = new JList<>();
+        userInfoArea.setFocusable(false);
+        updateUserInfo();
+
+        // Apartment
+        JLabel apartmentLabel = new JLabel("APARTMENT");
+        apartmentLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        apartmentInfoArea = new JList<>();
+        apartmentInfoArea.setFocusable(false);
+        updateApartmentInfo();
+
+        infoPanel.add(userLabel);
+        infoPanel.add(userInfoArea);
+        infoPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        infoPanel.add(apartmentLabel);
+        infoPanel.add(apartmentInfoArea);
 
         // Buttons that update parameters
         JPanel buttonsPanel = new JPanel(new GridLayout(2, 2, 5, 5));
@@ -43,14 +58,17 @@ public class UserPanel extends Window {
         buttonsPanel.add(CustomComponents.switchButtonDouble("Water temp", doubleUpListener("watertemp"), doubleDownListener("watertemp")));
         buttonsPanel.add(CustomComponents.switchButtonBoolean("Electricity", booleanButtonOnListener("electricity"), booleanButtonOffListener("electricity")));
         buttonsPanel.add(CustomComponents.switchButtonBoolean("Light", booleanButtonOnListener("light"), booleanButtonOffListener("light")));
-        infoPanel.add(buttonsPanel, BorderLayout.CENTER);
 
         // Logout button
         JPanel logoutPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         logoutPanel.add(sendReportPanel());
         logoutPanel.add(CustomComponents.logOutButton());
 
-        mainPanel.add(infoPanel, BorderLayout.CENTER);
+        JPanel combined = new JPanel(new GridLayout(1, 2));
+        combined.add(infoPanel);
+        combined.add(buttonsPanel);
+
+        mainPanel.add(combined, BorderLayout.CENTER);
         mainPanel.add(logoutPanel, BorderLayout.SOUTH);
 
         this.add(mainPanel);
@@ -65,32 +83,32 @@ public class UserPanel extends Window {
         return b;
     }
 
-    private void updateInfo(JTextArea infoText) throws SQLException {
-        infoText.setText(" ".repeat(10) + "|User|" + "\n"); // Clear the text
-
-        // User
+    private void updateUserInfo() throws SQLException {
+        DefaultListModel<String> userModel = new DefaultListModel<>();
         ArrayList<String> userList = userDAO.getUser(username);
-        infoText.append("ID: " + userList.get(0) + "\n");
-        infoText.append("Role: " + userList.get(1) + "\n");
-        infoText.append("Username: " + userList.get(2) + "\n");
-        infoText.append("PIN: " + userList.get(3) + "\n\n");
+        userModel.addElement("ID: " + userList.get(0));
+        userModel.addElement("Role: " + userList.get(1));
+        userModel.addElement("Username: " + userList.get(2));
+        userModel.addElement("PIN: " + userList.get(3));
+        userInfoArea.setModel(userModel);
+    }
 
-        infoText.append(" ".repeat(10) + "|Apartment|" + "\n");
-
-        // Apartment
+    private void updateApartmentInfo() throws SQLException {
+        DefaultListModel<String> apartmentModel = new DefaultListModel<>();
         ArrayList<Object> list = userDAO.getApartment(apartmentNr);
-        infoText.append("Apartment number: " + list.get(0) + "\n");
-        infoText.append("Electricity: " + list.get(1) + "\n");
-        infoText.append("Light: " + list.get(2) + "\n");
-        infoText.append("Air temp: " + list.get(3) + " Celsius\n");
-        infoText.append("Water temp: " + list.get(4) + " Celsius\n");
+        apartmentModel.addElement("Apartment number: " + list.get(0));
+        apartmentModel.addElement("Electricity: " + list.get(1));
+        apartmentModel.addElement("Light: " + list.get(2));
+        apartmentModel.addElement("Air temp: " + list.get(3) + " Celsius");
+        apartmentModel.addElement("Water temp: " + list.get(4) + " Celsius");
+        apartmentInfoArea.setModel(apartmentModel);
     }
 
     private ActionListener booleanButtonOnListener(String SQLColumnName) {
         return _ -> {
             try {
                 userDAO.updateBooleanValue(SQLColumnName, true, apartmentNr);
-                updateInfo(infoArea);
+                updateApartmentInfo();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
@@ -101,7 +119,7 @@ public class UserPanel extends Window {
         return _ -> {
             try {
                 userDAO.updateBooleanValue(SQLColumnName, false, apartmentNr);
-                updateInfo(infoArea);
+                updateApartmentInfo();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
@@ -112,7 +130,7 @@ public class UserPanel extends Window {
         return _ -> {
             try {
                 userDAO.updateDoubleValue(SQLColumnName, 0.1, apartmentNr);
-                updateInfo(infoArea);
+                updateApartmentInfo();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
@@ -123,7 +141,7 @@ public class UserPanel extends Window {
         return _ -> {
             try {
                 userDAO.updateDoubleValue(SQLColumnName, -0.1, apartmentNr);
-                updateInfo(infoArea);
+                updateApartmentInfo();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
