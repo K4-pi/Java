@@ -64,6 +64,11 @@ public class ReportPanel extends Window {
             String description = desccriptionArea.getText();
             String message = messageArea.getText();
 
+            if (description.isEmpty() || message.isEmpty()) {
+                errorWindow("Please fill in all fields");
+                return;
+            }
+
             errorCode = userDAO.addReport(message, description, username, apartmentNr, userId);
             if (errorCode == 0) messageWindow("Your report has been sent to the administrator");
             else errorWindow("Error code: " + errorCode);
