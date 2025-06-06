@@ -34,7 +34,7 @@ public class Remove extends Window {
         CardLayout mainLayout = new CardLayout();
         JPanel mainPanel = new JPanel(mainLayout);
 
-        String[] panelNames = {"Remove user", "Remove apartment", "Remove report"};
+        String[] panelNames = {"Remove user", "Remove apartment", "Remove report", "Empty apartment"};
         JComboBox<String> comboBox = new JComboBox<>(panelNames);
         comboBox.addActionListener(_ -> {
             String selectedPanel = (String) comboBox.getSelectedItem();
@@ -43,6 +43,7 @@ public class Remove extends Window {
         mainPanel.add(removeUser(), "Remove user");
         mainPanel.add(removeApartment(), "Remove apartment");
         mainPanel.add(removeReport(), "Remove report");
+        mainPanel.add(emptyApartment(), "Empty apartment");
 
         this.setLayout(new BorderLayout());
         this.add(comboBox, BorderLayout.NORTH);
@@ -158,6 +159,44 @@ public class Remove extends Window {
             }
             errorCode = userDAO.deleteApartmentDB(Integer.parseInt(apartment));
             if (errorCode == 0) messageWindow("Apartment nr: " + apartment + " removed!");
+            else errorWindow("Error: " + errorCode);
+        });
+        return removeBtn;
+    }
+
+    private JPanel emptyApartment() {
+        JPanel removeUserFromApartmentPanel = new JPanel();
+        removeUserFromApartmentPanel.setLayout(new BoxLayout(removeUserFromApartmentPanel, BoxLayout.Y_AXIS));
+
+        JPanel buttonPanel = new JPanel(new BorderLayout());
+        JLabel apartment = new JLabel("Apartment NR: ");
+        JTextField apartmentField = new JTextField(10);
+
+        apartmentField.setPreferredSize(new Dimension(200, 30));
+        JPanel combinedPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        buttonPanel.add(emptyApartmentBtn(apartmentField), BorderLayout.PAGE_END);
+        combinedPanel.add(apartment);
+        combinedPanel.add(apartmentField);
+
+        removeUserFromApartmentPanel.add(combinedPanel);
+        removeUserFromApartmentPanel.add(buttonPanel);
+        return removeUserFromApartmentPanel;
+    }
+    private JButton emptyApartmentBtn(JTextField apartmentField) {
+        JButton removeBtn = new JButton("REMOVE");
+        removeBtn.addActionListener(_ -> {
+            String apartment = apartmentField.getText();
+            if (!CustomComponents.isNumber(apartment)) {
+                errorWindow("Apartment number must be a number!");
+                return;
+            }
+            if (apartment.isEmpty()) {
+                errorWindow("Provide apartment number!");
+                return;
+            }
+            errorCode = userDAO.deleteUserFromApartmentDB(Integer.parseInt(apartmentField.getText()));
+            if (errorCode == 0) messageWindow("Users from apartment nr: " + apartment + " removed!");
             else errorWindow("Error: " + errorCode);
         });
         return removeBtn;

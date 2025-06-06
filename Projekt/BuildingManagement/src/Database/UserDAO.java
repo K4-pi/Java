@@ -82,6 +82,20 @@ public class UserDAO {
         return 0;
     }
 
+    //Delete user from apartment
+    public int deleteUserFromApartmentDB(int apartmentNr) {
+        String sql = "UPDATE apartments SET userid = NULL WHERE nr = ?";
+
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setInt(1, apartmentNr);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            return e.getErrorCode();
+        }
+        return 0;
+    }
+
     // Update double value
     public void updateDoubleValue(String column, double value, int apartmentNr) throws SQLException {
         String sql = "UPDATE apartments SET " + column + " = " + column + " + ? WHERE nr = ?";
