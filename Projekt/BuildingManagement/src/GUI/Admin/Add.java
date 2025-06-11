@@ -104,6 +104,14 @@ public class Add extends AdminPanel {
                 errorWindow("Provide apartment number!");
                 return;
             }
+            try {
+                if (!userDAO.apartmentExists(Integer.parseInt(apartmentValue))) {
+                    errorWindow("Apartment does not exist!");
+                    return;
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
 
             errorCode = userDAO.addUserToApartmentDB(usernameValue, apartmentValue);
             if (errorCode == 0) messageWindow("User: " + usernameValue + " added to apartment: " + apartmentValue);

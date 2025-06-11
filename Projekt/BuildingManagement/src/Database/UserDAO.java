@@ -31,6 +31,18 @@ public class UserDAO {
         }
     }
 
+    // Apartment exists
+    public boolean apartmentExists(int apartmentNr) throws SQLException {
+        String sql = "SELECT * FROM apartments WHERE nr = ?";
+
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, apartmentNr);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next();
+        }
+    }
+
     //update door status
     public void updateDoorStatus(boolean status) throws SQLException {
         String sql = "UPDATE doorstatus SET isclosed = ? WHERE id = 1";
