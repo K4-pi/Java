@@ -99,6 +99,9 @@ public class Entry extends Window {
             if (userDAO.isClosed()) {
                 errorWindow("Building is closed!");
             }
+            else if(!userDAO.userHasApartment(username)) {
+                errorWindow("You don't have an apartment!");
+            }
             else {
                 new UserPanel("User panel", 700, 500, false, false, username).run();
                 this.dispose();

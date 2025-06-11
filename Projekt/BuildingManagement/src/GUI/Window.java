@@ -3,7 +3,7 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
-public class Window extends JFrame{
+public abstract class Window extends JFrame{
 
     public Window(String title, int sizeX, int sizeY, boolean resizable, boolean maximized) {
         //Almost centers the window in the middle of a screen

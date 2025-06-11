@@ -19,6 +19,18 @@ public class UserDAO {
         }
     }
 
+    // Check if user have apartment
+    public boolean userHasApartment(String username) throws SQLException {
+        String sql = "SELECT * FROM apartments WHERE userid = (SELECT id FROM users WHERE username = ?)";
+
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next();
+        }
+    }
+
     //update door status
     public void updateDoorStatus(boolean status) throws SQLException {
         String sql = "UPDATE doorstatus SET isclosed = ? WHERE id = 1";
