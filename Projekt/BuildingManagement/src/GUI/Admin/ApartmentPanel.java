@@ -2,7 +2,6 @@ package GUI.Admin;
 
 import Database.UserDAO;
 import GUI.CustomComponents;
-import GUI.Window;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +11,7 @@ import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ApartmentPanel extends Window {
+public class ApartmentPanel extends AdminPanel {
     private final UserDAO userDAO = new UserDAO();
     private final int apartmentNr;
     private JList<String> apartmentLabel;

@@ -48,7 +48,6 @@ public class Entry extends Window {
 
         // Buttons
         JPanel buttonPanel = new JPanel(new GridLayout(4, 3));
-
         JButton[] btns = {
             new JButton("7"),
             new JButton("8"),
@@ -90,11 +89,13 @@ public class Entry extends Window {
 
     //On enter button function
     private void onEnter(String pin) throws SQLException {
+        // Check if admin
         if (userDAO.authenticateUser("admin", pin, username)) {
             new AdminPanel(username + "'s panel", 800, 600, true, true).run();
             this.dispose();
             System.out.println("PIN accepted");
         }
+        // Check if user
         else if (userDAO.authenticateUser("user", pin, username)) {
             if (userDAO.isClosed()) {
                 errorWindow("Building is closed!");

@@ -83,6 +83,7 @@ public class UserPanel extends Window {
         return b;
     }
 
+    //refreshes user info
     private void updateUserInfo() throws SQLException {
         DefaultListModel<String> userModel = new DefaultListModel<>();
         ArrayList<String> userList = userDAO.getUser(username);
@@ -93,6 +94,7 @@ public class UserPanel extends Window {
         userInfoArea.setModel(userModel);
     }
 
+    //refreshes apartment info
     private void updateApartmentInfo() throws SQLException {
         DefaultListModel<String> apartmentModel = new DefaultListModel<>();
         ArrayList<Object> list = userDAO.getApartment(apartmentNr);
@@ -104,6 +106,7 @@ public class UserPanel extends Window {
         apartmentInfoArea.setModel(apartmentModel);
     }
 
+    // On button
     private ActionListener booleanButtonOnListener(String SQLColumnName) {
         return _ -> {
             try {
@@ -115,6 +118,7 @@ public class UserPanel extends Window {
         };
     }
 
+    // Off button
     private ActionListener booleanButtonOffListener(String SQLColumnName) {
         return _ -> {
             try {
@@ -126,6 +130,7 @@ public class UserPanel extends Window {
         };
     }
 
+    // Up button
     private ActionListener doubleUpListener(String SQLColumnName) {
         return _ -> {
             try {
@@ -137,6 +142,7 @@ public class UserPanel extends Window {
         };
     }
 
+    // Down button
     private ActionListener doubleDownListener(String SQLColumnName) {
         return _ -> {
             try {

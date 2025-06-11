@@ -2,7 +2,6 @@ package GUI.Admin;
 
 import Database.UserDAO;
 import GUI.CustomComponents;
-import GUI.Window;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +10,7 @@ import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class Add extends Window  {
+public class Add extends AdminPanel {
     private final UserDAO userDAO = new UserDAO();
 
     private int errorCode = 0;

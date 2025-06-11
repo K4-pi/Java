@@ -15,6 +15,10 @@ public class AdminPanel extends Window {
         super(title, sizeX, sizeY, resizable, maximized);
     }
 
+    public AdminPanel(String title, int sizeX, int sizeY, boolean resizable, boolean maximized, boolean disposeOnClose) {
+        super(title, sizeX, sizeY, resizable, maximized, disposeOnClose);
+    }
+
     public void run() throws SQLException {
         JPanel mainPanel = new JPanel(new BorderLayout());
 

@@ -1,10 +1,8 @@
 package GUI.Admin;
 
-import GUI.Window;
-
 import javax.swing.*;
 
-public class ReportMessageWindow extends Window {
+public class ReportMessageWindow extends AdminPanel {
 
     public ReportMessageWindow(String title, int sizeX, int sizeY, boolean resizable, boolean maximized, boolean disposeOnClose, String message) {
         super(title, sizeX, sizeY, resizable, maximized, disposeOnClose);

@@ -27,7 +27,7 @@ public class ReportPanel extends Window {
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Go back to admin panel
+        // Go back to admin panel on close
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
@@ -57,6 +57,7 @@ public class ReportPanel extends Window {
         this.add(mainPanel);
     }
 
+    //Send report
     private JButton sendButtonReport(JTextArea messageArea, JTextField desccriptionArea) {
         JButton b = new JButton("Send");
         b.addActionListener(_ -> {
