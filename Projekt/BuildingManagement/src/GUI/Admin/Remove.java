@@ -182,6 +182,7 @@ public class Remove extends AdminPanel {
         removeUserFromApartmentPanel.add(buttonPanel);
         return removeUserFromApartmentPanel;
     }
+
     private JButton emptyApartmentBtn(JTextField apartmentField) {
         JButton removeBtn = new JButton("REMOVE");
         removeBtn.addActionListener(_ -> {

@@ -9,7 +9,7 @@ public class CustomComponents {
 
     // button that takes you back to main menu
     public static JButton logOutButton() {
-        JButton logoutBtn = new JButton("Log out");
+        JButton logoutBtn = new JButton("Logout");
         logoutBtn.setVisible(true);
 
         logoutBtn.addActionListener(_ -> {
