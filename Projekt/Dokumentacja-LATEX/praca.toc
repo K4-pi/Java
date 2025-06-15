@@ -18,8 +18,8 @@
 \contentsline {subsection}{\numberline {3.4.1}Klasa Window}{15}{subsection.3.4.1}%
 \contentsline {subsection}{\numberline {3.4.2}Klasa Main}{16}{subsection.3.4.2}%
 \contentsline {subsection}{\numberline {3.4.3}Weryfikacja użytkownika}{16}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}Dodawanie elemntów przez administratora}{17}{subsection.3.4.4}%
-\contentsline {subsection}{\numberline {3.4.5}Usuwanie elemntów przez administratora}{19}{subsection.3.4.5}%
+\contentsline {subsection}{\numberline {3.4.4}Dodawanie elementów przez administratora}{17}{subsection.3.4.4}%
+\contentsline {subsection}{\numberline {3.4.5}Usuwanie elementów przez administratora}{19}{subsection.3.4.5}%
 \contentsline {chapter}{\numberline {4}Harmonogram realizacji projektu}{21}{chapter.4}%
 \contentsline {section}{\numberline {4.1}System kontroli wersji}{21}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Diagram Gantta}{21}{section.4.2}%
