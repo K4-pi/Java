@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.5.25)  15 JUN 2025 17:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.5.25)  15 JUN 2025 17:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -870,6 +870,8 @@ LaTeX Font Info:    Trying to load font information for T1+pcr on input line 103
  (C:\Users\Kapi\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 ) (src/DatabaseConnection.java)
+
+[11 <./figures/phpadmin-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figures/project-struct.eps>
 (epstopdf)                    date: 2025-06-15 16:56:07
 (epstopdf)                    size: 7883822 bytes
@@ -877,16 +879,16 @@ Package epstopdf Info: Source file: <figures/project-struct.eps>
 (epstopdf)                    date: 2025-06-15 17:02:34
 (epstopdf)                    size: 170502 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/project-struct-eps-converted-to.pdf figures/project-struct.eps>
-(epstopdf)             \includegraphics on input line 112.
+(epstopdf)             \includegraphics on input line 113.
 Package epstopdf Info: Output file is already uptodate.
-<figures/project-struct-eps-converted-to.pdf, id=295, 1285.80376pt x 1015.795pt>
+<figures/project-struct-eps-converted-to.pdf, id=314, 1285.80376pt x 1015.795pt>
 File: figures/project-struct-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/project-struct-eps-converted-to.pdf>
-Package pdftex.def Info: figures/project-struct-eps-converted-to.pdf  used on input line 112.
+Package pdftex.def Info: figures/project-struct-eps-converted-to.pdf  used on input line 113.
 (pdftex.def)             Requested size: 426.79135pt x 337.16635pt.
 
 
-[11 <./figures/phpadmin-eps-converted-to.pdf>]
+[12 <./figures/project-struct-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figures/database.eps>
 (epstopdf)                    date: 2025-06-15 16:55:14
 (epstopdf)                    size: 2624296 bytes
@@ -894,19 +896,14 @@ Package epstopdf Info: Source file: <figures/database.eps>
 (epstopdf)                    date: 2025-06-15 17:02:36
 (epstopdf)                    size: 89278 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/database-eps-converted-to.pdf figures/database.eps>
-(epstopdf)             \includegraphics on input line 120.
+(epstopdf)             \includegraphics on input line 122.
 Package epstopdf Info: Output file is already uptodate.
-<figures/database-eps-converted-to.pdf, id=316, 648.4225pt x 669.50125pt>
+<figures/database-eps-converted-to.pdf, id=324, 648.4225pt x 669.50125pt>
 File: figures/database-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/database-eps-converted-to.pdf>
-Package pdftex.def Info: figures/database-eps-converted-to.pdf  used on input line 120.
+Package pdftex.def Info: figures/database-eps-converted-to.pdf  used on input line 122.
 (pdftex.def)             Requested size: 426.79135pt x 440.66673pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[12 <./figures/project-struct-eps-converted-to.pdf>]
 
 [13 <./figures/database-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figures/UML/main-panels.eps>
@@ -916,12 +913,12 @@ Package epstopdf Info: Source file: <figures/UML/main-panels.eps>
 (epstopdf)                    date: 2025-06-15 17:02:37
 (epstopdf)                    size: 91997 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/UML/main-panels-eps-converted-to.pdf figures/UML/main-panels.eps>
-(epstopdf)             \includegraphics on input line 134.
+(epstopdf)             \includegraphics on input line 136.
 Package epstopdf Info: Output file is already uptodate.
 <figures/UML/main-panels-eps-converted-to.pdf, id=333, 1207.51125pt x 560.0925pt>
 File: figures/UML/main-panels-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/UML/main-panels-eps-converted-to.pdf>
-Package pdftex.def Info: figures/UML/main-panels-eps-converted-to.pdf  used on input line 134.
+Package pdftex.def Info: figures/UML/main-panels-eps-converted-to.pdf  used on input line 136.
 (pdftex.def)             Requested size: 426.78091pt x 197.95822pt.
 Package epstopdf Info: Source file: <figures/UML/admin-extends.eps>
 (epstopdf)                    date: 2025-06-15 16:56:42
@@ -930,12 +927,12 @@ Package epstopdf Info: Source file: <figures/UML/admin-extends.eps>
 (epstopdf)                    date: 2025-06-15 17:02:39
 (epstopdf)                    size: 116438 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/UML/admin-extends-eps-converted-to.pdf figures/UML/admin-extends.eps>
-(epstopdf)             \includegraphics on input line 148.
+(epstopdf)             \includegraphics on input line 150.
 Package epstopdf Info: Output file is already uptodate.
 <figures/UML/admin-extends-eps-converted-to.pdf, id=334, 1506.62875pt x 641.39626pt>
 File: figures/UML/admin-extends-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/UML/admin-extends-eps-converted-to.pdf>
-Package pdftex.def Info: figures/UML/admin-extends-eps-converted-to.pdf  used on input line 148.
+Package pdftex.def Info: figures/UML/admin-extends-eps-converted-to.pdf  used on input line 150.
 (pdftex.def)             Requested size: 426.77287pt x 181.68411pt.
 
 
@@ -963,12 +960,12 @@ Package epstopdf Info: Source file: <figures/Gantt-EN.eps>
 (epstopdf)                    date: 2025-06-15 17:02:49
 (epstopdf)                    size: 102531 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/Gantt-EN-eps-converted-to.pdf figures/Gantt-EN.eps>
-(epstopdf)             \includegraphics on input line 199.
+(epstopdf)             \includegraphics on input line 201.
 Package epstopdf Info: Output file is already uptodate.
 <figures/Gantt-EN-eps-converted-to.pdf, id=626, 3011.25pt x 1505.625pt>
 File: figures/Gantt-EN-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/Gantt-EN-eps-converted-to.pdf>
-Package pdftex.def Info: figures/Gantt-EN-eps-converted-to.pdf  used on input line 199.
+Package pdftex.def Info: figures/Gantt-EN-eps-converted-to.pdf  used on input line 201.
 (pdftex.def)             Requested size: 426.79135pt x 213.38211pt.
 
 
@@ -983,12 +980,12 @@ Package epstopdf Info: Source file: <figures/app-images/closed-building.eps>
 (epstopdf)                    date: 2025-06-15 17:02:50
 (epstopdf)                    size: 9133 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/closed-building-eps-converted-to.pdf figures/app-images/closed-building.eps>
-(epstopdf)             \includegraphics on input line 216.
+(epstopdf)             \includegraphics on input line 218.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/closed-building-eps-converted-to.pdf, id=639, 329.23pt x 151.56625pt>
 File: figures/app-images/closed-building-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/closed-building-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/closed-building-eps-converted-to.pdf  used on input line 216.
+Package pdftex.def Info: figures/app-images/closed-building-eps-converted-to.pdf  used on input line 218.
 (pdftex.def)             Requested size: 305.31667pt x 140.55736pt.
 Package epstopdf Info: Source file: <figures/app-images/info.eps>
 (epstopdf)                    date: 2025-06-15 16:57:45
@@ -997,12 +994,12 @@ Package epstopdf Info: Source file: <figures/app-images/info.eps>
 (epstopdf)                    date: 2025-06-15 17:02:51
 (epstopdf)                    size: 10071 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/info-eps-converted-to.pdf figures/app-images/info.eps>
-(epstopdf)             \includegraphics on input line 222.
+(epstopdf)             \includegraphics on input line 224.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/info-eps-converted-to.pdf, id=640, 329.23pt x 151.56625pt>
 File: figures/app-images/info-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/info-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/info-eps-converted-to.pdf  used on input line 222.
+Package pdftex.def Info: figures/app-images/info-eps-converted-to.pdf  used on input line 224.
 (pdftex.def)             Requested size: 305.31667pt x 140.55736pt.
 
 
@@ -1016,12 +1013,12 @@ Package epstopdf Info: Source file: <figures/app-images/panel-logowania.eps>
 (epstopdf)                    date: 2025-06-15 17:02:53
 (epstopdf)                    size: 18941 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/panel-logowania-eps-converted-to.pdf figures/app-images/panel-logowania.eps>
-(epstopdf)             \includegraphics on input line 240.
+(epstopdf)             \includegraphics on input line 242.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/panel-logowania-eps-converted-to.pdf, id=653, 484.81125pt x 619.31375pt>
 File: figures/app-images/panel-logowania-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/panel-logowania-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/panel-logowania-eps-converted-to.pdf  used on input line 240.
+Package pdftex.def Info: figures/app-images/panel-logowania-eps-converted-to.pdf  used on input line 242.
 (pdftex.def)             Requested size: 275.08768pt x 351.406pt.
 
 
@@ -1033,12 +1030,12 @@ Package epstopdf Info: Source file: <figures/app-images/user-panel.eps>
 (epstopdf)                    date: 2025-06-15 17:02:55
 (epstopdf)                    size: 88558 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/user-panel-eps-converted-to.pdf figures/app-images/user-panel.eps>
-(epstopdf)             \includegraphics on input line 252.
+(epstopdf)             \includegraphics on input line 254.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/user-panel-eps-converted-to.pdf, id=665, 861.2175pt x 619.31375pt>
 File: figures/app-images/user-panel-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/user-panel-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/user-panel-eps-converted-to.pdf  used on input line 252.
+Package pdftex.def Info: figures/app-images/user-panel-eps-converted-to.pdf  used on input line 254.
 (pdftex.def)             Requested size: 426.79677pt x 306.91562pt.
 
 
@@ -1050,12 +1047,12 @@ Package epstopdf Info: Source file: <figures/app-images/user-file-report.eps>
 (epstopdf)                    date: 2025-06-15 17:02:56
 (epstopdf)                    size: 14595 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/user-file-report-eps-converted-to.pdf figures/app-images/user-file-report.eps>
-(epstopdf)             \includegraphics on input line 263.
+(epstopdf)             \includegraphics on input line 265.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/user-file-report-eps-converted-to.pdf, id=675, 484.81125pt x 619.31375pt>
 File: figures/app-images/user-file-report-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/user-file-report-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/user-file-report-eps-converted-to.pdf  used on input line 263.
+Package pdftex.def Info: figures/app-images/user-file-report-eps-converted-to.pdf  used on input line 265.
 (pdftex.def)             Requested size: 275.08768pt x 351.406pt.
 
 
@@ -1067,12 +1064,12 @@ Package epstopdf Info: Source file: <figures/app-images/admin-panel.eps>
 (epstopdf)                    date: 2025-06-15 17:03:01
 (epstopdf)                    size: 36549 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/admin-panel-eps-converted-to.pdf figures/app-images/admin-panel.eps>
-(epstopdf)             \includegraphics on input line 275.
+(epstopdf)             \includegraphics on input line 277.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/admin-panel-eps-converted-to.pdf, id=684, 1927.2pt x 1023.825pt>
 File: figures/app-images/admin-panel-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/admin-panel-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/admin-panel-eps-converted-to.pdf  used on input line 275.
+Package pdftex.def Info: figures/app-images/admin-panel-eps-converted-to.pdf  used on input line 277.
 (pdftex.def)             Requested size: 426.77895pt x 226.7263pt.
 
 
@@ -1084,12 +1081,12 @@ Package epstopdf Info: Source file: <figures/app-images/Add/add-user.eps>
 (epstopdf)                    date: 2025-06-15 17:03:02
 (epstopdf)                    size: 13322 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/Add/add-user-eps-converted-to.pdf figures/app-images/Add/add-user.eps>
-(epstopdf)             \includegraphics on input line 286.
+(epstopdf)             \includegraphics on input line 288.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/Add/add-user-eps-converted-to.pdf, id=693, 484.81125pt x 368.37625pt>
 File: figures/app-images/Add/add-user-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/Add/add-user-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/Add/add-user-eps-converted-to.pdf  used on input line 286.
+Package pdftex.def Info: figures/app-images/Add/add-user-eps-converted-to.pdf  used on input line 288.
 (pdftex.def)             Requested size: 184.97734pt x 140.55214pt.
 Package epstopdf Info: Source file: <figures/app-images/Add/add-apartment.eps>
 (epstopdf)                    date: 2025-06-15 16:59:45
@@ -1098,12 +1095,12 @@ Package epstopdf Info: Source file: <figures/app-images/Add/add-apartment.eps>
 (epstopdf)                    date: 2025-06-15 17:03:04
 (epstopdf)                    size: 11754 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/Add/add-apartment-eps-converted-to.pdf figures/app-images/Add/add-apartment.eps>
-(epstopdf)             \includegraphics on input line 292.
+(epstopdf)             \includegraphics on input line 294.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/Add/add-apartment-eps-converted-to.pdf, id=694, 484.81125pt x 368.37625pt>
 File: figures/app-images/Add/add-apartment-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/Add/add-apartment-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/Add/add-apartment-eps-converted-to.pdf  used on input line 292.
+Package pdftex.def Info: figures/app-images/Add/add-apartment-eps-converted-to.pdf  used on input line 294.
 (pdftex.def)             Requested size: 184.97734pt x 140.55214pt.
 Package epstopdf Info: Source file: <figures/app-images/Add/add-user-to-apartment.eps>
 (epstopdf)                    date: 2025-06-15 16:59:32
@@ -1112,12 +1109,12 @@ Package epstopdf Info: Source file: <figures/app-images/Add/add-user-to-apartmen
 (epstopdf)                    date: 2025-06-15 17:03:05
 (epstopdf)                    size: 13351 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/Add/add-user-to-apartment-eps-converted-to.pdf figures/app-images/Add/add-user-to-apartment.eps>
-(epstopdf)             \includegraphics on input line 298.
+(epstopdf)             \includegraphics on input line 300.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/Add/add-user-to-apartment-eps-converted-to.pdf, id=695, 484.81125pt x 368.37625pt>
 File: figures/app-images/Add/add-user-to-apartment-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/Add/add-user-to-apartment-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/Add/add-user-to-apartment-eps-converted-to.pdf  used on input line 298.
+Package pdftex.def Info: figures/app-images/Add/add-user-to-apartment-eps-converted-to.pdf  used on input line 300.
 (pdftex.def)             Requested size: 184.97734pt x 140.55214pt.
 
 
@@ -1129,12 +1126,12 @@ Package epstopdf Info: Source file: <figures/app-images/Remove/remove-user.eps>
 (epstopdf)                    date: 2025-06-15 17:03:06
 (epstopdf)                    size: 11084 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/Remove/remove-user-eps-converted-to.pdf figures/app-images/Remove/remove-user.eps>
-(epstopdf)             \includegraphics on input line 309.
+(epstopdf)             \includegraphics on input line 311.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/Remove/remove-user-eps-converted-to.pdf, id=713, 359.3425pt x 242.9075pt>
 File: figures/app-images/Remove/remove-user-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/Remove/remove-user-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/Remove/remove-user-eps-converted-to.pdf  used on input line 309.
+Package pdftex.def Info: figures/app-images/Remove/remove-user-eps-converted-to.pdf  used on input line 311.
 (pdftex.def)             Requested size: 155.93987pt x 105.41185pt.
 Package epstopdf Info: Source file: <figures/app-images/Remove/remove-apartment.eps>
 (epstopdf)                    date: 2025-06-15 16:58:51
@@ -1143,12 +1140,12 @@ Package epstopdf Info: Source file: <figures/app-images/Remove/remove-apartment.
 (epstopdf)                    date: 2025-06-15 17:03:07
 (epstopdf)                    size: 11613 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/Remove/remove-apartment-eps-converted-to.pdf figures/app-images/Remove/remove-apartment.eps>
-(epstopdf)             \includegraphics on input line 315.
+(epstopdf)             \includegraphics on input line 317.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/Remove/remove-apartment-eps-converted-to.pdf, id=714, 359.3425pt x 242.9075pt>
 File: figures/app-images/Remove/remove-apartment-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/Remove/remove-apartment-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/Remove/remove-apartment-eps-converted-to.pdf  used on input line 315.
+Package pdftex.def Info: figures/app-images/Remove/remove-apartment-eps-converted-to.pdf  used on input line 317.
 (pdftex.def)             Requested size: 155.93987pt x 105.41185pt.
 Package epstopdf Info: Source file: <figures/app-images/Remove/empty-apartment.eps>
 (epstopdf)                    date: 2025-06-15 16:59:10
@@ -1157,12 +1154,12 @@ Package epstopdf Info: Source file: <figures/app-images/Remove/empty-apartment.e
 (epstopdf)                    date: 2025-06-15 17:03:08
 (epstopdf)                    size: 11467 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/Remove/empty-apartment-eps-converted-to.pdf figures/app-images/Remove/empty-apartment.eps>
-(epstopdf)             \includegraphics on input line 321.
+(epstopdf)             \includegraphics on input line 323.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/Remove/empty-apartment-eps-converted-to.pdf, id=715, 359.3425pt x 242.9075pt>
 File: figures/app-images/Remove/empty-apartment-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/Remove/empty-apartment-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/Remove/empty-apartment-eps-converted-to.pdf  used on input line 321.
+Package pdftex.def Info: figures/app-images/Remove/empty-apartment-eps-converted-to.pdf  used on input line 323.
 (pdftex.def)             Requested size: 155.93987pt x 105.41185pt.
 Package epstopdf Info: Source file: <figures/app-images/Remove/remove-report.eps>
 (epstopdf)                    date: 2025-06-15 16:58:52
@@ -1171,12 +1168,12 @@ Package epstopdf Info: Source file: <figures/app-images/Remove/remove-report.eps
 (epstopdf)                    date: 2025-06-15 17:03:09
 (epstopdf)                    size: 11078 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/Remove/remove-report-eps-converted-to.pdf figures/app-images/Remove/remove-report.eps>
-(epstopdf)             \includegraphics on input line 327.
+(epstopdf)             \includegraphics on input line 329.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/Remove/remove-report-eps-converted-to.pdf, id=716, 359.3425pt x 242.9075pt>
 File: figures/app-images/Remove/remove-report-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/Remove/remove-report-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/Remove/remove-report-eps-converted-to.pdf  used on input line 327.
+Package pdftex.def Info: figures/app-images/Remove/remove-report-eps-converted-to.pdf  used on input line 329.
 (pdftex.def)             Requested size: 155.93987pt x 105.41185pt.
 
 
@@ -1188,12 +1185,12 @@ Package epstopdf Info: Source file: <figures/app-images/admin-panel-modify.eps>
 (epstopdf)                    date: 2025-06-15 17:03:10
 (epstopdf)                    size: 6225 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/admin-panel-modify-eps-converted-to.pdf figures/app-images/admin-panel-modify.eps>
-(epstopdf)             \includegraphics on input line 339.
+(epstopdf)             \includegraphics on input line 341.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/admin-panel-modify-eps-converted-to.pdf, id=737, 418.56375pt x 57.21375pt>
 File: figures/app-images/admin-panel-modify-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/admin-panel-modify-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/admin-panel-modify-eps-converted-to.pdf  used on input line 339.
+Package pdftex.def Info: figures/app-images/admin-panel-modify-eps-converted-to.pdf  used on input line 341.
 (pdftex.def)             Requested size: 426.78885pt x 58.33803pt.
 Package epstopdf Info: Source file: <figures/app-images/modify-apartment.eps>
 (epstopdf)                    date: 2025-06-15 16:57:46
@@ -1202,12 +1199,12 @@ Package epstopdf Info: Source file: <figures/app-images/modify-apartment.eps>
 (epstopdf)                    date: 2025-06-15 17:03:12
 (epstopdf)                    size: 20137 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/modify-apartment-eps-converted-to.pdf figures/app-images/modify-apartment.eps>
-(epstopdf)             \includegraphics on input line 345.
+(epstopdf)             \includegraphics on input line 347.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/modify-apartment-eps-converted-to.pdf, id=738, 484.81125pt x 493.845pt>
 File: figures/app-images/modify-apartment-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/modify-apartment-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/modify-apartment-eps-converted-to.pdf  used on input line 345.
+Package pdftex.def Info: figures/app-images/modify-apartment-eps-converted-to.pdf  used on input line 347.
 (pdftex.def)             Requested size: 206.97784pt x 210.83458pt.
 
 
@@ -1219,12 +1216,12 @@ Package epstopdf Info: Source file: <figures/app-images/admin-panel-report.eps>
 (epstopdf)                    date: 2025-06-15 17:03:13
 (epstopdf)                    size: 5371 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/admin-panel-report-eps-converted-to.pdf figures/app-images/admin-panel-report.eps>
-(epstopdf)             \includegraphics on input line 356.
+(epstopdf)             \includegraphics on input line 358.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/admin-panel-report-eps-converted-to.pdf, id=751, 411.5375pt x 51.19125pt>
 File: figures/app-images/admin-panel-report-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/admin-panel-report-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/admin-panel-report-eps-converted-to.pdf  used on input line 356.
+Package pdftex.def Info: figures/app-images/admin-panel-report-eps-converted-to.pdf  used on input line 358.
 (pdftex.def)             Requested size: 426.79579pt x 53.08922pt.
 Package epstopdf Info: Source file: <figures/app-images/see-report.eps>
 (epstopdf)                    date: 2025-06-15 16:57:16
@@ -1233,12 +1230,12 @@ Package epstopdf Info: Source file: <figures/app-images/see-report.eps>
 (epstopdf)                    date: 2025-06-15 17:03:14
 (epstopdf)                    size: 9656 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=figures/app-images/see-report-eps-converted-to.pdf figures/app-images/see-report.eps>
-(epstopdf)             \includegraphics on input line 362.
+(epstopdf)             \includegraphics on input line 364.
 Package epstopdf Info: Output file is already uptodate.
 <figures/app-images/see-report-eps-converted-to.pdf, id=752, 484.81125pt x 368.37625pt>
 File: figures/app-images/see-report-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/app-images/see-report-eps-converted-to.pdf>
-Package pdftex.def Info: figures/app-images/see-report-eps-converted-to.pdf  used on input line 362.
+Package pdftex.def Info: figures/app-images/see-report-eps-converted-to.pdf  used on input line 364.
 (pdftex.def)             Requested size: 277.47711pt x 210.83664pt.
 
 
@@ -1287,18 +1284,18 @@ L3 programming layer <2025-04-29>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `praca.out' has not changed.
-(rerunfilecheck)             Checksum: 3BC598C0E81EDFDACA6143371B655757;7166.
+(rerunfilecheck)             Checksum: F9528F486ADC458D53C27FB3B9314A39;7245.
  ) 
 Here is how much of TeX's memory you used:
  24073 strings out of 469923
  458912 string characters out of 5469654
- 1438980 words of memory out of 5000000
+ 1438979 words of memory out of 5000000
  50101 multiletter control sequences out of 15000+600000
  705134 words of font info for 120 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  88i,14n,94p,603b,1392s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Kapi/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Kapi/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrro8a.pfb><C:/Users/Kapi/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/Kapi/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/Kapi/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a.pfb><C:/Users/Kapi/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Kapi/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/Kapi/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Kapi/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Kapi/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on praca.pdf (32 pages, 1555790 bytes).
+Output written on praca.pdf (32 pages, 1556062 bytes).
 PDF statistics:
  951 PDF objects out of 1000 (max. 8388607)
  386 named destinations out of 1000 (max. 500000)

@@ -99,10 +99,11 @@ do niej plik o nazwie \textit{building.sql} dołączony do plików projektu.
 
 %\listingname~\ref{databaseconnection} Połączenie z bazą danych.
 \noindent Nawiązując do kodu Java dzięki któremu aplikacja łączy się z bazą danych (Listing 3.1)
-musimy zrobić w stworzonej przez nas bazie danych \textit{building} użytkownika o nazwie \textit{app} z hasłem \textit{1234} z uprawnieniami administratora.
+musimy zrobić w stworzonej przez nas bazie danych \textit{building} użytkownika o nazwie \textit{app} z hasłem \textit{1234} z uprawnieniami do wszystkiego.
 \lstinputlisting[caption= Połączenie z bazą danych, label=databaseconnection, style = csStyle]{src/DatabaseConnection.java}
 
-\subsection{IntelliJ}
+\newpage
+\subsection{IntelliJ - Connector J}
 Jeżeli chcemy włączyć aplikacje poprzez program IntelliJ potrzebujemy Java OpenJDK wersję conajmniej 24.0.1 oraz Connector J (w projekcie użyto wersji 9.3.0)
 dostępny na stronie \url{https://dev.mysql.com/downloads/connector/j/}.
 Po pobraniu musimy zaimportować moduł do projektu poprzez zakładkę \textit{File > Project structure > Modules} i dodać moduł (patrz rys. 3.3).
@@ -113,6 +114,7 @@ Po pobraniu musimy zaimportować moduł do projektu poprzez zakładkę \textit{F
     \caption{IntelliJ - Connector J\label{fig3}}
 \end{figure}
 
+\newpage
 \subsection{Struktura tabel bazy danych}
 
 \begin{figure}[H]
