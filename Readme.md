@@ -1,0 +1,1 @@
+Projekt Building Managment znajduje się w folderze Projekt.
