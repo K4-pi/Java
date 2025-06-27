@@ -1,15 +1,17 @@
 \chapter{Streszczenie}
 \label{cha:elementyPracyproj}
 
-\section{Streszczenie}
-Dokumentacja aplikacji desktopowej wspomagającej zarządzanie budynkiem mieszkalnym. 
+\textbf{Streszczenie}
+\newline 
+\indent Dokumentacja aplikacji desktopowej wspomagającej zarządzanie budynkiem mieszkalnym. 
 Aplikacja umożliwia administratorowi zarządzanie informacjami o m.in. lokatorach oraz zgłoszeniach. 
 Projekt został wykonany w języku Java z wykorzystaniem biblioteki Swing (interfejs graficzny) oraz JDBC z Connector J do komunikacji z bazą danych MySQL. 
 Aplikacja oferuje zarządzanie mieszkaniami, przypisanie właściciela do mieszkań, odbieranie zgłoszeń od mieszkańców,
-dodawanie/usuwanie mieszkańców/mieszkań, modyfikowanie parametrów mieszkań.
+dodawanie/usuwanie mieszkańców/mieszkań, modyfikowanie parametrów mieszkań.\newline 
 
-\section{Summary}
-Documentation of a desktop application supporting the management of a residential building. 
+\textbf{Summary}
+\newline 
+\indent Documentation of a desktop application supporting the management of a residential building. 
 The application allows the administrator to manage informations like, tenants and notifications. 
 The project was made in Java using the Swing library (graphical interface) and JDBC with Connector J for communication with the MySQL database. 
 The application offers apartment management, assigning owners to apartments, receiving notifications from residents, 
@@ -68,11 +70,11 @@ administratorowi budynku na dodawanie lub usuwanie użytkowników, mieszkań ora
 \chapter{Opis struktury projektu}
 \section{Zdalne repozytorium projektu}
 Projekt jest przechowywany na zdalnym repozytorium na stronie github.com pod adresem 
-\newline \url{https://github.com/K4-pi/Java/tree/main/Projekt} w folderze \textit{BuildingManagment}.
+\newline \url{https://github.com/K4-pi/Java/tree/main/Projekt} w folderze \textit{BuildingManagement}.
 
 \section{Baza danych}
 \subsection{Konfiguracja bazy danych (Xampp)}
-Do poprwanego działania aplikacji konieczne jest połączenie z bazą danych.
+Do poprawnego działania aplikacji konieczne jest połączenie z bazą danych.
 Połączenie z bazą należy wykonać przy użyciu narzędzia Xampp dostępnego na stronie 
 \url{https://www.apachefriends.org/pl/index.html} patrz rysunek 3.1 
 (w tym przykładzie użyto wersji 3.3.0).
@@ -84,7 +86,7 @@ Połączenie z bazą należy wykonać przy użyciu narzędzia Xampp dostępnego 
 \end{figure}
 
 \newpage
-\noindent Następnie poprzez aplikacje Xampp należy włączyć moduł Apatche oraz MySQL
+\noindent Następnie poprzez aplikacje Xampp należy włączyć moduł Apache oraz MySQL
 \textcolor{red}{UWAGA!} Należy się upewnić, że moduł MySQL działa na porcie 3306.
 Poprzez panel phpMyAdmin (Rys 3.2) włączany przez przycisk \textit{Admin} znajdujący się w aplikacji
 Xampp przy module MySQL lub przez adres URL  \url{http://localhost/phpmyadmin/index.php}.
@@ -104,7 +106,7 @@ musimy zrobić w stworzonej przez nas bazie danych \textit{building} użytkownik
 
 \newpage
 \subsection{IntelliJ - Connector J}
-Jeżeli chcemy włączyć aplikacje poprzez program IntelliJ potrzebujemy Java OpenJDK wersję conajmniej 24.0.1 oraz Connector J (w projekcie użyto wersji 9.3.0)
+Jeżeli chcemy włączyć aplikacje poprzez program IntelliJ potrzebujemy Java OpenJDK wersję co najmniej 24.0.1 oraz Connector J (w projekcie użyto wersji 9.3.0)
 dostępny na stronie \url{https://dev.mysql.com/downloads/connector/j/}.
 Po pobraniu musimy zaimportować moduł do projektu poprzez zakładkę \textit{File > Project structure > Modules} i dodać moduł (patrz rys. 3.3).
 
@@ -180,7 +182,7 @@ W klasie \textit{Add} zdefiniowane są funkcje, które pozwalają administratoro
 
 \newpage
 \subsection{Usuwanie elementów przez administratora}
-W klasie \textit{Remove} zdefniowane są funkcje pozwalające administratorowi na usuwanie elementów z bazy danych (Listingi 3.9, 3.10, 3.11)
+W klasie \textit{Remove} zdefiniowane są funkcje pozwalające administratorowi na usuwanie elementów z bazy danych (Listingi 3.9, 3.10, 3.11)
 \lstinputlisting[caption= Usuwanie użytkownika z mieszkania, label=databaseconnection, style = csStyle]{src/Remove/RemoveUserFromApartment.java}
 \lstinputlisting[caption= Usuwanie użytkownika, label=databaseconnection, style = csStyle]{src/Remove/RemoveUser.java}
 \newpage \lstinputlisting[caption= Usuwanie mieszkania, label=databaseconnection, style = csStyle]{src/Remove/RemoveApartment.java}
@@ -227,15 +229,14 @@ lub po prostu informuje o wykonaniu pewnego rodzaju zadania (Rys 5.2).
 
 \newpage
 \section{Ekran logowania}
-\subsection{Dane konta administratora}
-\noindent Domyślnymi danymi konta administratora są: 
+
+Jest to pierwsze okno które jest wyświetlane po uruchomieniu aplikacji (Rys. 5.3). Użytkownik może wprowadzić tu swój login oraz PIN w celu
+zalogowania się do systemu. Jeżeli rola użytkownika zdefiniowana w bazie danych to \textit{admin}, użytkownik 
+zostanie zalogowany do panelu admina jeśli zaś jego rola to \textit{user}, zostanie zalogowany do panelu mieszkańca. \newline
+
+\noindent \textbf{Dane konta administratora:}
 \newline login: \textbf{admin}
 \newline PIN: \textbf{9999}
-
-\subsection{Panel logowania}
-Jest to pierwsze okno które jest wyświetlane po uruchomieniu aplikacji (Rys. 5.3). Użytkownik może wporwadzić tu swój login oraz PIN w celu
-zalogowania się do systemu. Jeżeli rola użytkownika zdefiniowana w bazie danych to \textit{admin}, użytkownik 
-zostanie zalogowany do panelu admina jeśli zaś jego rola to \textit{user}, zostanie zalogowany do panelu mieszkańca.
 
 \begin{figure}[H]
     \centering
@@ -271,7 +272,7 @@ poprzez przycisk \textit{Send} zgłoszenie zostaje wysłane do administratora. Z
 \subsection{Panel administratora}
 Panel administratora (Rys 5.6) wyświetla użytkowników, mieszkania, zgłoszenia wysłane przez użytkowników.
 Przycisk \textit{Logout} powoduje powrót do ekranu logowania a przycisk \textit{CLOSE BUILDING} zamyka budynek nie pozwalając użytkownikom 
-wejść do budynku i zmienia się na przycisj \textit{OPEN BUILDING} który otworzy budynek.
+wejść do budynku i zmienia się na przycisk \textit{OPEN BUILDING} który otworzy budynek.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{figures/app-images/admin-panel.eps}

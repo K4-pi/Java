@@ -1,7 +1,5 @@
 \babel@toc {polish}{}\relax 
 \contentsline {chapter}{\numberline {1}Streszczenie}{7}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Streszczenie}{7}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Summary}{7}{section.1.2}%
 \contentsline {chapter}{\numberline {2}Opis założeń projektu}{8}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Cel projektu}{8}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Wymagania funkcjonalne}{8}{section.2.2}%
@@ -27,8 +25,6 @@
 \contentsline {section}{\numberline {5.1}Opis}{22}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Okna informacyjne}{22}{section.5.2}%
 \contentsline {section}{\numberline {5.3}Ekran logowania}{23}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Dane konta administratora}{23}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Panel logowania}{23}{subsection.5.3.2}%
 \contentsline {section}{\numberline {5.4}Użytkownik (\textit {user})}{24}{section.5.4}%
 \contentsline {subsection}{\numberline {5.4.1}Panel mieszkańca}{24}{subsection.5.4.1}%
 \contentsline {subsection}{\numberline {5.4.2}Wysyłania zgłoszeń}{25}{subsection.5.4.2}%
