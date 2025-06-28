@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Maj 19, 2025 at 05:43 PM
--- Wersja serwera: 10.4.32-MariaDB
--- Wersja PHP: 8.2.12
+-- Generation Time: Jun 28, 2025 at 09:50 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `apartments`
+-- Table structure for table `apartments`
 --
 
 CREATE TABLE `apartments` (
@@ -32,8 +32,8 @@ CREATE TABLE `apartments` (
   `nr` int(11) DEFAULT NULL CHECK (`nr` >= 0),
   `electricity` tinyint(1) DEFAULT 0,
   `light` tinyint(1) DEFAULT 0,
-  `watertemp` decimal(4,1) DEFAULT NULL,
-  `airtemp` decimal(4,1) DEFAULT NULL,
+  `watertemp` float DEFAULT 16,
+  `airtemp` float DEFAULT 16,
   `userid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -42,15 +42,22 @@ CREATE TABLE `apartments` (
 --
 
 INSERT INTO `apartments` (`id`, `nr`, `electricity`, `light`, `watertemp`, `airtemp`, `userid`) VALUES
-(17, 67, 1, 1, 31.8, 12.9, 23),
-(25, 10, 0, 0, NULL, NULL, NULL),
-(26, 25, 0, 0, NULL, NULL, NULL),
-(27, 100, 0, 0, NULL, NULL, NULL);
+(17, 67, 1, 1, 31.7, 12.9, 37),
+(25, 10, 0, 0, 16, 16, NULL),
+(26, 25, 1, 1, 17, 16.5, 32),
+(27, 100, 0, 0, 16, 16, NULL),
+(28, 11, 0, 0, 16, 16, 35),
+(29, 12, 1, 0, 16, 16, 36),
+(30, 13, 0, 0, 16, 16, 33),
+(31, 14, 0, 0, 16, 16, NULL),
+(32, 15, 0, 0, 16, 16, NULL),
+(33, 99, 0, 0, 16, 16, NULL),
+(34, 101, 0, 0, 16, 16, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `doorstatus`
+-- Table structure for table `doorstatus`
 --
 
 CREATE TABLE `doorstatus` (
@@ -68,7 +75,7 @@ INSERT INTO `doorstatus` (`id`, `isclosed`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `reports`
+-- Table structure for table `reports`
 --
 
 CREATE TABLE `reports` (
@@ -84,7 +91,7 @@ CREATE TABLE `reports` (
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -100,14 +107,18 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `role`, `pin`, `username`) VALUES
 (1, 'admin', '9999', 'admin'),
-(23, 'user', '1234', 'Karol');
+(32, 'user', '9021', 'Kowalscy'),
+(33, 'user', '1243', 'Wiśniewscy'),
+(35, 'user', '1122', 'Lewandowscy'),
+(36, 'user', '1234', 'Nowak'),
+(37, 'user', '8975', 'Kamińscy');
 
 --
--- Indeksy dla zrzutów tabel
+-- Indexes for dumped tables
 --
 
 --
--- Indeksy dla tabeli `apartments`
+-- Indexes for table `apartments`
 --
 ALTER TABLE `apartments`
   ADD PRIMARY KEY (`id`),
@@ -115,20 +126,20 @@ ALTER TABLE `apartments`
   ADD KEY `userid` (`userid`);
 
 --
--- Indeksy dla tabeli `doorstatus`
+-- Indexes for table `doorstatus`
 --
 ALTER TABLE `doorstatus`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeksy dla tabeli `reports`
+-- Indexes for table `reports`
 --
 ALTER TABLE `reports`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_user` (`userid`);
 
 --
--- Indeksy dla tabeli `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -142,7 +153,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `apartments`
 --
 ALTER TABLE `apartments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `doorstatus`
@@ -160,7 +171,7 @@ ALTER TABLE `reports`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Constraints for dumped tables
